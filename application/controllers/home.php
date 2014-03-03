@@ -15,7 +15,7 @@ class Home extends CI_Controller {
 
     public function index() {
         $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Home page';
-        $this->load->view($this->config->item('common_page') . 'home', $this->gen_contents);
+        $this->load->view($this->config->item('pages') . 'home', $this->gen_contents);
         //$this->load->view($this->config->item('site_page') . 'header', $this->gen_contents);
         //$this->load->view('user/user_home', $data);
         //$this->load->view($this->config->item('site_page') . 'footer');
