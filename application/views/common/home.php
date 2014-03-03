@@ -67,7 +67,635 @@
             });
             </script>                
    </head>
-    <body>
+<body>
+<div class="wrap">
+<h2 class="text-center">jQuery Vertical Accordion Menu Plugin v 2.6 - <a href="http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/getting-started/">Visit Plugin Site</a></h2>
+<h3 class="text-center">Demo Menus Using "Click"</h3>
+<div class="graphite demo-container">
+<ul class="text">
+<li>Close Open Sub-menus: On</li>
+<li>Save State: On</li>
+<li>Auto Expand: On</li>
+<li>Disable Parent links: On</li>
+<li>Speed: slow</li>
+<li>Count: on</li>
+</ul>
+<ul class="accordion" id="accordion-1">
+    <li><a href="#">Home</a></li>
+    <li class="dcjq-current-parent"><a href="#">Products</a><ul>
+            <li class="dcjq-current-parent"><a href="#">Mobile Phones &#038; Accessories</a><ul>
+                    <li class="dcjq-current-parent"><a href="#">Product 1</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 2</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+					<li><a href="#">Product 3</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                </ul>
+            </li>
+            <li><a href="#">Desktop</a><ul>
+                    <li><a href="#">Product 4</a></li>
+                    <li><a href="#">Product 5</a></li>
+                    <li><a href="#">Product 6</a></li>
+                    <li><a href="#">Product 7</a></li>
+                    <li><a href="#">Product 8</a></li>
+                    <li><a href="#">Product 9</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Laptop</a><ul>
+                    <li><a href="#">Product 10</a></li>
+                    <li><a href="#">Product 11</a><ul>
+						<li><a href="#">Part E</a></li>
+						<li><a href="#">Part F</a></li>
+						<li><a href="#">Part G</a></li>
+						<li><a href="#">Part H</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 12</a></li>
+                    <li><a href="#">Product 13</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Accessories</a><ul>
+                    <li><a href="#">Product 14</a></li>
+                    <li><a href="#">Product 15</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Software</a><ul>
+                <li><a href="#">Product 16</a></li>
+                    <li><a href="#">Product 17</a></li>
+                    <li><a href="#">Product 18</a></li>
+                    <li><a href="#">Product 19</a></li>
+              </ul>
+            </li>
+        </ul>
+    </li>
+<li><a href="#">About Us</a><ul>
+    <li><a href="#">About Page 1</a></li>
+    <li><a href="#">About Page 2</a></li>
+ 
+</ul>
+</li>
+<li><a href="#">Services</a><ul>
+    <li><a href="#">Service 1</a><ul>
+        <li><a href="#">Service Detail A</a></li>
+        <li><a href="#">Service Detail B</a></li>
+    </ul>
+</li>
+<li><a href="#">Service 2</a><ul>
+        <li><a href="#">Service Detail C</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 3</a><ul>
+        <li><a href="#">Service Detail D</a></li>
+        <li><a href="#">Service Detail E</a></li>
+        <li><a href="#">Service Detail F</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 4</a></li>
+</ul>
+</li>
+<li><a href="#">Contact us</a></li>
+</ul>
+</div>
+<div class="grey demo-container">
+<ul class="text">
+<li>Close Open Sub-menus: Off</li>
+<li>Save State: On</li>
+<li>Disable Parent links: On</li>
+<li>Speed: fast</li>
+<li>Count: on</li>
+</ul>
+<ul class="accordion"  id="accordion-2">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Products</a><ul>
+            <li><a href="#">Mobile Phones &#038; Accessories</a><ul>
+                    <li><a href="#">Product 1</a><ul>
+						<li><a href="#">Part A</a>
+						  
+						</li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 2</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+					<li><a href="#">Product 3</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                </ul>
+            </li>
+            <li><a href="#">Desktop</a><ul>
+                    <li><a href="#">Product 4</a></li>
+                    <li><a href="#">Product 5</a></li>
+                    <li><a href="#">Product 6</a></li>
+                    <li><a href="#">Product 7</a></li>
+                    <li><a href="#">Product 8</a></li>
+                    <li><a href="#">Product 9</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Laptop</a><ul>
+                    <li><a href="#">Product 10</a></li>
+                    <li><a href="#">Product 11</a><ul>
+						<li><a href="#">Part E</a></li>
+						<li><a href="#">Part F</a></li>
+						<li><a href="#">Part G</a></li>
+						<li><a href="#">Part H</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 12</a></li>
+                    <li><a href="#">Product 13</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Accessories</a><ul>
+                    <li><a href="#">Product 14</a></li>
+                    <li><a href="#">Product 15</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Software</a><ul>
+                <li><a href="#">Product 16</a></li>
+                    <li><a href="#">Product 17</a></li>
+                    <li><a href="#">Product 18</a></li>
+                    <li><a href="#">Product 19</a></li>
+              </ul>
+            </li>
+        </ul>
+    </li>
+<li><a href="#">About Us</a><ul>
+    <li><a href="#">About Page 1</a></li>
+    <li><a href="#">About Page 2</a></li>
+ 
+</ul>
+</li>
+<li><a href="#">Services</a><ul>
+    <li><a href="#">Service 1</a><ul>
+        <li><a href="#">Service Detail A</a></li>
+        <li><a href="#">Service Detail B</a></li>
+    </ul>
+</li>
+<li><a href="#">Service 2</a><ul>
+        <li><a href="#">Service Detail C</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 3</a><ul>
+        <li><a href="#">Service Detail D</a></li>
+        <li><a href="#">Service Detail E</a></li>
+        <li><a href="#">Service Detail F</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 4</a></li>
+</ul>
+</li>
+<li><a href="#">Contact us</a></li>
+</ul>
+</div>
+<div class="blue demo-container">
+<ul class="text">
+<li>Close Open Sub-menus: Off</li>
+<li>Save State: Off</li>
+<li>Disable Parent links: Off</li>
+<li>Speed: slow</li>
+<li>Count: off</li>
+</ul>
+<ul class="accordion"  id="accordion-3">
+    <li><a href="#">Home</a><ul>
+		<li><a href="#">Page 1</a></li>
+		<li><a href="#">Page 2</a></li>
+		<li><a href="#">Page 3</a></li>
+		<li><a href="#">Page 4</a></li>
+	  </ul>
+	</li>
+    <li><a href="#">Products</a><ul>
+            <li><a href="#">Mobile Phones &#038; Accessories</a><ul>
+                    <li><a href="#">Product 1</a><ul>
+						<li><a href="#">Part A</a>
+						  
+						</li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 2</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+					<li><a href="#">Product 3</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                </ul>
+            </li>
+            <li><a href="#">Desktop</a><ul>
+                    <li><a href="#">Product 4</a></li>
+                    <li><a href="#">Product 5</a></li>
+                    <li><a href="#">Product 6</a></li>
+                    <li><a href="#">Product 7</a></li>
+                    <li><a href="#">Product 8</a></li>
+                    <li><a href="#">Product 9</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Laptop</a><ul>
+                    <li><a href="#">Product 10</a></li>
+                    <li><a href="#">Product 11</a><ul>
+						<li><a href="#">Part E</a></li>
+						<li><a href="#">Part F</a></li>
+						<li><a href="#">Part G</a></li>
+						<li><a href="#">Part H</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 12</a></li>
+                    <li><a href="#">Product 13</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Accessories</a><ul>
+                    <li><a href="#">Product 14</a></li>
+                    <li><a href="#">Product 15</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Software</a><ul>
+                <li><a href="#">Product 16</a></li>
+                    <li><a href="#">Product 17</a></li>
+                    <li><a href="#">Product 18</a></li>
+                    <li><a href="#">Product 19</a></li>
+              </ul>
+            </li>
+        </ul>
+    </li>
+<li><a href="#">About Us</a><ul>
+    <li><a href="#">About Page 1</a></li>
+    <li><a href="#">About Page 2</a></li>
+ 
+</ul>
+</li>
+<li><a href="#">Services</a><ul>
+    <li><a href="#">Service 1</a><ul>
+        <li><a href="#">Service Detail A</a></li>
+        <li><a href="#">Service Detail B</a></li>
+    </ul>
+</li>
+<li><a href="#">Service 2</a><ul>
+        <li><a href="#">Service Detail C</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 3</a><ul>
+        <li><a href="#">Service Detail D</a></li>
+        <li><a href="#">Service Detail E</a></li>
+        <li><a href="#">Service Detail F</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 4</a></li>
+</ul>
+</li>
+<li><a href="#">Contact us</a></li>
+</ul>
+</div>
+<h3 class="clear text-center">Demo Menus Using "Hover"</h3>
+<div class="graphite demo-container">
+<ul class="text">
+<li>Close Open Sub-menus: On</li>
+<li>Auto-Close: Off</li>
+<li>Save State: On</li>
+<li>Disable Parent links: On</li>
+<li>Speed: slow</li>
+<li>Count: on</li>
+</ul>
+<ul class="accordion"  id="accordion-4">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Products</a><ul>
+            <li><a href="#">Mobile Phones &#038; Accessories</a><ul>
+                    <li><a href="#">Product 1</a><ul>
+						<li><a href="#">Part A</a>
+						  
+						</li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 2</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+					<li><a href="#">Product 3</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                </ul>
+            </li>
+            <li><a href="#">Desktop</a><ul>
+                    <li><a href="#">Product 4</a></li>
+                    <li><a href="#">Product 5</a></li>
+                    <li><a href="#">Product 6</a></li>
+                    <li><a href="#">Product 7</a></li>
+                    <li><a href="#">Product 8</a></li>
+                    <li><a href="#">Product 9</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Laptop</a><ul>
+                    <li><a href="#">Product 10</a></li>
+                    <li><a href="#">Product 11</a><ul>
+						<li><a href="#">Part E</a></li>
+						<li><a href="#">Part F</a></li>
+						<li><a href="#">Part G</a></li>
+						<li><a href="#">Part H</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 12</a></li>
+                    <li><a href="#">Product 13</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Accessories</a><ul>
+                    <li><a href="#">Product 14</a></li>
+                    <li><a href="#">Product 15</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Software</a><ul>
+                <li><a href="#">Product 16</a></li>
+                    <li><a href="#">Product 17</a></li>
+                    <li><a href="#">Product 18</a></li>
+                    <li><a href="#">Product 19</a></li>
+              </ul>
+            </li>
+        </ul>
+    </li>
+<li><a href="#">About Us</a><ul>
+    <li><a href="#">About Page 1</a></li>
+    <li><a href="#">About Page 2</a></li>
+ 
+</ul>
+</li>
+<li><a href="#">Services</a><ul>
+    <li><a href="#">Service 1</a><ul>
+        <li><a href="#">Service Detail A</a></li>
+        <li><a href="#">Service Detail B</a></li>
+    </ul>
+</li>
+<li><a href="#">Service 2</a><ul>
+        <li><a href="#">Service Detail C</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 3</a><ul>
+        <li><a href="#">Service Detail D</a></li>
+        <li><a href="#">Service Detail E</a></li>
+        <li><a href="#">Service Detail F</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 4</a></li>
+</ul>
+</li>
+<li><a href="#">Contact us</a></li>
+</ul>
+</div>
+<div class="grey demo-container">
+<ul class="text">
+<li>Close Open Sub-menus: Off</li>
+<li>Auto-Close: On</li>
+<li>Save State: On</li>
+<li>Disable Parent links: On</li>
+<li>Speed: fast</li>
+<li>Count: on</li>
+</ul>
+<ul class="accordion"  id="accordion-5">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Products</a><ul>
+            <li><a href="#">Mobile Phones &#038; Accessories</a><ul>
+                    <li><a href="#">Product 1</a><ul>
+						<li><a href="#">Part A</a>
+						  
+						</li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 2</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+					<li><a href="#">Product 3</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                </ul>
+            </li>
+            <li><a href="#">Desktop</a><ul>
+                    <li><a href="#">Product 4</a></li>
+                    <li><a href="#">Product 5</a></li>
+                    <li><a href="#">Product 6</a></li>
+                    <li><a href="#">Product 7</a></li>
+                    <li><a href="#">Product 8</a></li>
+                    <li><a href="#">Product 9</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Laptop</a><ul>
+                    <li><a href="#">Product 10</a></li>
+                    <li><a href="#">Product 11</a><ul>
+						<li><a href="#">Part E</a></li>
+						<li><a href="#">Part F</a></li>
+						<li><a href="#">Part G</a></li>
+						<li><a href="#">Part H</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 12</a></li>
+                    <li><a href="#">Product 13</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Accessories</a><ul>
+                    <li><a href="#">Product 14</a></li>
+                    <li><a href="#">Product 15</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Software</a><ul>
+                <li><a href="#">Product 16</a></li>
+                    <li><a href="#">Product 17</a></li>
+                    <li><a href="#">Product 18</a></li>
+                    <li><a href="#">Product 19</a></li>
+              </ul>
+            </li>
+        </ul>
+    </li>
+<li><a href="#">About Us</a><ul>
+    <li><a href="#">About Page 1</a></li>
+    <li><a href="#">About Page 2</a></li>
+ 
+</ul>
+</li>
+<li><a href="#">Services</a><ul>
+    <li><a href="#">Service 1</a><ul>
+        <li><a href="#">Service Detail A</a></li>
+        <li><a href="#">Service Detail B</a></li>
+    </ul>
+</li>
+<li><a href="#">Service 2</a><ul>
+        <li><a href="#">Service Detail C</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 3</a><ul>
+        <li><a href="#">Service Detail D</a></li>
+        <li><a href="#">Service Detail E</a></li>
+        <li><a href="#">Service Detail F</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 4</a></li>
+</ul>
+</li>
+<li><a href="#">Contact us</a></li>
+</ul>
+</div>
+<div class="blue demo-container">
+<ul class="text">
+<li>Close Open Sub-menus: Off</li>
+<li>Auto-Close: On</li>
+<li>Save State: Off</li>
+<li>Disable Parent links: Off</li>
+<li>Speed: slow</li>
+<li>Count: Off</li>
+</ul>
+<ul class="accordion"  id="accordion-6">
+    <li><a href="#">Home</a><ul>
+		<li><a href="#">Page 1</a></li>
+		<li><a href="#">Page 2</a></li>
+		<li><a href="#">Page 3</a></li>
+		<li><a href="#">Page 4</a></li>
 
-    </body>
+	  </ul>
+	</li>
+    <li><a href="#">Products</a><ul>
+            <li><a href="#">Mobile Phones &#038; Accessories</a><ul>
+                    <li><a href="#">Product 1</a><ul>
+						<li><a href="#">Part A</a>
+						  
+						</li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 2</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+
+					</li>
+					<li><a href="#">Product 3</a><ul>
+						<li><a href="#">Part A</a></li>
+						<li><a href="#">Part B</a></li>
+						<li><a href="#">Part C</a></li>
+						<li><a href="#">Part D</a></li>
+					  </ul>
+					</li>
+                </ul>
+            </li>
+            <li><a href="#">Desktop</a><ul>
+                    <li><a href="#">Product 4</a></li>
+                    <li><a href="#">Product 5</a></li>
+                    <li><a href="#">Product 6</a></li>
+                    <li><a href="#">Product 7</a></li>
+                    <li><a href="#">Product 8</a></li>
+                    <li><a href="#">Product 9</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Laptop</a><ul>
+                    <li><a href="#">Product 10</a></li>
+                    <li><a href="#">Product 11</a><ul>
+						<li><a href="#">Part E</a></li>
+						<li><a href="#">Part F</a></li>
+						<li><a href="#">Part G</a></li>
+						<li><a href="#">Part H</a></li>
+					  </ul>
+					</li>
+                    <li><a href="#">Product 12</a></li>
+                    <li><a href="#">Product 13</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Accessories</a><ul>
+                    <li><a href="#">Product 14</a></li>
+                    <li><a href="#">Product 15</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Software</a><ul>
+                <li><a href="#">Product 16</a></li>
+                    <li><a href="#">Product 17</a></li>
+                    <li><a href="#">Product 18</a></li>
+                    <li><a href="#">Product 19</a></li>
+              </ul>
+            </li>
+        </ul>
+    </li>
+<li><a href="#">About Us</a><ul>
+    <li><a href="#">About Page 1</a></li>
+    <li><a href="#">About Page 2</a></li>
+ 
+</ul>
+</li>
+<li><a href="#">Services</a><ul>
+    <li><a href="#">Service 1</a><ul>
+        <li><a href="#">Service Detail A</a></li>
+        <li><a href="#">Service Detail B</a></li>
+    </ul>
+</li>
+<li><a href="#">Service 2</a><ul>
+        <li><a href="#">Service Detail C</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 3</a><ul>
+        <li><a href="#">Service Detail D</a></li>
+        <li><a href="#">Service Detail E</a></li>
+        <li><a href="#">Service Detail F</a></li>
+    </ul>
+</li>
+    <li><a href="#">Service 4</a></li>
+</ul>
+</li>
+<li><a href="#">Contact us</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+</div>
+<div style="height: 350px;"></div>
+</body>
 </html>
