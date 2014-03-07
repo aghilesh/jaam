@@ -8,3 +8,4 @@
 .graphite .accordion a.dcjq-parent.active .dcjq-icon {background: url(images/arrow_black_down.png) no-repeat 0 center;}
 .graphite .accordion a:hover {background: #232323; color: #fff;}
 .graphite .accordion a:active{}
+.graphite .accordion a.selected {background: #0C0C0C url(images/bg_green_blue.png) repeat-x 0 -1px !important;}

@@ -25,6 +25,7 @@
             ?>
         </div>
         <div class="fl page-content">
+            <h2 class="fl common-page-title"><?php echo @$page_title ?></h2><div class="clear"></div>
             <?php
             if(isset($dynamic_views) && is_array($dynamic_views))
             {
