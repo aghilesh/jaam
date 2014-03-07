@@ -1,0 +1,75 @@
+/* 
+    Document   : prospera.css
+    Created on : Mar 7, 2014, 12:13:20 PM
+    Author     : manaf
+    Description:
+        Purpose of the stylesheet follows.
+*/
+root { 
+    display: block;
+}
+body{
+    font-family:Arial;
+    font-size:12px;
+    color:#000000;
+}
+
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.fl{float:left}
+.fr{float:right}
+.fn{float:none}
+.clear{clear:both}
+.full-width{width:100%;}
+.header-wrapper{height:140px;background:#000000;}
+h2.header-main-title{font-size:40px;color:#CCCCCC;padding-top:50px;}
+.footer-wrapper{height:40px;background:#000000;}
+.footer-text{color:#CCCCCC;padding-top:8px;}
+.left-menu{width:300px;}
+.demo-container {padding:0px !important;}
+#footer{position:fixed;bottom:0;}
