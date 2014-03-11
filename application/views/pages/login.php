@@ -28,7 +28,7 @@
                     </div>
                     <div class="fl cb message-row">
                         <div class="error-line">
-                            Invalid username or password.
+                            Error messages goes here.
                         </div>
                     </div>
                 </div>
