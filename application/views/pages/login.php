@@ -17,7 +17,7 @@
     </head>
     <body>
         <div class="login-outer">
-            <form action="" method="post">
+            <form action="home" method="post">
                 <div class="login-box">
                     <div class="fl cb login-row">
                         <input type="text" class="login-text" placeholder="User Name">

@@ -7,6 +7,6 @@
         </div>
     </a>
     <div class="header-right">
-        <a href="logout"><div class="fr logout-btn"></div></a>
+        <a href="login"><div class="fr logout-btn"></div></a>
     </div>
 </div>
