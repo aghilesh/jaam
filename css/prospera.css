@@ -158,3 +158,61 @@ h2.common-page-title{font-size: 16px;font-weight:bold;padding-top:10px;padding-b
     font-size: 13px;
     color: red;
 }
+/* data listing style */
+.sitepage-container{
+    width:100%;	
+    margin-left:auto;
+    margin-right:auto;
+    }
+
+.head-container{
+    width:100%;
+    height:27px;
+    background-color:#C4C4C4;
+}
+.tab{
+    width:125px;
+    height:20px;
+    text-align:center;
+    color:#FFF;
+    float:left;
+    font-size:20px;
+}
+.add{
+    width:24px;
+    height:26px;
+    text-align:center;
+    color:#FFF;
+    float:left;
+    font-size:20px;
+    padding-top:1px;
+}
+.list-liner{
+    width:100%;
+    height:2px;
+}
+.body-container-one{
+    width:100%;
+    height:30px;
+    background-color:#C4C4C4;
+    border:1px solid #C4C4C4;
+}
+.body-container-two{
+    width:100%;
+    height:30px;
+    background-color:#91C7EC;
+}
+.body-tab{
+    width:125px;
+    text-align:center;
+    color:#FFF;
+    float:left;
+    font-size:15px;	
+    padding-top:5px;
+}
+.message_template{
+    text-align: left;
+    padding:10px;
+}
+.error_message{color:red}
+.success_message{color:green}

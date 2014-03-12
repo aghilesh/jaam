@@ -6,17 +6,46 @@
  */
 
 /**
- * Description of mbooking
  *
- * @author Aarav
  */
-class mbooking extends CI_Model {
+class departments_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
         $this->load->database();
     }
+    
+    /**
+     * returns all departments
+     * 
+     */
+    
+    public function getAllDepartments(){
+        $this->db->select('*');
+        $query = $this->db->get('department');
+        return $query->result();
+    }
 
+    /**
+     * 
+     * delete a department
+     */
+    
+    public function deleteDepartment($id){
+        return $this->db->delete('department', array('id' => $id)); 
+    }
+    
+    /**
+     * save a department
+     */
+    public function saveDepartment($formData){
+        $this->db->insert('department', $formData);
+        if ($this->db->affected_rows() == '1'){
+                return TRUE;
+        }
+        return FALSE;        
+    }
+        
     public function getSeatInfo($venueId, $eventId) {
         
     }
