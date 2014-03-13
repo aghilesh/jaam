@@ -17,7 +17,7 @@
     </head>
     <body>
         <div class="login-outer">
-            <form action="" method="post">
+            <form action="home" method="post">
                 <div class="login-box">
                     <div class="fl cb login-row">
                         <input type="text" class="login-text" placeholder="User Name">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="fl cb message-row">
                         <div class="error-line">
-                            Invalid username or password.
+                            Error messages goes here.
                         </div>
                     </div>
                 </div>
