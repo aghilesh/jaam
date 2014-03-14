@@ -20,10 +20,10 @@
             <form action="home" method="post">
                 <div class="login-box">
                     <div class="fl cb login-row">
-                        <input type="text" class="login-text" placeholder="User Name">
+                        <input type="text" class="login-text" required placeholder="User Name">
                     </div>
                     <div class="fl cb login-row">
-                        <input type="password" class="login-text fl" placeholder="Password">
+                        <input type="password" class="login-text fl" required="" placeholder="Password">
                         <input type="submit" class="login-button fl" value="Go">
                     </div>
                     <div class="fl cb message-row">
