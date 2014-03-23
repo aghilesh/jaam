@@ -1,5 +1,4 @@
-<div class="fl full-width hidden"><?php $this->load->view($this->config->item('pages') . 'university/add', $this->gen_contents);?></div>
-<div class="clear"></div>
+<div class="fl full-width hidden generic-add-form-slider"><?php $this->load->view($this->config->item('pages') . 'university/add', $this->gen_contents);?></div>
 <a href="javascript:void(0)" class="fr button blue common-add-btn common-add-btn-click">ADD</a>
 <table class="fl table generic-listing margintop10">
     <thead>

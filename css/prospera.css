@@ -216,3 +216,37 @@ h2.common-page-title{font-size: 16px;font-weight:bold;padding-top:10px;padding-b
 }
 .error_message{color:red}
 .success_message{color:green}
+/**/
+.table.generic-listing{width: 100%;margin-bottom: 20px;}
+table.generic-listing{max-width: 100%;background-color: transparent;border-collapse: collapse;border-spacing: 0;}
+table.generic-listing thead{background-color:#A9A9A9}
+table.generic-listing tr {display: table-row;vertical-align: inherit;border-color: inherit;}
+.table.generic-listing caption + thead tr:first-child th, .table.generic-listing caption + thead tr:first-child td, .table.generic-listing colgroup + thead tr:first-child th, .table.generic-listing colgroup + thead tr:first-child td, .table.generic-listing thead:first-child tr:first-child th, .table.generic-listing thead:first-child tr:first-child td {border-top: 0;}
+.table.generic-listing thead th {vertical-align: bottom;}
+.table.generic-listing th {font-weight: bold;}
+.table.generic-listing th, .table.generic-listing td {padding: 8px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #dddddd;}
+.table.generic-listing th, .table.generic-listing td {padding: 8px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #dddddd;}
+.table.generic-listing tbody tr:nth-child(even) {background: #F8F8FF}
+.table.generic-listing tbody tr:nth-child(odd) {background: #F0F8FF}
+.page-content{width:1000px;}
+a.button{padding:5px 10px 5px 10px;text-align: center;color:#FFFFFF;text-decoration:none !important;}
+a.button:active,a.button:link,a.button:hover,a.button:visited{text-decoration:none !important;}
+a.button.blue{background-color: blue;}
+.margintop10{margin-top:10px;}
+.marginleft20{margin-left:20px;}
+.marginleft10{margin-left:10px;}
+.marginright10{margin-right:10px;}
+.common-add-btn{margin-top:-30px;}
+.hidden{display:none}
+ul.form-fields-ul-slider{width:400px;}
+ul.form-fields-ul-slider li{list-style: none;}
+ul.form-fields-ul-slider li.form-label{width:150px;}
+ul.form-fields-ul-slider li.form-field{width:190px;}
+ul.form-fields-ul-slider li.newline{height:10px;}
+input.generic-input{border:#CCCCCC solid 1px;width:100%;float:left;height:25px;}
+textarea.generic-textarea{border:#CCCCCC solid 1px;resize:none;width: 100%;height:60px;}
+input.generic-selectbpx{border:none;width:100%;}
+.generic-add-form-container{border: 2px solid #a1a1a1;padding: 10px 10px;border-radius: 25px;}
+h3.generic-add-form-title{font-weight:bold;padding:0px;padding-bottom:10px;}
+.generic-add-form-slider{margin-bottom:35px;}
+/**/
