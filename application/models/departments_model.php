@@ -45,7 +45,22 @@ class departments_model extends CI_Model {
         }
         return FALSE;        
     }
+    
+    public function getDepartmentDetailByID($departmentId){
+        $this->db->select('*');
+        $this->db->where('id', $departmentId);
+        $query = $this->db->get('department');
+        return $query->row();        
+    }
         
+    /**
+     * update department
+     */
+    public function updateDepartment($formData, $departmentId){
+        $this->db->where('id', $departmentId);
+        return $this->db->update('department', $formData);        
+    }
+    
     public function getSeatInfo($venueId, $eventId) {
         
     }

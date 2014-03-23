@@ -82,4 +82,45 @@ class Departments extends CI_Controller {
         $this->gen_contents['dynamic_views'][]      = $this->config->item('pages').'adddepartment';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);        
     }
+    
+    /**
+     * edit a department
+     */
+    public function edit(){
+        $departmentId   = strip_quotes(strip_tags(trim($this->uri->segment(3)))); 
+        if($_POST && $departmentId){
+            $this->form_validation->set_rules('department_name', 'Department Name', 'required|trim|xss_clean|max_length[50]');			            
+            $this->form_validation->set_rules('description', 'Description', 'xss_clean|max_length[100]');
+            $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+            if ($this->form_validation->run() == FALSE){
+                $this->session->set_flashdata('message', validation_errors());
+                $this->session->set_flashdata('msg_class', 'error_message');
+                redirect('departments/edit/'.$departmentId);
+            }else{
+                // build array for the model
+                $formData = array(
+                                    'dept_name' => set_value('department_name'),
+                                    'description' => set_value('description')
+                                    );
+
+                if ($this->departments_model->updateDepartment($formData, $departmentId) == TRUE){
+                        $this->session->set_flashdata('message', 'Department was updated successfully.');
+                        $this->session->set_flashdata('msg_class', 'success_message');
+                        redirect('departments/edit/'.$departmentId);                    
+                }else{
+                    $this->session->set_flashdata('message', 'There was some problem in updating the department.');
+                    $this->session->set_flashdata('msg_class', 'error_message');
+                    redirect('departments/edit/'.$departmentId);                    
+                }
+            }            
+        }        
+        if ($departmentId) {
+            $this->gen_contents['department'] = $this->departments_model->getDepartmentDetailByID($departmentId);
+        }
+        $this->gen_contents['title']                = $this->gen_contents['site_name'] . ': Departments';
+        $this->gen_contents['page_title']           = 'Edit Departments';
+        $this->gen_contents['leftmenu_selected']    = 'departments';        
+        $this->gen_contents['dynamic_views'][]      = $this->config->item('pages').'editdepartment';
+        $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);           
+    }
 }
