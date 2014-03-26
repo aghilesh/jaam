@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/jaam/';
+$config['base_url']	= 'http://localhost/prospera/';
 
 /*
 |--------------------------------------------------------------------------
