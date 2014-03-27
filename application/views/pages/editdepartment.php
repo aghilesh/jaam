@@ -1,20 +1,29 @@
-<?php
-    echo $this->load->view('common/messageTemplate');
-?>
-<?php 
-    $attributes = array('class' => '', 'id' => '');
-    echo form_open('departments/edit/'.@$department->id, $attributes); ?>
-    <p>
-        <label for="department_name">Department Name <span class="required">*</span></label>
-        <br /><input id="department_name" type="text" name="department_name" maxlength="50" value="<?php echo @$department->dept_name; ?>"  />
-    </p>
-    <p>
-        <label for="description">Description</label>
-        <?php echo form_error('description'); ?>
-        <br />
-        <?php echo form_textarea( array( 'name' => 'description', 'rows' => '5', 'cols' => '80', 'value' => @$department->description ) )?>
-    </p>
-    <p>
-        <?php echo form_submit( 'submit', 'Update'); ?>
-    </p>
-<?php echo form_close(); ?>
+
+<div class="fl full-width">
+    <div class="form-inner">
+        <?php
+        $attributes = array('class' => '', 'id' => '');
+        echo form_open('departments/edit/'.@$department->id, $attributes);
+        ?>
+        <ul class="fl form-fields-ul-slider">
+            <li class="fl form-label">Department Name*</li>
+            <li class="fl form-field"><input class="generic-input" type="text" required name="department_name" id="department_name" placeholder="Department Name" value="<?php echo @$department->dept_name; ?>"/></li>
+            <li class="clear newline"/>
+
+            <li class="fl form-label">Description</li>
+            <li class="fl form-field">
+                <?php echo form_textarea( array( 'name' => 'description', 'class'=>'generic-textarea','rows' => '5', 'cols' => '80', 'value' => @$department->description ) )?>
+            </li>
+            <li class="clear newline"/>
+
+            <li class="fl form-label">&nbsp;</li>
+            <li class="fl form-field" sty>
+                <a href="javascript:void(0)" class="fl button save common-save-btn-click">Save</a>
+                <a href="<?php echo $this->config->item('base_url') ?>departments" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>
+            </li>
+            <li class="clear newline"/>
+
+        </ul>
+        <?php echo form_close(); ?>
+    </div>
+</div>

@@ -27,7 +27,7 @@
                         <input type="submit" class="login-button fl" value="Go">
                     </div>
                     <div class="fl cb message-row">
-                        <div class="error-line">
+                        <div class="error-line hidden">
                             Error messages goes here.
                         </div>
                     </div>

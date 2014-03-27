@@ -9,8 +9,8 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->gen_contents['site_name'] = $this->config->item('site_name');
         $this->gen_contents['dynamic_views'] = array();
-        $this->gen_contents['load_css'] = array("prospera.css", "dcaccordion.css", "skins/graphite.css");
-        $this->gen_contents['load_js'] = array("jquery-1.9.1.js", "jquery.cookie.js", "jquery.hoverIntent.minified.js", "jquery.dcjqaccordion.2.7.min.js", "prospera.js");        
+        $this->gen_contents['load_css'] = array();
+        $this->gen_contents['load_js'] = array();        
         $this->load->library('pagination');
     }
 

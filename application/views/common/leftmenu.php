@@ -19,7 +19,7 @@ $currentMenu = @strtolower($leftmenu_selected);
 <div class="wrap">
     <div class="graphite demo-container">
         <ul class="accordion" id="accordion-1">
-            <li><a href="#">Home</a></li>
+            <li><a href="#">Dashboard</a></li>
 			<li><a class="<?php echo $currentMenu == 'roles' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>roles">User Roles</a></li>
 			<li><a class="<?php echo $currentMenu == 'branches' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>branches">Branches</a></li>
             <li><a class="<?php echo $currentMenu == 'departments' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>departments">Departments</a></li>

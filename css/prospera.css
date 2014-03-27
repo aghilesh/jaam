@@ -69,11 +69,19 @@ table {
 .full-width{width:100%;}
 .header-wrapper{height:125px;background:#000000;}
 h2.header-main-title{font-size:40px;color:#CCCCCC;padding-top:50px;}
-h2.common-page-title{font-size: 16px;font-weight:bold;padding-top:10px;padding-bottom:10px}
+h2.common-page-title{
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+    padding-bottom: 10px;
+    color: #FFF;
+    background: #333;
+    width: 98%;
+    padding: 1%;
+}
 .footer-wrapper{height:40px;background:#000000;}
 .footer-text{color:#CCCCCC;padding-top:8px;}
-.left-menu{width:300px;}
-.demo-container {padding:0px !important;}
+.left-menu{width:20%;}
 #footer{position:fixed;bottom:0;}
 .logo{
     background: url(../img/logo/logo-small.png) no-repeat top center;
@@ -163,7 +171,7 @@ h2.common-page-title{font-size: 16px;font-weight:bold;padding-top:10px;padding-b
     width:100%;	
     margin-left:auto;
     margin-right:auto;
-    }
+}
 
 .head-container{
     width:100%;
@@ -217,19 +225,36 @@ h2.common-page-title{font-size: 16px;font-weight:bold;padding-top:10px;padding-b
 .error_message{color:red}
 .success_message{color:green}
 /**/
-.table.generic-listing{width: 100%;margin-bottom: 20px;}
-table.generic-listing{max-width: 100%;background-color: transparent;border-collapse: collapse;border-spacing: 0;}
-table.generic-listing thead{background-color:#A9A9A9}
-table.generic-listing tr {display: table-row;vertical-align: inherit;border-color: inherit;}
+.table.generic-listing{width: 100%;margin-bottom: 2%;border: 1px solid #CCC;}
+.table.generic-listing{max-width: 100%;background-color: transparent;border-collapse: collapse;border-spacing: 0;}
+.table.generic-listing thead{background-color:#A9A9A9}
+.table.generic-listing tr {display: table-row;vertical-align: inherit;border-color: inherit;}
 .table.generic-listing caption + thead tr:first-child th, .table.generic-listing caption + thead tr:first-child td, .table.generic-listing colgroup + thead tr:first-child th, .table.generic-listing colgroup + thead tr:first-child td, .table.generic-listing thead:first-child tr:first-child th, .table.generic-listing thead:first-child tr:first-child td {border-top: 0;}
-.table.generic-listing thead th {vertical-align: bottom;}
-.table.generic-listing th {font-weight: bold;}
-.table.generic-listing th, .table.generic-listing td {padding: 8px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #dddddd;}
+.table.generic-listing thead th {vertical-align: middle;}
+.table.generic-listing th {
+    font-weight: bold;
+    border-bottom: 2px solid #CCC;
+    background: -webkit-linear-gradient(#f5f5f5, #e9e9e9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#f5f5f5, #e9e9e9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#f5f5f5, #e9e9e9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#f5f5f5, #e9e9e9); /* Standard syntax */
+}
+.table.generic-listing td{
+    background: -webkit-linear-gradient(#f5f5f5, #e9e9e9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#f5f5f5, #e9e9e9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#f5f5f5, #e9e9e9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#f5f5f5, #e9e9e9); /* Standard syntax */
+}
+.table.generic-listing tr:hover{
+    background: -webkit-linear-gradient(#e9e9e9, #f5f5f5); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#e9e9e9, #f5f5f5); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#e9e9e9, #f5f5f5); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#e9e9e9, #f5f5f5); /* Standard syntax */
+}
 .table.generic-listing th, .table.generic-listing td {padding: 8px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #dddddd;}
 .table.generic-listing tbody tr:nth-child(even) {background: #F8F8FF}
 .table.generic-listing tbody tr:nth-child(odd) {background: #F0F8FF}
-.page-content{width:1000px;}
-a.button{padding:5px 10px 5px 10px;text-align: center;color:#FFFFFF;text-decoration:none !important;}
+.page-content{width:78%;margin: 1%;}
 a.button:active,a.button:link,a.button:hover,a.button:visited{text-decoration:none !important;}
 a.button.blue{background-color: blue;}
 .margintop10{margin-top:10px;}
@@ -238,15 +263,69 @@ a.button.blue{background-color: blue;}
 .marginright10{margin-right:10px;}
 .common-add-btn{margin-top:-30px;}
 .hidden{display:none}
-ul.form-fields-ul-slider{width:400px;}
+ul.form-fields-ul-slider{width:50%;}
 ul.form-fields-ul-slider li{list-style: none;}
-ul.form-fields-ul-slider li.form-label{width:150px;}
-ul.form-fields-ul-slider li.form-field{width:190px;}
+ul.form-fields-ul-slider li.form-label{width:30%;line-height: 25px;font-family: Copperplate, "Copperplate Gothic Light", fantasy}
+ul.form-fields-ul-slider li.form-field{width:50%;}
 ul.form-fields-ul-slider li.newline{height:10px;}
-input.generic-input{border:#CCCCCC solid 1px;width:100%;float:left;height:25px;}
-textarea.generic-textarea{border:#CCCCCC solid 1px;resize:none;width: 100%;height:60px;}
+input.generic-input{
+    border: #CCCCCC solid 1px;
+    width: 95%;
+    float: left;
+    height: 25px;
+    border-radius: 25px;
+    padding-left: 5%;
+    line-height: 25px;
+}
+textarea.generic-textarea{
+    border: #CCCCCC solid 1px;
+    resize: none;
+    width: 95%;
+    height: 60px;
+    border-radius: 10px;
+    padding-left: 5%;
+}
 input.generic-selectbpx{border:none;width:100%;}
 .generic-add-form-container{border: 2px solid #a1a1a1;padding: 10px 10px;border-radius: 25px;}
 h3.generic-add-form-title{font-weight:bold;padding:0px;padding-bottom:10px;}
 .generic-add-form-slider{margin-bottom:35px;}
 /**/
+
+/* BUTTON COMMON STYLES*/
+a.button{
+    padding:5px 10px 5px 10px;text-align: center;color:#000;text-decoration:none !important;
+    border: solid 1px #CCC;
+    background: -webkit-linear-gradient(#f5f5f5, #e9e9e9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#f5f5f5, #e9e9e9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#f5f5f5, #e9e9e9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#f5f5f5, #e9e9e9); /* Standard syntax */
+}
+a.button:hover{
+    background: -webkit-linear-gradient(#DDD, #FFF); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#DDD, #FFF); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#DDD, #FFF); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#DDD, #FFF); /* Standard syntax */ 
+}
+a.button.edit{color: #2B94DB;}
+a.button.remove{color: #F75656;}
+a.button.view{color: #13BB0C;}
+a.button.save{color: #13BB0C;}
+a.button.cancel{color: #F75656;}
+.form-inner{
+    padding: 1%;
+    width: 98%;
+    float: left;
+    background: -webkit-linear-gradient(#F3F3F3, #CECECE); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#F3F3F3, #CECECE); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#F3F3F3, #CECECE); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#F3F3F3, #CECECE); /* Standard syntax */ 
+}
+.common_message_div{padding: 1% 1% 1% 4%;}
+.common_message_div.success_message{
+    color: green;
+    background: #D5F0B9 url("../images/success-icon.png") no-repeat scroll 12px 12px;
+}
+.common_message_div.error_message{
+    color: red;
+    background: #F8D6D6 url("../images/error-icon.png") no-repeat scroll 10px 10px;;
+}

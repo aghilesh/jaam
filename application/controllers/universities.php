@@ -28,4 +28,16 @@ class Universities extends CI_Controller {
         $this->gen_contents['dynamic_views'][]      = $this->config->item('pages').'university/universities';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
+    public function add() {
+        $this->gen_contents['title']                = $this->gen_contents['site_name'] . ': Universities';
+        $this->gen_contents['page_title']           = 'Universities - Add';
+        $this->gen_contents['leftmenu_selected']    = 'universities';
+        
+        //$this->gen_contents['universities']         = $this->universities_model->getAllUniversities();
+        
+        
+        
+        $this->gen_contents['dynamic_views'][]      = $this->config->item('pages').'university/add';
+        $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
+    }
 }

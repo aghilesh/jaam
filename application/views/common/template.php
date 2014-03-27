@@ -4,6 +4,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url') ?>css/prospera.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url') ?>css/dcaccordion.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url') ?>css/skins/graphite.css" />
+        <script type="text/javascript">
+            var base_url = "<?php echo base_url() ?>";
+        </script>
         <script type="text/javascript" src="<?php echo $this->config->item('base_url') ?>js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->item('base_url') ?>js/jquery.cookie.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->item('base_url') ?>js/jquery.hoverIntent.minified.js"></script>
@@ -29,6 +32,9 @@ endif; ?>
             </div>
             <div class="fl page-content">
                 <h2 class="fl common-page-title"><?php echo @$page_title ?></h2><div class="clear"></div>
+                <?php
+                $this->load->view($this->config->item('common_page') . 'messageTemplate', $this->gen_contents);
+                ?>
                 <?php
                 if (isset($dynamic_views) && is_array($dynamic_views)) {
                     foreach ($dynamic_views as $dynamic_view) {
