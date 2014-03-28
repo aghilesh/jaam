@@ -17,7 +17,7 @@
                     <td><?php echo $sl; ?></td>
                     <td><?php echo $list->dept_name; ?></td>
                     <td>
-                        <a href="<?php echo base_url() ?>departments/edit/<?php echo $list->id; ?>"" class="button edit">Edit</a>
+                        <a href="<?php echo base_url() ?>departments/edit/<?php echo $list->id; ?>" class="button edit">Edit</a>
                         <a href="javascript:void(0)" class="button remove delete" data-id="<?php echo $list->id; ?>">Remove</a>
                     </td>
                 </tr>
