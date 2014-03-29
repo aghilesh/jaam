@@ -11,14 +11,14 @@
         if (isset($departments) && !empty($departments)) {
             $sl = 1;
             foreach ($departments as $list) {
-                $body_class = ($sl % 2 == 0) ? 'body-container-one' : 'body-container-two';
                 ?>
                 <tr>
                     <td><?php echo $sl; ?></td>
                     <td><?php echo $list->dept_name; ?></td>
                     <td>
+                        <a href="javascript:void(0)" class="button remove delete" data-link="departments/delete/<?php echo $list->id; ?>">Remove</a>
                         <a href="<?php echo base_url() ?>departments/edit/<?php echo $list->id; ?>" class="button edit">Edit</a>
-                        <a href="javascript:void(0)" class="button remove delete" data-id="<?php echo $list->id; ?>">Remove</a>
+
                     </td>
                 </tr>
                 <?php

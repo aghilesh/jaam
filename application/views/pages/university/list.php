@@ -25,9 +25,9 @@
             <td>App Fee</td>
             <td>Serv Charge</td>
             <td>
-                <a href="javascript:void(0)" class="button view">View</a>
-                <a href="javascript:void(0)" class="button edit">Edit</a>
                 <a href="javascript:void(0)" class="button remove">Remove</a>
+                <a href="javascript:void(0)" class="button edit">Edit</a>
+                <a href="javascript:void(0)" class="button view">View</a>
             </td>
         </tr>
         <tr>
@@ -41,9 +41,10 @@
             <td>App Fee</td>
             <td>Serv Charge</td>
             <td>
-                <a href="javascript:void(0)" class="button view">View</a>
-                <a href="javascript:void(0)" class="button edit">Edit</a>
                 <a href="javascript:void(0)" class="button remove">Remove</a>
+                <a href="javascript:void(0)" class="button edit">Edit</a>
+                <a href="javascript:void(0)" class="button view">View</a>
+
             </td>
         </tr>
         <tr>
@@ -57,11 +58,11 @@
             <td>App Fee</td>
             <td>Serv Charge</td>
             <td>
-                <a href="javascript:void(0)" class="button view">View</a>
-                <a href="javascript:void(0)" class="button edit">Edit</a>
                 <a href="javascript:void(0)" class="button remove">Remove</a>
+                <a href="javascript:void(0)" class="button edit">Edit</a>
+                <a href="javascript:void(0)" class="button view">View</a>
             </td>
         </tr>
-   </tbody>
+    </tbody>
 </table>
 <div class="clear"></div>

@@ -28,7 +28,7 @@ class Departments extends CI_Controller {
 
         // get all departments
         $this->gen_contents['departments'] = $this->departments_model->getAllDepartments();
-        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'departments';
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'department/list';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
 
@@ -79,7 +79,7 @@ class Departments extends CI_Controller {
         $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Departments';
         $this->gen_contents['page_title'] = 'Departments - Add';
         $this->gen_contents['leftmenu_selected'] = 'departments';
-        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'adddepartment';
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'department/add';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
 
@@ -120,7 +120,7 @@ class Departments extends CI_Controller {
         $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Departments';
         $this->gen_contents['page_title'] = 'Departments - Edit';
         $this->gen_contents['leftmenu_selected'] = 'departments';
-        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'editdepartment';
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'department/edit';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
 

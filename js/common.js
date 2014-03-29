@@ -21,4 +21,13 @@ jQuery( document ).ready(function() {
             $(this).parents().closest('form').submit()
         }
     });
+    
+    $('.delete').click(function(){
+        var _link = $(this).data('link');
+        if(_link){
+            if(confirm('Are you sure you want to delete?')){
+                window.location = base_url+_link;
+            }
+        }
+    });
 });

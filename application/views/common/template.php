@@ -11,12 +11,13 @@
         <script type="text/javascript" src="<?php echo $this->config->item('base_url') ?>js/jquery.cookie.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->item('base_url') ?>js/jquery.hoverIntent.minified.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->item('base_url') ?>js/jquery.dcjqaccordion.2.7.min.js"></script>
-        <script type="text/javascript" src="<?php echo $this->config->item('base_url') ?>js/prospera.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->item('base_url') ?>js/common.js"></script>
         <?php if (isset($load_js)): echo load_js($load_js);
-        endif; ?>
-<?php if (isset($load_css)): echo load_css($load_css);
-endif; ?> 
+        endif;
+        ?>
+        <?php if (isset($load_css)): echo load_css($load_css);
+        endif;
+        ?> 
     </head>
     <body>
         <header class="fl header full-width" id="header">
