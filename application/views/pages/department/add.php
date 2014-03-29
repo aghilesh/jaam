@@ -2,7 +2,7 @@
     <div class="form-inner">
         <?php
         $attributes = array('class' => '', 'id' => '');
-        echo form_open('departments/add', $attributes);
+        echo form_open($paths['add'], $attributes);
         ?>
         <ul class="fl form-fields-ul-slider">
             <li class="fl form-label">Department Name</li>

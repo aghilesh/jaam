@@ -3,7 +3,7 @@
     <div class="form-inner">
         <?php
         $attributes = array('class' => '', 'id' => '');
-        echo form_open('country/edit/'.@$country->id, $attributes);
+        echo form_open($paths['edit'].'/'.@$country->id, $attributes);
         ?>
         <ul class="fl form-fields-ul-slider">
             <li class="fl form-label">Country</li>
@@ -28,7 +28,7 @@
 
             <li class="fl form-label">&nbsp;</li>
             <li class="fl form-field">
-                <a href="<?php echo $this->config->item('base_url') ?>country" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>
+                <a href="<?php echo $this->config->item('base_url').$paths['list'] ?>" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>
                 <a href="javascript:void(0)" class="fl button save common-save-btn-click">Save</a>
             </li>
             <li class="clear newline"/>

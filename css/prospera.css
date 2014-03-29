@@ -271,7 +271,7 @@ ul.form-fields-ul-slider li{list-style: none;}
 ul.form-fields-ul-slider li.form-label{width:30%;line-height: 25px;font-family: Copperplate, "Copperplate Gothic Light", fantasy}
 ul.form-fields-ul-slider li.form-field{width:50%;}
 ul.form-fields-ul-slider li.newline{height:10px;}
-input.generic-input{
+select.generic-input,input.generic-input{
     border: #CCCCCC solid 1px;
     width: 95%;
     float: left;
@@ -280,6 +280,7 @@ input.generic-input{
     padding-left: 5%;
     line-height: 25px;
 }
+select.generic-input{width: 100%;}
 input[type='checkbox'].generic-input{
     width: 30px;
 }

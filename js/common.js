@@ -26,7 +26,7 @@ jQuery( document ).ready(function() {
         var _link = $(this).data('link');
         if(_link){
             if(confirm('Are you sure you want to delete?')){
-                window.location = base_url+_link;
+                window.location = _link;
             }
         }
     });
