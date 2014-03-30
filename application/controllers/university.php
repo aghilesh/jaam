@@ -53,15 +53,15 @@ class University extends CI_Controller {
             $validationError = array();
             $this->form_validation->set_rules('code', 'Code', 'required|trim|xss_clean|max_length[20]');
             $this->form_validation->set_rules('university', 'University', 'required|trim|xss_clean|max_length[250]');
-            $this->form_validation->set_rules('description', 'Description', 'trim|xss_clean|max_length[250]');
-            $this->form_validation->set_rules('contact_person', 'Contact Person', 'trim|xss_clean|max_length[100]');
-            $this->form_validation->set_rules('address', 'Address', 'required|trim|xss_clean|max_length[500]');
+            //$this->form_validation->set_rules('description', 'Description', 'trim|xss_clean|max_length[250]');
+            //$this->form_validation->set_rules('contact_person', 'Contact Person', 'trim|xss_clean|max_length[100]');
+            //$this->form_validation->set_rules('address', 'Address', 'required|trim|xss_clean|max_length[500]');
             $this->form_validation->set_rules('email_id', 'Email', 'trim|xss_clean|max_length[100]');
             $this->form_validation->set_rules('phone1', 'Phone 1', 'trim|xss_clean|max_length[100]');
-            $this->form_validation->set_rules('phone2', 'Phone 2', 'trim|xss_clean|max_length[100]');
-            $this->form_validation->set_rules('commission_percentage', 'Commission Percentage', 'required|trim|xss_clean|max_length[11]');
-            $this->form_validation->set_rules('application_fee', 'Application Fee', 'required|trim|xss_clean|max_length[11]');
-            $this->form_validation->set_rules('service_charge', 'Service Charge', 'required|trim|xss_clean|max_length[11]');
+            //$this->form_validation->set_rules('phone2', 'Phone 2', 'trim|xss_clean|max_length[100]');
+            //$this->form_validation->set_rules('commission_percentage', 'Commission Percentage', 'required|trim|xss_clean|max_length[11]');
+            //$this->form_validation->set_rules('application_fee', 'Application Fee', 'required|trim|xss_clean|max_length[11]');
+            //$this->form_validation->set_rules('service_charge', 'Service Charge', 'required|trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('country_id', 'Country', 'required|xss_clean|max_length[3]');
             
             if ($this->form_validation->run() == FALSE){
@@ -85,18 +85,18 @@ class University extends CI_Controller {
             } else {
                 // build array for the model
                 $formData = array(
-                    'code' => set_value('code'),
-                    'university' => set_value('university'),
-                    'description' => set_value('description'),
-                    'contact_person' => set_value('contact_person'),
-                    'address' => set_value('address'),
-                    'email_id' => set_value('email_id'),
-                    'phone1' => set_value('phone1'),
-                    'phone2' => set_value('phone2'),
-                    'commission_percentage' => set_value('commission_percentage'),
-                    'application_fee' => set_value('application_fee'),
-                    'service_charge' => set_value('service_charge'),
-                    'country_id' => set_value('country_id'),
+                    'code' => $this->input->post('code'),
+                    'university' => $this->input->post('university'),
+                    'description' => $this->input->post('description'),
+                    'contact_person' => $this->input->post('contact_person'),
+                    'address' => $this->input->post('address'),
+                    'email_id' => $this->input->post('email_id'),
+                    'phone1' => $this->input->post('phone1'),
+                    'phone2' => $this->input->post('phone2'),
+                    'commission_percentage' => $this->input->post('commission_percentage'),
+                    'application_fee' => $this->input->post('application_fee'),
+                    'service_charge' => $this->input->post('service_charge'),
+                    'country_id' => $this->input->post('country_id'),
                 );
 
                 if ($this->university->insert($formData)) {
@@ -140,15 +140,15 @@ class University extends CI_Controller {
         if ($_POST && $id) {
             $this->form_validation->set_rules('code', 'Code', 'required|trim|xss_clean|max_length[20]');
             $this->form_validation->set_rules('university', 'University', 'required|trim|xss_clean|max_length[250]');
-            $this->form_validation->set_rules('description', 'Description', 'trim|xss_clean|max_length[250]');
-            $this->form_validation->set_rules('contact_person', 'Contact Person', 'trim|xss_clean|max_length[100]');
-            $this->form_validation->set_rules('address', 'Address', 'trim|xss_clean|max_length[500]');
+            //$this->form_validation->set_rules('description', 'Description', 'trim|xss_clean|max_length[250]');
+            //$this->form_validation->set_rules('contact_person', 'Contact Person', 'trim|xss_clean|max_length[100]');
+            //$this->form_validation->set_rules('address', 'Address', 'trim|xss_clean|max_length[500]');
             $this->form_validation->set_rules('email_id', 'Email', 'trim|xss_clean|max_length[100]');
             $this->form_validation->set_rules('phone1', 'Phone 1', 'trim|xss_clean|max_length[100]');
-            $this->form_validation->set_rules('phone2', 'Phone 2', 'trim|xss_clean|max_length[100]');
-            $this->form_validation->set_rules('commission_percentage', 'Phone 2', 'trim|xss_clean|max_length[11]');
-            $this->form_validation->set_rules('application_fee', 'Application Fee', 'trim|xss_clean|max_length[11]');
-            $this->form_validation->set_rules('service_charge', 'Service Charge', 'trim|xss_clean|max_length[11]');
+            //$this->form_validation->set_rules('phone2', 'Phone 2', 'trim|xss_clean|max_length[100]');
+            //$this->form_validation->set_rules('commission_percentage', 'Phone 2', 'trim|xss_clean|max_length[11]');
+            //$this->form_validation->set_rules('application_fee', 'Application Fee', 'trim|xss_clean|max_length[11]');
+            //$this->form_validation->set_rules('service_charge', 'Service Charge', 'trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('country_id', 'Country', 'required|xss_clean|max_length[3]');
             
              if ($this->form_validation->run() == FALSE){
@@ -172,18 +172,18 @@ class University extends CI_Controller {
             } else {
                 // build array for the model
                 $formData = array(
-                    'code' => set_value('code'),
-                    'university' => set_value('university'),
-                    'description' => set_value('description'),
-                    'contact_person' => set_value('contact_person'),
-                    'address' => set_value('address'),
-                    'email_id' => set_value('email_id'),
-                    'phone1' => set_value('phone1'),
-                    'phone2' => set_value('phone2'),
-                    'commission_percentage' => set_value('commission_percentage'),
-                    'application_fee' => set_value('application_fee'),
-                    'service_charge' => set_value('service_charge'),
-                    'country_id' => set_value('country_id'),
+                    'code' => $this->input->post('code'),
+                    'university' => $this->input->post('university'),
+                    'description' => $this->input->post('description'),
+                    'contact_person' => $this->input->post('contact_person'),
+                    'address' => $this->input->post('address'),
+                    'email_id' => $this->input->post('email_id'),
+                    'phone1' => $this->input->post('phone1'),
+                    'phone2' => $this->input->post('phone2'),
+                    'commission_percentage' => $this->input->post('commission_percentage'),
+                    'application_fee' => $this->input->post('application_fee'),
+                    'service_charge' => $this->input->post('service_charge'),
+                    'country_id' => $this->input->post('country_id'),
                 );
 
                 if ($this->university->update($formData, $id) == TRUE) {
