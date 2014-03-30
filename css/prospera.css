@@ -340,3 +340,5 @@ a.button.cancel{color: #F75656;}
     color: red;
     background: #F8D6D6 url("../images/error-icon.png") no-repeat scroll 10px 10px;;
 }
+span.validation-error{color:red}
+sup.mandatory{color:red;}

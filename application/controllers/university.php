@@ -34,7 +34,7 @@ class University extends CI_Controller {
             'view' => 'university/view'
         );
         $this->entity = 'University';
-        $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
+        $this->form_validation->set_error_delimiters('<br/>');
     }
 
     public function index() {
@@ -50,6 +50,7 @@ class University extends CI_Controller {
      */
     public function add() {
         if ($_POST) {
+            $validationError = array();
             $this->form_validation->set_rules('code', 'Code', 'required|trim|xss_clean|max_length[20]');
             $this->form_validation->set_rules('university', 'University', 'required|trim|xss_clean|max_length[250]');
             $this->form_validation->set_rules('description', 'Description', 'trim|xss_clean|max_length[250]');
@@ -62,11 +63,25 @@ class University extends CI_Controller {
             $this->form_validation->set_rules('application_fee', 'Application Fee', 'required|trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('service_charge', 'Service Charge', 'required|trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('country_id', 'Country', 'required|xss_clean|max_length[3]');
-
-            if ($this->form_validation->run() == FALSE) {
-                $this->session->set_flashdata('message', validation_errors());
-                $this->session->set_flashdata('msg_class', 'error_message');
-                redirect($this->gen_contents['paths']['add']);
+            
+            if ($this->form_validation->run() == FALSE){
+                $validationError[]  = validation_errors();
+            }
+            $checkDuplication = $this->university->getDuplication(array('code'=>$this->input->post('code'),'email_id'=>$this->input->post('email_id')));
+            if($checkDuplication){
+                foreach($checkDuplication as $duplication){
+                    if($duplication->email_id==$this->input->post('email_id')){
+                        $validationError[] = 'Email already exists';
+                    }
+                    if($duplication->code==$this->input->post('code')){
+                        $validationError[] = 'Code already exists';
+                    }
+                }
+                $validationError    = implode('<br/>',$validationError);
+            }
+            if ($validationError) {
+                $this->gen_contents['message'] =  $validationError;
+                $this->gen_contents['msg_class'] = 'error_message';
             } else {
                 // build array for the model
                 $formData = array(
@@ -120,6 +135,7 @@ class University extends CI_Controller {
      * edit a university
      */
     public function edit() {
+        $validationError = array();
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
             $this->form_validation->set_rules('code', 'Code', 'required|trim|xss_clean|max_length[20]');
@@ -134,11 +150,25 @@ class University extends CI_Controller {
             $this->form_validation->set_rules('application_fee', 'Application Fee', 'trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('service_charge', 'Service Charge', 'trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('country_id', 'Country', 'required|xss_clean|max_length[3]');
-
-            if ($this->form_validation->run() == FALSE) {
-                $this->session->set_flashdata('message', validation_errors());
-                $this->session->set_flashdata('msg_class', 'error_message');
-                redirect($this->gen_contents['paths']['edit']);
+            
+             if ($this->form_validation->run() == FALSE){
+                $validationError[]  = validation_errors();
+            }
+            $checkDuplication = $this->university->getDuplication(array('code'=>$this->input->post('code'),'email_id'=>$this->input->post('email_id')),$id);
+            if($checkDuplication){
+                foreach($checkDuplication as $duplication){
+                    if($duplication->email_id==$this->input->post('email_id')){
+                        $validationError[] = 'Email already exists';
+                    }
+                    if($duplication->code==$this->input->post('code')){
+                        $validationError[] = 'Code already exists';
+                    }
+                }
+                $validationError    = implode('<br/>',$validationError);
+            }
+            if ($validationError) {
+                $this->gen_contents['message'] =  $validationError;
+                $this->gen_contents['msg_class'] = 'error_message';
             } else {
                 // build array for the model
                 $formData = array(

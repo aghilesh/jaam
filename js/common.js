@@ -17,8 +17,17 @@ jQuery( document ).ready(function() {
      * Common save button form submit action
      */
     jQuery('.common-save-btn-click').click(function(){
-        if($(this).parents().closest('form')){
-            $(this).parents().closest('form').submit()
+        var form = $(this).parents().closest('form');
+        if(form.hasClass('validate-form'))
+        {
+            if(prospera.validate.form(form))
+            {
+                form.submit();
+            }
+        }
+        else
+        {
+            form.submit();
         }
     });
     
@@ -31,3 +40,42 @@ jQuery( document ).ready(function() {
         }
     });
 });
+
+var prospera        = {};
+prospera.validate   = {
+    form : function(formObj){
+        var validationPassed = true;
+        var errorTagOpen = '<span class="validation-error">';
+        var errorTagSearch = 'span.validation-error';
+        var errorTagClose = '</span>';
+        jQuery(formObj).find('.validate').each(
+            function(){
+                jQuery(this).parent().find(errorTagSearch).remove();
+                var inputValue = jQuery(this).val();
+                if(jQuery(this).hasClass('validate-mandatory')){
+                    if(jQuery.trim(inputValue)==''){
+                       validationPassed = false;
+                       jQuery(this).parent().find(errorTagSearch).remove();
+                       jQuery(this).parent().append(errorTagOpen+'Please fill this field'+errorTagClose);
+                    }
+                }
+                if(jQuery(this).hasClass('validate-number')){
+                    if(isNaN(jQuery.trim(inputValue))){
+                       validationPassed = false;
+                       jQuery(this).parent().find(errorTagSearch).remove();
+                       jQuery(this).parent().append(errorTagOpen+'Please fill a valid number here'+errorTagClose);
+                    }
+                }
+                if(jQuery(this).hasClass('validate-email')){
+                    var emailMatch = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                    if (!emailMatch.test(inputValue)) {
+                        validationPassed = false;
+                        jQuery(this).parent().find(errorTagSearch).remove();
+                        jQuery(this).parent().append(errorTagOpen+'Please fill a valid email here'+errorTagClose);
+                    }
+                }
+            }
+        );
+        return validationPassed;
+    }
+}

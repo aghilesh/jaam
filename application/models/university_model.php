@@ -42,6 +42,33 @@ class University_model extends CI_Model {
         $query = $this->db->get($this->table);
         return ($id) ? $query->row() : $query->result();
     }
+    
+    public function getDuplication($fields=Array(),$id=''){
+        $this->db->select('*');
+        if($fields)
+        {
+            $or_condition = '(';
+            $or_inside = array();
+            foreach ($fields as $k=>$v)
+            {
+                $or_inside[] = $k.'=\''.$v.'\'';
+            }
+            $or_condition .= implode(' OR ',$or_inside);
+            $or_condition .= ')';
+
+            if($or_inside)
+            {
+                $this->db->where($or_condition);
+            }
+        }
+        if($id)
+        {
+            $this->db->where('id != ',$id);
+        }
+        $query = $this->db->get($this->table);
+        
+        return $query->result();
+    }
 
 }
 ?>
