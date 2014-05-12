@@ -53,7 +53,7 @@
 
             <li class="fl form-label">&nbsp;</li>
             <li class="fl form-field" sty>
-                <a href="<?php echo $this->config->item('base_url').$paths['list'] ?>" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>
+                <a href="<?php echo $this->config->item('base_url').$paths['list'].'?'.  random_string() ?>" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>
                 <a href="javascript:void(0)" class="button remove delete" data-link="<?php echo base_url().$paths['delete'].'/'. @$agency->id; ?>">Remove</a>
                 <a href="<?php echo base_url().$paths['edit'].'/'. @$agency->id; ?>" class="button edit">Edit</a>
             </li>

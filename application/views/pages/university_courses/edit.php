@@ -44,7 +44,7 @@ $post = $this->input->post();
 
             <li class="fl form-label">&nbsp;</li>
             <li class="fl form-field" sty>
-                <a href="<?php echo $this->config->item('base_url').$paths['list'] ?>" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>
+                <a href="<?php echo $this->config->item('base_url').$paths['list'].'?'.  random_string() ?>" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>
                 <a href="javascript:void(0)" class="fl button save common-save-btn-click">Save</a>
             </li>
             <li class="clear newline"/>
