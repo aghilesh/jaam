@@ -69,4 +69,16 @@ function getCountryName($id){
     $ci->load->model('country_model', 'country');
     return $ci->country->get($id)->country;
 }
+
+function getBranchName($id){
+    $ci = & get_instance();
+    $ci->load->model('branch_model', 'branch');
+    return $ci->branch->get($id)->branch_name;
+}
+
+function getDepartmentName($id){
+    $ci = & get_instance();
+    $ci->load->model('department_model', 'department');
+    return $ci->department->get($id)->dept_name;
+}
 ?>
