@@ -27,6 +27,6 @@
             }
         } else {
             ?>
-            <tr><td colspan="5">No Departments found.</td></tr>
+            <tr><td colspan="5">No Courses found.</td></tr>
         <?php } ?>
 </table>

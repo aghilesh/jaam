@@ -13,7 +13,7 @@ class University extends CI_Controller {
 
         $this->load->helper('form');
         $this->load->helper('url');
-
+        
         $this->load->model('university_model', 'university');
         $this->load->model('country_model', 'country');
         

@@ -29,7 +29,7 @@ class University_courses extends CI_Controller {
             'delete' => 'university_courses/delete',
             'list' => 'university_courses'
         );
-        $this->entity = 'Univerist course';
+        $this->entity = 'University course';
         $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
     }
 
