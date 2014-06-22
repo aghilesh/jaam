@@ -81,4 +81,8 @@ function getDepartmentName($id){
     $ci->load->model('department_model', 'department');
     return $ci->department->get($id)->dept_name;
 }
+function get_encr_password($password) {
+    $pass = md5($password);
+    return substr(md5($pass . 'prospera'), 0, 50);
+}
 ?>
