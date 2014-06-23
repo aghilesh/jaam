@@ -7,7 +7,10 @@ class Associate_agency extends CI_Controller {
 
     public function Associate_agency() {
         parent::__construct();
-                $this->load->library('form_validation');
+
+        (!$this->authentication->check_logged_in()) ? redirect('') : '';
+
+        $this->load->library('form_validation');
         $this->load->library('pagination');
 
         $this->load->helper('form');
@@ -15,7 +18,7 @@ class Associate_agency extends CI_Controller {
 
         $this->load->model('agency_model', 'agency');
         $this->load->model('country_model', 'country');
-        
+
         $this->gen_contents['dynamic_views'] = array();
         $this->gen_contents['load_css'] = array();
         $this->gen_contents['load_js'] = array();
@@ -33,17 +36,17 @@ class Associate_agency extends CI_Controller {
             'view' => 'associate_agency/view'
         );
         $this->entity = 'Associate Agency';
-        $this->form_validation->set_error_delimiters('<br/>','');
+        $this->form_validation->set_error_delimiters('<br/>', '');
     }
 
     public function index() {
-       $this->gen_contents['agencies'] = $this->agency->get();
+        $this->gen_contents['agencies'] = $this->agency->get();
 
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'agency/list';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
-    
-    public function add(){
+
+    public function add() {
         if ($_POST) {
             $validationError = array();
             $this->form_validation->set_rules('code', 'Code', 'required|trim|xss_clean|max_length[20]');
@@ -58,24 +61,24 @@ class Associate_agency extends CI_Controller {
             //$this->form_validation->set_rules('application_fee', 'Application Fee', 'required|trim|xss_clean|max_length[11]');
             //$this->form_validation->set_rules('service_charge', 'Service Charge', 'required|trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('country_id', 'Country', 'required|xss_clean|max_length[3]');
-            
-            if ($this->form_validation->run() == FALSE){
-                $validationError[]  = validation_errors();
+
+            if ($this->form_validation->run() == FALSE) {
+                $validationError[] = validation_errors();
             }
-            $checkDuplication = $this->agency->getDuplication(array('code'=>$this->input->post('code'),'email_id'=>$this->input->post('email_id')));
-            if($checkDuplication){
-                foreach($checkDuplication as $duplication){
-                    if($duplication->email_id==$this->input->post('email_id')){
+            $checkDuplication = $this->agency->getDuplication(array('code' => $this->input->post('code'), 'email_id' => $this->input->post('email_id')));
+            if ($checkDuplication) {
+                foreach ($checkDuplication as $duplication) {
+                    if ($duplication->email_id == $this->input->post('email_id')) {
                         $validationError[] = 'Email already exists';
                     }
-                    if($duplication->code==$this->input->post('code')){
+                    if ($duplication->code == $this->input->post('code')) {
                         $validationError[] = 'Code already exists';
                     }
                 }
-                $validationError    = implode('<br/>',$validationError);
+                $validationError = implode('<br/>', $validationError);
             }
             if ($validationError) {
-                $this->gen_contents['message'] =  $validationError;
+                $this->gen_contents['message'] = $validationError;
                 $this->gen_contents['msg_class'] = 'error_message';
             } else {
                 // build array for the model
@@ -94,26 +97,26 @@ class Associate_agency extends CI_Controller {
                     'country_id' => $this->input->post('country_id'),
                 );
 
-                
-                
-                
+
+
+
                 if ($this->agency->insert($formData)) {
-                    $this->session->set_flashdata('message', $this->entity.' was added successfully.');
+                    $this->session->set_flashdata('message', $this->entity . ' was added successfully.');
                     $this->session->set_flashdata('msg_class', 'success_message');
                     redirect($this->gen_contents['paths']['list']);
                 } else {
-                    $this->session->set_flashdata('message', 'There was some problem in adding the '.$this->entity.'.');
+                    $this->session->set_flashdata('message', 'There was some problem in adding the ' . $this->entity . '.');
                     $this->session->set_flashdata('msg_class', 'error_message');
                     redirect($this->gen_contents['paths']['add']);
                 }
             }
         }
-        $this->gen_contents['countries'] = prepareOptionList($this->country->get(),array('key'=>'id','value'=>'country'));
-        $this->gen_contents['page_title'] = $this->entity.' - Add';
+        $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
+        $this->gen_contents['page_title'] = $this->entity . ' - Add';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'agency/add';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
-    
+
     /**
      * edit a university
      */
@@ -133,24 +136,24 @@ class Associate_agency extends CI_Controller {
             //$this->form_validation->set_rules('application_fee', 'Application Fee', 'trim|xss_clean|max_length[11]');
             //$this->form_validation->set_rules('service_charge', 'Service Charge', 'trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('country_id', 'Country', 'required|xss_clean|max_length[3]');
-            
-             if ($this->form_validation->run() == FALSE){
-                $validationError[]  = validation_errors();
+
+            if ($this->form_validation->run() == FALSE) {
+                $validationError[] = validation_errors();
             }
-            $checkDuplication = $this->agency->getDuplication(array('code'=>$this->input->post('code'),'email_id'=>$this->input->post('email_id')),$id);
-            if($checkDuplication){
-                foreach($checkDuplication as $duplication){
-                    if($duplication->email_id==$this->input->post('email_id')){
+            $checkDuplication = $this->agency->getDuplication(array('code' => $this->input->post('code'), 'email_id' => $this->input->post('email_id')), $id);
+            if ($checkDuplication) {
+                foreach ($checkDuplication as $duplication) {
+                    if ($duplication->email_id == $this->input->post('email_id')) {
                         $validationError[] = 'Email already exists';
                     }
-                    if($duplication->code==$this->input->post('code')){
+                    if ($duplication->code == $this->input->post('code')) {
                         $validationError[] = 'Code already exists';
                     }
                 }
-                $validationError    = implode('<br/>',$validationError);
+                $validationError = implode('<br/>', $validationError);
             }
             if ($validationError) {
-                $this->gen_contents['message'] =  $validationError;
+                $this->gen_contents['message'] = $validationError;
                 $this->gen_contents['msg_class'] = 'error_message';
             } else {
                 // build array for the model
@@ -170,26 +173,26 @@ class Associate_agency extends CI_Controller {
                 );
 
                 if ($this->agency->update($formData, $id) == TRUE) {
-                    $this->session->set_flashdata('message', $this->entity.' was updated successfully.');
+                    $this->session->set_flashdata('message', $this->entity . ' was updated successfully.');
                     $this->session->set_flashdata('msg_class', 'success_message');
-                    redirect($this->gen_contents['paths']['edit'].'/'.$id);
+                    redirect($this->gen_contents['paths']['edit'] . '/' . $id);
                 } else {
-                    $this->session->set_flashdata('message', 'There was some problem in updating the '.$this->entity.'.');
+                    $this->session->set_flashdata('message', 'There was some problem in updating the ' . $this->entity . '.');
                     $this->session->set_flashdata('msg_class', 'error_message');
-                    redirect($this->gen_contents['paths']['edit'].'/'.$id);
+                    redirect($this->gen_contents['paths']['edit'] . '/' . $id);
                 }
             }
         }
         if ($id) {
             $this->gen_contents['agency'] = $this->agency->get($id);
         }
-        $this->gen_contents['countries'] = prepareOptionList($this->country->get(),array('key'=>'id','value'=>'country'));
-        $this->gen_contents['page_title'] = $this->entity.' - Edit';
+        $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
+        $this->gen_contents['page_title'] = $this->entity . ' - Edit';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'agency/edit';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
-    
-     /**
+
+    /**
      * Delete Agency
      * @param type $id
      */
@@ -197,7 +200,7 @@ class Associate_agency extends CI_Controller {
         $error = false;
         if ($id) {
             if ($this->agency->delete($id)) {
-                $this->session->set_flashdata('message', $this->entity.' was deleted successfully.');
+                $this->session->set_flashdata('message', $this->entity . ' was deleted successfully.');
                 $this->session->set_flashdata('msg_class', 'success_message');
                 redirect($this->gen_contents['paths']['list']);
             } else {
@@ -213,7 +216,7 @@ class Associate_agency extends CI_Controller {
             redirect($this->gen_contents['paths']['list']);
         }
     }
-    
+
     /**
      * view an agency
      */
@@ -221,11 +224,12 @@ class Associate_agency extends CI_Controller {
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($id) {
             $this->gen_contents['agency'] = $this->agency->get($id);
-        }else{
+        } else {
             redirect($this->gen_contents['paths']['list']);
         }
-        $this->gen_contents['page_title'] = $this->entity.' - View';
+        $this->gen_contents['page_title'] = $this->entity . ' - View';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'agency/view';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
+
 }

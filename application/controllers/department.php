@@ -7,6 +7,8 @@ class Department extends CI_Controller {
 
     public function Department() {
         parent::__construct();
+        
+        (!$this->authentication->check_logged_in()) ? redirect('') : '';
 
         $this->load->library('form_validation');
         $this->load->library('pagination');

@@ -7,7 +7,10 @@ class User extends CI_Controller {
 
     public function User() {
         parent::__construct();
-        
+
+        (!$this->authentication->check_logged_in()) ? redirect('') : '';
+
+
         $this->load->library('form_validation');
         $this->load->library('pagination');
 
@@ -18,7 +21,7 @@ class User extends CI_Controller {
         $this->load->model('role_model', 'role');
         $this->load->model('branch_model', 'branch');
         $this->load->model('department_model', 'department');
-        
+
         $this->gen_contents['dynamic_views'] = array();
         $this->gen_contents['load_css'] = array();
         $this->gen_contents['load_js'] = array();
@@ -40,10 +43,10 @@ class User extends CI_Controller {
 
     public function index() {
         $this->gen_contents['users'] = $this->user->get();
-        $this->gen_contents['dynamic_views'][]      = $this->config->item('pages') . 'user/list';
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'user/list';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
-    
+
     /**
      * add a user
      */
@@ -79,25 +82,26 @@ class User extends CI_Controller {
                 );
 
                 if ($this->user->insert($formData)) {
-                    $this->session->set_flashdata('message', $this->entity.' was added successfully.');
+                    $this->session->set_flashdata('message', $this->entity . ' was added successfully.');
                     $this->session->set_flashdata('msg_class', 'success_message');
                     redirect($this->gen_contents['paths']['list']);
                 } else {
-                    $this->session->set_flashdata('message', 'There was some problem in adding the '.$this->entity.'.');
+                    $this->session->set_flashdata('message', 'There was some problem in adding the ' . $this->entity . '.');
                     $this->session->set_flashdata('msg_class', 'error_message');
                     redirect($this->gen_contents['paths']['add']);
                 }
             }
         }
-        
-        $this->gen_contents['departments'] = prepareOptionList($this->department->get(),array('key'=>'id','value'=>'dept_name'));
-        $this->gen_contents['branches'] = prepareOptionList($this->branch->get(),array('key'=>'id','value'=>'branch_name'));
-        $this->gen_contents['roles'] = prepareOptionList($this->role->get(),array('key'=>'id','value'=>'role'));
-        
-        $this->gen_contents['page_title'] = $this->entity.' - Add';
+
+        $this->gen_contents['departments'] = prepareOptionList($this->department->get(), array('key' => 'id', 'value' => 'dept_name'));
+        $this->gen_contents['branches'] = prepareOptionList($this->branch->get(), array('key' => 'id', 'value' => 'branch_name'));
+        $this->gen_contents['roles'] = prepareOptionList($this->role->get(), array('key' => 'id', 'value' => 'role'));
+
+        $this->gen_contents['page_title'] = $this->entity . ' - Add';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'user/add';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
+
     /**
      * edit a user
      */
@@ -133,24 +137,24 @@ class User extends CI_Controller {
                 );
 
                 if ($this->user->update($formData, $id) == TRUE) {
-                    $this->session->set_flashdata('message', $this->entity.' was updated successfully.');
+                    $this->session->set_flashdata('message', $this->entity . ' was updated successfully.');
                     $this->session->set_flashdata('msg_class', 'success_message');
-                    redirect($this->gen_contents['paths']['edit'].'/'.$id);
+                    redirect($this->gen_contents['paths']['edit'] . '/' . $id);
                 } else {
-                    $this->session->set_flashdata('message', 'There was some problem in updating the '.$this->entity.'.');
+                    $this->session->set_flashdata('message', 'There was some problem in updating the ' . $this->entity . '.');
                     $this->session->set_flashdata('msg_class', 'error_message');
-                    redirect($this->gen_contents['paths']['edit'].'/'.$id);
+                    redirect($this->gen_contents['paths']['edit'] . '/' . $id);
                 }
             }
         }
         if ($id) {
             $this->gen_contents['user'] = $this->user->get($id);
         }
-        $this->gen_contents['departments'] = prepareOptionList($this->department->get(),array('key'=>'id','value'=>'dept_name'));
-        $this->gen_contents['branches'] = prepareOptionList($this->branch->get(),array('key'=>'id','value'=>'branch_name'));
-        $this->gen_contents['roles'] = prepareOptionList($this->role->get(),array('key'=>'id','value'=>'role'));
-        
-        $this->gen_contents['page_title'] = $this->entity.' - Edit';
+        $this->gen_contents['departments'] = prepareOptionList($this->department->get(), array('key' => 'id', 'value' => 'dept_name'));
+        $this->gen_contents['branches'] = prepareOptionList($this->branch->get(), array('key' => 'id', 'value' => 'branch_name'));
+        $this->gen_contents['roles'] = prepareOptionList($this->role->get(), array('key' => 'id', 'value' => 'role'));
+
+        $this->gen_contents['page_title'] = $this->entity . ' - Edit';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'user/edit';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
@@ -163,7 +167,7 @@ class User extends CI_Controller {
         $error = false;
         if ($id) {
             if ($this->user->delete($id)) {
-                $this->session->set_flashdata('message', $this->entity.' was deleted successfully.');
+                $this->session->set_flashdata('message', $this->entity . ' was deleted successfully.');
                 $this->session->set_flashdata('msg_class', 'success_message');
                 redirect($this->gen_contents['paths']['list']);
             } else {
@@ -179,4 +183,5 @@ class User extends CI_Controller {
             redirect($this->gen_contents['paths']['list']);
         }
     }
+
 }

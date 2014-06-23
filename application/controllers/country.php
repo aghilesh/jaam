@@ -8,6 +8,8 @@ class Country extends CI_Controller {
     public function Country() {
         parent::__construct();
 
+        (!$this->authentication->check_logged_in()) ? redirect('') : '';
+
         $this->load->library('form_validation');
         $this->load->library('pagination');
 
@@ -67,18 +69,18 @@ class Country extends CI_Controller {
                     'show_in_list' => isset($_POST['show_in_list']) ? 1 : 0
                 );
                 if ($this->country->insert($formData)) {
-                    $this->session->set_flashdata('message', $this->entity.' was added successfully.');
+                    $this->session->set_flashdata('message', $this->entity . ' was added successfully.');
                     $this->session->set_flashdata('msg_class', 'success_message');
                     redirect($this->gen_contents['paths']['list']);
                 } else {
-                    $this->session->set_flashdata('message', 'There was some problem in adding the '.$this->entity.'.');
+                    $this->session->set_flashdata('message', 'There was some problem in adding the ' . $this->entity . '.');
                     $this->session->set_flashdata('msg_class', 'error_message');
                     redirect($this->gen_contents['paths']['add']);
                 }
             }
         }
-        
-        $this->gen_contents['page_title'] = $this->entity.' - Add';
+
+        $this->gen_contents['page_title'] = $this->entity . ' - Add';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'country/add';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
@@ -97,7 +99,7 @@ class Country extends CI_Controller {
             if ($this->form_validation->run() == FALSE) {
                 $this->session->set_flashdata('message', validation_errors());
                 $this->session->set_flashdata('msg_class', 'error_message');
-                redirect($this->gen_contents['paths']['edit'].'/'.$id);
+                redirect($this->gen_contents['paths']['edit'] . '/' . $id);
             } else {
                 // build array for the model
                 $formData = array(
@@ -109,21 +111,21 @@ class Country extends CI_Controller {
                 );
 
                 if ($this->country->update($formData, $id) == TRUE) {
-                    $this->session->set_flashdata('message', $this->entity.' was updated successfully.');
+                    $this->session->set_flashdata('message', $this->entity . ' was updated successfully.');
                     $this->session->set_flashdata('msg_class', 'success_message');
-                    redirect($this->gen_contents['paths']['edit'].'/'.$id);
+                    redirect($this->gen_contents['paths']['edit'] . '/' . $id);
                 } else {
-                    $this->session->set_flashdata('message', 'There was some problem in updating the '.$this->entity.'.');
+                    $this->session->set_flashdata('message', 'There was some problem in updating the ' . $this->entity . '.');
                     $this->session->set_flashdata('msg_class', 'error_message');
-                    redirect($this->gen_contents['paths']['edit'].'/'.$id);
+                    redirect($this->gen_contents['paths']['edit'] . '/' . $id);
                 }
             }
         }
         if ($id) {
             $this->gen_contents['country'] = $this->country->get($id);
         }
-        
-        $this->gen_contents['page_title'] = $this->entity.' - Add';
+
+        $this->gen_contents['page_title'] = $this->entity . ' - Add';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'country/edit';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
@@ -136,7 +138,7 @@ class Country extends CI_Controller {
         $error = false;
         if ($id) {
             if ($this->country->delete($id)) {
-                $this->session->set_flashdata('message', $this->entity.' was deleted successfully.');
+                $this->session->set_flashdata('message', $this->entity . ' was deleted successfully.');
                 $this->session->set_flashdata('msg_class', 'success_message');
                 redirect($this->gen_contents['paths']['list']);
             } else {

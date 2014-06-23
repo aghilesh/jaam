@@ -8,15 +8,17 @@ class University extends CI_Controller {
     public function University() {
         parent::__construct();
 
+        (!$this->authentication->check_logged_in()) ? redirect('') : '';
+
         $this->load->library('form_validation');
         $this->load->library('pagination');
 
         $this->load->helper('form');
         $this->load->helper('url');
-        
+
         $this->load->model('university_model', 'university');
         $this->load->model('country_model', 'country');
-        
+
         $this->gen_contents['dynamic_views'] = array();
         $this->gen_contents['load_css'] = array();
         $this->gen_contents['load_js'] = array();
@@ -63,24 +65,24 @@ class University extends CI_Controller {
             //$this->form_validation->set_rules('application_fee', 'Application Fee', 'required|trim|xss_clean|max_length[11]');
             //$this->form_validation->set_rules('service_charge', 'Service Charge', 'required|trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('country_id', 'Country', 'required|xss_clean|max_length[3]');
-            
-            if ($this->form_validation->run() == FALSE){
-                $validationError[]  = validation_errors();
+
+            if ($this->form_validation->run() == FALSE) {
+                $validationError[] = validation_errors();
             }
-            $checkDuplication = $this->university->getDuplication(array('code'=>$this->input->post('code'),'email_id'=>$this->input->post('email_id')));
-            if($checkDuplication){
-                foreach($checkDuplication as $duplication){
-                    if($duplication->email_id==$this->input->post('email_id')){
+            $checkDuplication = $this->university->getDuplication(array('code' => $this->input->post('code'), 'email_id' => $this->input->post('email_id')));
+            if ($checkDuplication) {
+                foreach ($checkDuplication as $duplication) {
+                    if ($duplication->email_id == $this->input->post('email_id')) {
                         $validationError[] = 'Email already exists';
                     }
-                    if($duplication->code==$this->input->post('code')){
+                    if ($duplication->code == $this->input->post('code')) {
                         $validationError[] = 'Code already exists';
                     }
                 }
-                $validationError    = implode('<br/>',$validationError);
+                $validationError = implode('<br/>', $validationError);
             }
             if ($validationError) {
-                $this->gen_contents['message'] =  $validationError;
+                $this->gen_contents['message'] = $validationError;
                 $this->gen_contents['msg_class'] = 'error_message';
             } else {
                 // build array for the model
@@ -100,19 +102,19 @@ class University extends CI_Controller {
                 );
 
                 if ($this->university->insert($formData)) {
-                    $this->session->set_flashdata('message', $this->entity.' was added successfully.');
+                    $this->session->set_flashdata('message', $this->entity . ' was added successfully.');
                     $this->session->set_flashdata('msg_class', 'success_message');
                     redirect($this->gen_contents['paths']['list']);
                 } else {
-                    $this->session->set_flashdata('message', 'There was some problem in adding the '.$this->entity.'.');
+                    $this->session->set_flashdata('message', 'There was some problem in adding the ' . $this->entity . '.');
                     $this->session->set_flashdata('msg_class', 'error_message');
                     redirect($this->gen_contents['paths']['add']);
                 }
             }
         }
-        
-        $this->gen_contents['countries'] = prepareOptionList($this->country->get(),array('key'=>'id','value'=>'country'));
-        $this->gen_contents['page_title'] = $this->entity.' - Add';
+
+        $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
+        $this->gen_contents['page_title'] = $this->entity . ' - Add';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'university/add';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
@@ -124,13 +126,14 @@ class University extends CI_Controller {
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($id) {
             $this->gen_contents['university'] = $this->university->get($id);
-        }else{
+        } else {
             redirect($this->gen_contents['paths']['list']);
         }
-        $this->gen_contents['page_title'] = $this->entity.' - View';
+        $this->gen_contents['page_title'] = $this->entity . ' - View';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'university/view';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
+
     /**
      * edit a university
      */
@@ -150,24 +153,24 @@ class University extends CI_Controller {
             //$this->form_validation->set_rules('application_fee', 'Application Fee', 'trim|xss_clean|max_length[11]');
             //$this->form_validation->set_rules('service_charge', 'Service Charge', 'trim|xss_clean|max_length[11]');
             $this->form_validation->set_rules('country_id', 'Country', 'required|xss_clean|max_length[3]');
-            
-             if ($this->form_validation->run() == FALSE){
-                $validationError[]  = validation_errors();
+
+            if ($this->form_validation->run() == FALSE) {
+                $validationError[] = validation_errors();
             }
-            $checkDuplication = $this->university->getDuplication(array('code'=>$this->input->post('code'),'email_id'=>$this->input->post('email_id')),$id);
-            if($checkDuplication){
-                foreach($checkDuplication as $duplication){
-                    if($duplication->email_id==$this->input->post('email_id')){
+            $checkDuplication = $this->university->getDuplication(array('code' => $this->input->post('code'), 'email_id' => $this->input->post('email_id')), $id);
+            if ($checkDuplication) {
+                foreach ($checkDuplication as $duplication) {
+                    if ($duplication->email_id == $this->input->post('email_id')) {
                         $validationError[] = 'Email already exists';
                     }
-                    if($duplication->code==$this->input->post('code')){
+                    if ($duplication->code == $this->input->post('code')) {
                         $validationError[] = 'Code already exists';
                     }
                 }
-                $validationError    = implode('<br/>',$validationError);
+                $validationError = implode('<br/>', $validationError);
             }
             if ($validationError) {
-                $this->gen_contents['message'] =  $validationError;
+                $this->gen_contents['message'] = $validationError;
                 $this->gen_contents['msg_class'] = 'error_message';
             } else {
                 // build array for the model
@@ -187,21 +190,21 @@ class University extends CI_Controller {
                 );
 
                 if ($this->university->update($formData, $id) == TRUE) {
-                    $this->session->set_flashdata('message', $this->entity.' was updated successfully.');
+                    $this->session->set_flashdata('message', $this->entity . ' was updated successfully.');
                     $this->session->set_flashdata('msg_class', 'success_message');
-                    redirect($this->gen_contents['paths']['edit'].'/'.$id);
+                    redirect($this->gen_contents['paths']['edit'] . '/' . $id);
                 } else {
-                    $this->session->set_flashdata('message', 'There was some problem in updating the '.$this->entity.'.');
+                    $this->session->set_flashdata('message', 'There was some problem in updating the ' . $this->entity . '.');
                     $this->session->set_flashdata('msg_class', 'error_message');
-                    redirect($this->gen_contents['paths']['edit'].'/'.$id);
+                    redirect($this->gen_contents['paths']['edit'] . '/' . $id);
                 }
             }
         }
         if ($id) {
             $this->gen_contents['university'] = $this->university->get($id);
         }
-        $this->gen_contents['countries'] = prepareOptionList($this->country->get(),array('key'=>'id','value'=>'country'));
-        $this->gen_contents['page_title'] = $this->entity.' - Edit';
+        $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
+        $this->gen_contents['page_title'] = $this->entity . ' - Edit';
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'university/edit';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
@@ -214,7 +217,7 @@ class University extends CI_Controller {
         $error = false;
         if ($id) {
             if ($this->university->delete($id)) {
-                $this->session->set_flashdata('message', $this->entity.' was deleted successfully.');
+                $this->session->set_flashdata('message', $this->entity . ' was deleted successfully.');
                 $this->session->set_flashdata('msg_class', 'success_message');
                 redirect($this->gen_contents['paths']['list']);
             } else {
