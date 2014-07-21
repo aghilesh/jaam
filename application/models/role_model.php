@@ -42,6 +42,31 @@ class Role_model extends CI_Model {
         $query = $this->db->get($this->table);
         return ($id) ? $query->row() : $query->result();
     }
+    
+    public function getAllRoles(){
+        $query = $this->db->get('user_role');
+        return $query->result();
+    }
+    
+    public function getAllModules(){
+        $query = $this->db->get('modules');
+        return $query->result();  
+    }
+    
+    public function savePermission($roleId, $permission, $module){
+        $this->db->insert('role_permission', array('id'=>$roleId, 'permission'=>$permission, 'module'=>$module));
+        return ($this->db->affected_rows() == '1') ? TRUE : FALSE;
+    }
+    
+    public function getSetPermissions(){
+        $this->db->select('id, permission');    
+        $query = $this->db->get('role_permission');
+        return $query->result_array();
+    }
+    
+    public function deleteAllPermissions(){
+        return $this->db->empty_table('role_permission'); 
+    }
 
 }
 

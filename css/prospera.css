@@ -343,3 +343,55 @@ a.button.cancel{color: #F75656;}
 }
 span.validation-error{color:red}
 sup.mandatory{color:red;}
+
+/* styles for permission */
+table {
+    border: 1px solid #bebfb9;
+    font-size: 0.923em;
+    margin: 0 0 40px;
+    width: 100%;
+}
+table th {
+    background: none repeat scroll 0 0 #e1e2dc;
+    border-color: #bebfb9;
+    border-style: solid;
+    border-width: 1px;
+    font-weight: normal;
+    padding: 3px 10px;
+    text-transform: uppercase;
+}
+table td, table th {
+    border: 0 none;
+    color: #000;
+    padding: 8px 10px;
+    vertical-align: middle;
+}
+td.checkbox, th.checkbox {
+    text-align: center;
+}
+tr.odd {
+    background: none repeat scroll 0 0 #fff;
+}
+tr.even, tr.odd {
+    background: none repeat scroll 0 0 #f3f4ee;
+    border-color: #bebfb9;
+    border-style: solid;
+    border-width: 0 1px;
+}
+#permissions td.module {
+    font-weight: bold;
+}
+tr td:last-child {
+    border-right: 1px solid #bebfb9;
+}
+#permissions td.permission {
+    padding-left: 1.5em;
+}
+.element-invisible {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+}
+.permission-submit{border: 1px double black}
+/* styles for permission */

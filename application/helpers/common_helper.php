@@ -85,4 +85,10 @@ function get_encr_password($password) {
     $pass = md5($password);
     return substr(md5($pass . 'prospera'), 0, 50);
 }
+
+function isAllowedPermission($role, $permission){
+    $ci = & get_instance();
+    $query = $ci->db->get_where('role_permission', array('id' => $role, 'permission' => $permission));
+    return ($query->num_rows() >= 1)?true:false;
+}
 ?>
