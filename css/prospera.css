@@ -66,7 +66,7 @@ table {
 .fn{float:none}
 .clear{clear:both}
 .cb{clear:both}
-.full-width{width:100%;}
+.full-width{width:100% !important;}
 .header-wrapper{height:125px;background:#000000;}
 h2.header-main-title{font-size:40px;color:#CCCCCC;padding-top:50px;}
 h2.common-page-title{

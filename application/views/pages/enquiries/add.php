@@ -8,11 +8,25 @@ $post = $this->input->post();
         echo form_open($paths['add'], $attributes);
         ?>
         <ul class="fl form-fields-ul-slider">
+           <li class="fl form-label">Enquiry Moe<sup class="mandatory">*</sup></li>
+           <li class="fl form-field">
+               <input type="date" name="enqDate" id="enqDate" value="<?php echo $post && $post['enqDate'] ? $post['enqDate'] : date('Y-m-d'); ?>" >
+           </li>
+        </ul>
+        <div class="clear newline"></div>
+        
+        <ul class="fl form-fields-ul-slider">
             <?php $this->load->view($this->config->item('pages') . 'enquiries/personal_details', $this->gen_contents);?>
         </ul>
         <div class="clear newline"></div>
-        <ul class="fl form-fields-ul-slider">
+        <ul class="fl form-fields-ul-slider full-width">
             <?php $this->load->view($this->config->item('pages') . 'enquiries/education_details', $this->gen_contents);?>
+        </ul>
+        <ul class="fl form-fields-ul-slider full-width">
+            <?php $this->load->view($this->config->item('pages') . 'enquiries/course_details', $this->gen_contents);?>
+        </ul>
+        <ul class="fl form-fields-ul-slider">
+            <?php $this->load->view($this->config->item('pages') . 'enquiries/test_preparation', $this->gen_contents);?>
         </ul>
         <ul class="fl form-fields-ul-slider">
             <li class="fl form-label">&nbsp;</li>

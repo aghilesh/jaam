@@ -24,7 +24,7 @@ class Enquiries extends CI_Controller {
 
         $this->gen_contents['dynamic_views'] = array();
         $this->gen_contents['load_css'] = array();
-        $this->gen_contents['load_js'] = array();
+        $this->gen_contents['load_js'] = array("enquiry.js");
 
         $this->gen_contents['site_name'] = $this->config->item('site_name');
         $this->gen_contents['page_title'] = 'Enquiry';
