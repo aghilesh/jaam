@@ -134,5 +134,22 @@ class Enquiries extends CI_Controller {
             redirect($this->gen_contents['paths']['add']);
         }
     }
+    
+    public function edit() {
+        $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
+        if ($_POST && $id) {
+            
+        }
+        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Edit enquiry';
+        $this->gen_contents['page_title'] = 'Edit enquiry';
+        $this->gen_contents['leftmenu_selected'] = 'enquiries';
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'enquiries/edit';
+        $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
+        $this->gen_contents['enquiry_modes'] = prepareOptionList($this->enquirymode->get(), array('key' => 'id', 'value' => 'mode_name'));
+        $this->gen_contents['publicity_sources'] = prepareOptionList($this->publicitysource->get(), array('key' => 'id', 'value' => 'source'));
+        $this->gen_contents['enquiry_details'] = $this->enquiry->getForEdit($id);
+        
+        $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
+    }
 
 }

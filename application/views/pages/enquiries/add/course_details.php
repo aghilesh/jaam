@@ -13,14 +13,23 @@ $post = $this->input->post();
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="courseRows">
                 <tr>
                     <td><input class="generic-input validate validate-mandatory course-name" type="text" name="course[course_name][]" placeholder="Course"/></td>
                     <td><?php echo form_dropdown('course[country_id][]', $countries,'','class="generic-input"');?></td>
                     <td>
                         <?php 
                         $actions =  array("select"=>"Select","remove"=>"Remove","add"=>"Add");
-                        echo form_dropdown('action', $actions,'','class="generic-input" onchange="Enquiry.eduAction(this)" ');?>
+                        echo form_dropdown('action', $actions,'','class="generic-input" onchange="Enquiry.courseAction(this)" ');?>
+                    </td>
+                </tr>
+                <tr class="hidden dummyDataRows" id="dummyRowCourse">
+                    <td><input class="generic-input validate validate-mandatory course-name" type="text" name="course[course_name][]" placeholder="Course"/></td>
+                    <td><?php echo form_dropdown('course[country_id][]', $countries,'','class="generic-input"');?></td>
+                    <td>
+                        <?php 
+                        $actions =  array("select"=>"Select","remove"=>"Remove","add"=>"Add");
+                        echo form_dropdown('action', $actions,'','class="generic-input" onchange="Enquiry.courseAction(this)" ');?>
                     </td>
                 </tr>
             </tbody>

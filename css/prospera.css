@@ -267,7 +267,7 @@ a.button.blue{background-color: blue;}
 .marginleft10{margin-left:10px;}
 .marginright10{margin-right:10px;}
 .common-add-btn{margin-top:-30px;}
-.hidden{display:none}
+.hidden{display:none !important}
 ul.form-fields-ul-slider{width:50%;}
 ul.form-fields-ul-slider li{list-style: none;}
 ul.form-fields-ul-slider li.form-label{width:30%;line-height: 25px;font-family: Copperplate, "Copperplate Gothic Light", fantasy}

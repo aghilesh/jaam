@@ -101,4 +101,8 @@ function getEnquiryMode($modeId) {
 function getFormattedName($name) {
     return implode(' ', array($name['FNAME'],$name['LNAME']));
 }
+
+function getFieldValue($fieldName, $defValue) {
+    return $_POST && array_key_exists($fieldName, $_POST) ? $_POST[$fieldName] : $defValue;
+}
 ?>

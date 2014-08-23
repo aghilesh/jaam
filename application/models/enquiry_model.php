@@ -29,5 +29,27 @@ class Enquiry_model extends Parent_model {
     public function get($id='') {
         return $this->enquiryMaster->get($id);
     }
+    
+    public function getForEdit($id='') {
+        $returnArr = array();
+        $enquiryMainDetailsSql = 'SELECT TP.*, TP.id AS tp_id, em.*, EM.id AS enquiry_id FROM enquiry_master EM LEFT JOIN enqury_test_prepare TP 
+            ON(EM.id=TP.enquiry_id) WHERE EM.id=\''.$id.'\'';
+        $query = $this->db->query($enquiryMainDetailsSql);
+        $result = $query->result();
+        $returnArr['enquiryMain'] = $result[0];
+        
+        
+        $enquiryEducationDetailsSql = 'SELECT EE.*, EE.id AS ee_id FROM enruiry_education EE WHERE EE.enquiry_id=\''.$id.'\'';
+        $query = $this->db->query($enquiryEducationDetailsSql);
+        $result = $query->result();
+        $returnArr['educationDetails'] = $result;
+        
+        $enquiryCourseInterestSql = 'SELECT EC.*, EC.id AS ec_id FROM enquiry_course_interested EC WHERE EC.enquiry_id=\''.$id.'\'';
+        $query = $this->db->query($enquiryCourseInterestSql);
+        $result = $query->result();
+        $returnArr['courseInterestDetails'] = $result;
+        
+        return $returnArr;
+    }
 }
 ?>

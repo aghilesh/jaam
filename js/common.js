@@ -18,6 +18,7 @@ jQuery( document ).ready(function() {
      */
     jQuery('.common-save-btn-click').click(function(){
         var form = $(this).parents().closest('form');
+        $('.dummyDataRows').remove();
         if(form.hasClass('validate-form'))
         {
             if(prospera.validate.form(form))

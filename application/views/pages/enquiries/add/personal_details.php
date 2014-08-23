@@ -4,7 +4,7 @@ $post = $this->input->post();
     <li class="fl form-label"><h2 class="form-sub-head">Personal details</h2></li>
     <li class="clear newline"/>
 
-    <li class="fl form-label">Enquiry Moe<sup class="mandatory">*</sup></li>
+    <li class="fl form-label">Enquiry Mode<sup class="mandatory">*</sup></li>
     <li class="fl form-field">
             <?php echo form_dropdown('enquiry_mode', $enquiry_modes,$post['enquiry_mode'],'id="enquiry_mode" class="generic-input"');?>
     </li>

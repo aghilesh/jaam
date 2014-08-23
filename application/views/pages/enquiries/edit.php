@@ -1,14 +1,15 @@
 <?php
 $post = $this->input->post();
+$enquiryMain = $enquiry_details['enquiryMain'];
 ?>
 <div class="fl full-width">
     <div class="form-inner">
         <?php
-        $attributes = array('class' => '', 'id' => 'frmEnquiryAdd','name'=>'frmEnquiryAdd');
-        echo form_open($paths['add'], $attributes);
+        $attributes = array('class' => '', 'id' => 'frmEnquiryEdit','name'=>'frmEnquiryAdd');
+        echo form_open($paths['edit'].'/'.$enquiryMain->enquiry_id, $attributes);
         ?>
         <ul class="fl form-fields-ul-slider">
-           <li class="fl form-label">Enquiry Moe<sup class="mandatory">*</sup></li>
+           <li class="fl form-label">Enquiry Date<sup class="mandatory">*</sup></li>
            <li class="fl form-field">
                <input type="date" name="enqDate" id="enqDate" value="<?php echo $post && $post['enqDate'] ? $post['enqDate'] : date('Y-m-d'); ?>" >
            </li>
@@ -16,17 +17,17 @@ $post = $this->input->post();
         <div class="clear newline"></div>
         
         <ul class="fl form-fields-ul-slider">
-            <?php $this->load->view($this->config->item('pages') . 'enquiries/add/personal_details', $this->gen_contents);?>
+            <?php $this->load->view($this->config->item('pages') . 'enquiries/edit/personal_details', $this->gen_contents);?>
         </ul>
         <div class="clear newline"></div>
         <ul class="fl form-fields-ul-slider full-width">
-            <?php $this->load->view($this->config->item('pages') . 'enquiries/add/education_details', $this->gen_contents);?>
+            <?php $this->load->view($this->config->item('pages') . 'enquiries/edit/education_details', $this->gen_contents);?>
         </ul>
         <ul class="fl form-fields-ul-slider full-width">
-            <?php $this->load->view($this->config->item('pages') . 'enquiries/add/course_details', $this->gen_contents);?>
+            <?php $this->load->view($this->config->item('pages') . 'enquiries/edit/course_details', $this->gen_contents);?>
         </ul>
         <ul class="fl form-fields-ul-slider">
-            <?php $this->load->view($this->config->item('pages') . 'enquiries/add/test_preparation', $this->gen_contents);?>
+            <?php $this->load->view($this->config->item('pages') . 'enquiries/edit/test_preparation', $this->gen_contents);?>
         </ul>
         <ul class="fl form-fields-ul-slider">
             <li class="fl form-label">&nbsp;</li>
