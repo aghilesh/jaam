@@ -4,7 +4,7 @@ $post = $this->input->post();
 <div class="fl full-width">
     <div class="form-inner">
         <?php
-        $attributes = array('class' => 'validate-form', 'id' => 'frmEnquiryAdd','name'=>'frmEnquiryAdd');
+        $attributes = array('class' => '', 'id' => 'frmEnquiryAdd','name'=>'frmEnquiryAdd');
         echo form_open($paths['add'], $attributes);
         ?>
         <ul class="fl form-fields-ul-slider">

@@ -91,4 +91,14 @@ function isAllowedPermission($role, $permission){
     $query = $ci->db->get_where('role_permission', array('id' => $role, 'permission' => $permission));
     return ($query->num_rows() >= 1)?true:false;
 }
+
+function getEnquiryMode($modeId) {
+    $ci = & get_instance();
+    $ci->load->model('enquirymode_model', 'enquirymode');
+    return $ci->enquirymode->get($modeId)->mode_name;
+}
+
+function getFormattedName($name) {
+    return implode(' ', array($name['FNAME'],$name['LNAME']));
+}
 ?>

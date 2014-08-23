@@ -15,8 +15,8 @@ $post = $this->input->post();
             </thead>
             <tbody>
                 <tr>
-                    <td><input class="generic-input validate validate-mandatory course-name" type="text" name="course[]['course_name']" placeholder="Course"/></td>
-                    <td><?php echo form_dropdown('edu[]["country_id"]', $countries,'','class="generic-input"');?></td>
+                    <td><input class="generic-input validate validate-mandatory course-name" type="text" name="course[course_name][]" placeholder="Course"/></td>
+                    <td><?php echo form_dropdown('course[country_id][]', $countries,'','class="generic-input"');?></td>
                     <td>
                         <?php 
                         $actions =  array("select"=>"Select","remove"=>"Remove","add"=>"Add");

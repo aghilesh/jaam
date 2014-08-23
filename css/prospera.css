@@ -257,6 +257,8 @@ h2.common-page-title{
 
 .table.generic-listing tbody tr:nth-child(even) {background: #F8F8FF}
 .table.generic-listing tbody tr:nth-child(odd) {background: #F0F8FF}
+.table.generic-listing.enquiry{table-layout:fixed}
+.table.generic-listing.enquiry tr td{word-break: break-word;}
 .page-content{width:78%;margin: 1%;}
 a.button:active,a.button:link,a.button:hover,a.button:visited{text-decoration:none !important;}
 a.button.blue{background-color: blue;}

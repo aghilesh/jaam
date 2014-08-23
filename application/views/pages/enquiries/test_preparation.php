@@ -21,22 +21,22 @@ $post = $this->input->post();
     
     <li class="fl form-label">Started Coaching</li>
     <li class="fl form-field">
-           <input class="" type="radio" name="testPrepStartCoaching" id="testPrepStartCoachingYes"/><label for="testPrepStartCoachingYes">Yes</label>
-           <input class="" type="radio" name="testPrepStartCoaching" id="testPrepStartCoachingNo"/><label for="testPrepStartCoachingNo">No</label>
+           <input class="" type="radio" name="testPrepStartCoaching" id="testPrepStartCoachingYes" value="1"/><label for="testPrepStartCoachingYes">Yes</label>
+           <input class="" type="radio" name="testPrepStartCoaching" id="testPrepStartCoachingNo" value="0"/><label for="testPrepStartCoachingNo">No</label>
     </li>
     <li class="clear newline"/>
     
     <li class="fl form-label">Looking for Coaching</li>
     <li class="fl form-field">
-           <input class="" type="radio" name="testPrepLookForCoaching" id="testPrepLookForCoachingYes"/><label for="testPrepLookForCoachingYes">Yes</label>
-           <input class="" type="radio" name="testPrepLookForCoaching" id="testPrepLookForCoachingNo"/><label for="testPrepLookForCoachingNo">No</label>
+           <input class="" type="radio" name="testPrepLookForCoaching" id="testPrepLookForCoachingYes" value="1"/><label for="testPrepLookForCoachingYes">Yes</label>
+           <input class="" type="radio" name="testPrepLookForCoaching" id="testPrepLookForCoachingNo" value="0"/><label for="testPrepLookForCoachingNo">No</label>
     </li>
     <li class="clear newline"/>
     
     <li class="fl form-label">Looking for Waier</li>
     <li class="fl form-field">
-           <input class="" type="radio" name="testPrepLookForWaier" id="testPrepLookForWaierYes"/><label for="testPrepLookForWaierYes">Yes</label>
-           <input class="" type="radio" name="testPrepLookForWaier" id="testPrepLookForWaierNo"/><label for="testPrepLookForWaierNo">No</label>
+           <input class="" type="radio" name="testPrepLookForWaier" id="testPrepLookForWaierYes" value="1"/><label for="testPrepLookForWaierYes">Yes</label>
+           <input class="" type="radio" name="testPrepLookForWaier" id="testPrepLookForWaierNo" value="0"/><label for="testPrepLookForWaierNo">No</label>
     </li>
     <li class="clear newline"/>
 </ul>

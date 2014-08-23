@@ -17,6 +17,17 @@ var Enquiry = function(){
         replicateEduRow : function(rowObj){
             
             $(rowObj).clone().appendTo($(rowObj).parent());
+        },
+        
+        toggleDescription : function(selObj) {
+            var txt = $("#publicity_source").children("option").filter(":selected").text().toLowerCase();
+            if(txt=='other') {
+                $('.source-desc-visible').show();
+            }
+            else
+            {
+                $('.source-desc-visible').hide();
+            }
         }
         
     }

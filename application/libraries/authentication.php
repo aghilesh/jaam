@@ -128,5 +128,12 @@ class Authentication {
         }
         return FALSE;
     }
+    
+    function getUserInfo($param=''){
+        $userData = $this->CI->session->userdata;
+        if(!$param) return $userData;
+        $map_arr = array("id"=>"USER_ID","name"=>"FULL_NAME","username"=>"USERNAME");
+        return $userData[$map_arr[$param]];
+    }
 
 }

@@ -57,10 +57,14 @@ $post = $this->input->post();
 
     <li class="fl form-label">Source</li>
     <li class="fl form-field">
-        <?php echo form_dropdown('publicity_source', $publicity_sources,$post['publicity_source'],'id="publicity_source" class="generic-input"');?>
+        <?php echo form_dropdown('publicity_source', $publicity_sources,$post['publicity_source'],'id="publicity_source" class="generic-input" onChange="Enquiry.toggleDescription(this)" ');?>
     </li>
     <li class="clear newline"/>
+    
+    <li class="fl form-label source-desc-visible hidden">Source Description</li>
+    <li class="fl form-field source-desc-visible hidden"><textarea class="generic-textarea" name="source_description" id="source_description"><?php echo $post['source_description']?></textarea></li>
+    <li class="clear newline source-desc-visible hidden"/>
 
     <li class="fl form-label">Description</li>
-    <li class="fl form-field"><textarea class="generic-textarea" name="description" id="description"><?php echo $post['description']?></textarea></li>
+    <li class="fl form-field"><textarea class="generic-textarea" name="description" id="description"><?php echo $post['source_description']?></textarea></li>
     <li class="clear newline"/>

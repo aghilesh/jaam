@@ -19,12 +19,12 @@ $post = $this->input->post();
             </thead>
             <tbody>
                 <tr>
-                    <td><input class="generic-input validate validate-mandatory" type="text" name="edu[]['qualification']" placeholder="Qualification"/></td>
-                    <td><input class="generic-input validate validate-mandatory" type="text" name="edu[]['university']" placeholder="Board/University"/></td>
-                    <td><input class="generic-input validate validate-mandatory" type="text" name="edu[]['institution']" placeholder="Institution"/></td>
-                    <td><?php echo form_dropdown('edu[]["country_id"]', $countries,'','class="generic-input"');?></td>
-                    <td><input class="generic-input validate validate-mandatory" type="text" name="edu[]['passoutyear']" placeholder="Passout Year"/></td>
-                    <td><input class="generic-input validate validate-mandatory  edu-percentage" type="text" name="edu[]['percentage']" placeholder="Percentage"/></td>
+                    <td><input class="generic-input validate validate-mandatory" type="text" name="edu[qualification][]" placeholder="Qualification"/></td>
+                    <td><input class="generic-input validate validate-mandatory" type="text" name="edu[university][]" placeholder="Board/University"/></td>
+                    <td><input class="generic-input validate validate-mandatory" type="text" name="edu[institution][]" placeholder="Institution"/></td>
+                    <td><?php echo form_dropdown('edu[country_id][]', $countries,'','class="generic-input"');?></td>
+                    <td><input class="generic-input validate validate-mandatory" type="text" name="edu[passoutyear][]" placeholder="Passout Year"/></td>
+                    <td><input class="generic-input validate validate-mandatory  edu-percentage" type="text" name="edu[percentage][]" placeholder="Percentage"/></td>
                     <td>
                         <?php 
                         $actions =  array("select"=>"Select","remove"=>"Remove","add"=>"Add");
