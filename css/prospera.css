@@ -269,7 +269,7 @@ a.button.blue{background-color: blue;}
 .hidden{display:none !important}
 ul.form-fields-ul-slider{width:50%;}
 ul.form-fields-ul-slider li{list-style: none;}
-ul.form-fields-ul-slider li.form-label{width:30%;line-height: 25px;font-family: Copperplate, "Copperplate Gothic Light", fantasy}
+ul.form-fields-ul-slider li.form-label{width:30%;line-height: 25px;/*font-family: Copperplate, "Copperplate Gothic Light", fantasy*/}
 ul.form-fields-ul-slider li.form-field{width:50%;}
 ul.form-fields-ul-slider li.newline{height:10px;}
 h2.form-sub-head{font-weight: normal;}
@@ -278,7 +278,7 @@ select.generic-input,input.generic-input{
     width: 95%;
     float: left;
     height: 25px;
-    border-radius: 25px;
+    border-radius: 5px;
     padding-left: 5%;
     line-height: 25px;
 }

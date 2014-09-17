@@ -29,6 +29,7 @@ $currentMenu = @strtolower($leftmenu_selected);
             <li><a class="<?php echo $currentMenu == 'associate_agency' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>associate_agency">Associate Agency</a></li>
             <li><a class="<?php echo $currentMenu == 'university_courses' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>university_courses">University Courses</a></li>
             <li><a class="<?php echo $currentMenu == 'enquiries' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>enquiries">Enquiries</a></li>
+            <li><a class="<?php echo $currentMenu == 'task' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>task">Task</a></li>
         </ul>
     </div>
 </div>

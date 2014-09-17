@@ -120,7 +120,7 @@ class User extends CI_Controller {
             if ($this->form_validation->run() == FALSE) {
                 $this->session->set_flashdata('message', validation_errors());
                 $this->session->set_flashdata('msg_class', 'error_message');
-                redirect($this->gen_contents['paths']['edit']);
+                redirect($this->gen_contents['paths']['edit'].'/'.$id);
             } else {
                 // build array for the model
                 $formData = array(
