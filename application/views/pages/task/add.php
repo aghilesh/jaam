@@ -13,8 +13,12 @@
             <li class="fl form-field"><textarea class="generic-textarea" name="description" id="description"></textarea></li>
             <li class="clear newline"/>
             
-            <li class="fl form-label">When</li>
+            <li class="fl form-label">Date</li>
             <li class="fl form-field"><input class="generic-input" type="date" required name="when" id="when"/></li>
+            <li class="clear newline"/>
+            
+            <li class="fl form-label">Time</li>
+            <li class="fl form-field"><input class="generic-input" type="time" name="time" id="time"/></li>
             <li class="clear newline"/>
             
             <li class="fl form-label">Assigned To</li>

@@ -5,9 +5,9 @@
             <th>University</th>
             <th>Email</th>
             <th>Phone 1</th>
-            <th>Commission Percentage</th>
-            <th>Application Fee</th>
-            <th>Service Charge</th>
+            <th>Commission %</th>
+            <th class="txt-right">Application Fee</th>
+            <th class="txt-right">Service Charge</th>
             <th>Country</th>
             <th><a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a></th>
         </tr>
@@ -24,8 +24,8 @@
                     <td><?php echo $university->email_id; ?></td>
                     <td><?php echo $university->phone1; ?></td>
                     <td><?php echo $university->commission_percentage; ?></td>
-                    <td><?php echo $university->application_fee; ?></td>
-                    <td><?php echo $university->service_charge; ?></td>
+                    <td class="txt-right"><?php echo $university->application_fee; ?></td>
+                    <td class="txt-right"><?php echo $university->service_charge; ?></td>
                     <td><?php echo getCountryName($university->country_id); ?></td>
                     <td align="right">
                         <a href="javascript:void(0)" class="button remove delete" data-link="<?php echo base_url().$paths['delete'].'/'. $university->id; ?>">Remove</a>

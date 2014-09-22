@@ -396,3 +396,22 @@ tr td:last-child {
 }
 .permission-submit{border: 1px double black}
 /* styles for permission */
+.margin0{margin:0;}
+.padding0{padding:0;}
+.tab-item{
+    background: #709A4D;
+    padding: 8px 10px;
+    border-radius: 10px 10px 0px 0px;
+    margin: 5px 1px 0 1px; 
+    text-align: center;
+}
+.tab-item a{text-decoration: none; color: #E4E4E4;}
+.tab-item a:selected{ color: #E4E4E4;}
+.tab-item.selected{
+    background: #709A4D;
+    font-weight: bold;
+    font-size: 120%;
+}
+.tab-item.selected a{color: #FFF;}
+.txt-right{text-align: right !important;}
+.hide{display:none;}

@@ -16,11 +16,14 @@
             </li>
             <li class="clear newline"/>
             
-            <li class="fl form-label">When</li>
+            <li class="fl form-label">Date</li>
             <li class="fl form-field">
-                <input class="generic-input" type="date" value="<?php echo @date('Y-m-d',strtotime($task->when)); ?>" required name="when" id="when"/>
-                
+                <input class="generic-input" type="date" value="<?php echo @date('Y-m-d',strtotime($task->when)); ?>" required name="when" id="when"/>  
             </li>
+            <li class="clear newline"/>
+            
+            <li class="fl form-label">Time</li>
+            <li class="fl form-field"><input class="generic-input" value="<?php echo @date('H:i',strtotime($task->when)); ?>" type="time" name="time" id="time"/></li>
             <li class="clear newline"/>
             
             <li class="fl form-label">Assigned To</li>

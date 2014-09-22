@@ -113,4 +113,9 @@ function getFormattedName($name) {
 function getFieldValue($fieldName, $defValue) {
     return $_POST && array_key_exists($fieldName, $_POST) ? $_POST[$fieldName] : $defValue;
 }
+function getTaskStatus($status) {
+    $ci = & get_instance();
+    $ci->load->model('taskstatus_model', 'taskstatus');
+    return $ci->taskstatus->get($status)->status;
+}
 ?>
