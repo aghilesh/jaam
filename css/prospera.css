@@ -397,3 +397,4 @@ tr td:last-child {
 }
 .permission-submit{border: 1px double black}
 /* styles for permission */
+span.action-link{display:inline-block;padding:0px 0px 0px 10px;}
