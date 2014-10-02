@@ -277,6 +277,7 @@ ul.form-fields-ul-slider li.form-label{width:30%;line-height: 25px;/*font-family
 ul.form-fields-ul-slider li.form-field{width:50%;}
 ul.form-fields-ul-slider li.newline{height:10px;}
 h2.form-sub-head{font-weight: normal;}
+h2.form-sub-head.strong{font-weight: bold;}
 select.generic-input,input.generic-input{
     border: #CCCCCC solid 1px;
     width: 95%;

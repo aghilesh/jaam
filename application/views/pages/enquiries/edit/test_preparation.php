@@ -2,7 +2,7 @@
 $post = $this->input->post();
 $enquiryMain = $enquiry_details['enquiryMain'];
 ?>
-    <li class="fl form-label"><h2 class="form-sub-head">Test Preparation</h2></li>
+    <li class="fl form-label"><h2 class="form-sub-head strong">Test Preparation</h2></li>
     <li class="clear newline"/>
 
     <li class="fl form-label">TOFFEL</li>
@@ -79,3 +79,4 @@ $enquiryMain = $enquiry_details['enquiryMain'];
     <li class="fl form-label">Work Experience</li>
     <li class="fl form-field"><textarea class="generic-textarea" name="testPrepWorkExperience" id="testPrepWorkExperience"><?php echo getFieldValue('testPrepWorkExperience',$enquiryMain->work_experiance)?></textarea></li>
     <li class="clear newline"/>
+    <input type="hidden" name="testPrepareId" value="<?php echo $enquiryMain->tp_id?>"/>

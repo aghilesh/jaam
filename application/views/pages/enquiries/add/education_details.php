@@ -1,7 +1,7 @@
 <?php
 $post = $this->input->post();
 ?>
-    <li class="fl form-label"><h2 class="form-sub-head">Education details</h2></li>
+    <li class="fl form-label"><h2 class="form-sub-head strong">Education details</h2></li>
     <li class="clear newline"/>
 
     <li class="full-width">

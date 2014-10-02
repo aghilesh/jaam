@@ -118,4 +118,14 @@ function getTaskStatus($status) {
     $ci->load->model('taskstatus_model', 'taskstatus');
     return $ci->taskstatus->get($status)->status;
 }
+function getEnquiryModeName($id) {
+     $ci = & get_instance();
+    $ci->load->model('enquirymode_model', 'enquirymode');
+    return $ci->enquirymode->get($id)->mode_name;
+}
+function getEnquirySourceName($id) {
+     $ci = & get_instance();
+    $ci->load->model('publicitysource_model', 'publicitysource');
+    return $ci->publicitysource->get($id)->source;
+}
 ?>

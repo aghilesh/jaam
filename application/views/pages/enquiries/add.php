@@ -26,9 +26,6 @@ $post = $this->input->post();
             <?php $this->load->view($this->config->item('pages') . 'enquiries/add/course_details', $this->gen_contents);?>
         </ul>
         <ul class="fl form-fields-ul-slider">
-            <?php $this->load->view($this->config->item('pages') . 'enquiries/add/test_preparation', $this->gen_contents);?>
-        </ul>
-        <ul class="fl form-fields-ul-slider">
             <li class="fl form-label">&nbsp;</li>
             <li class="fl form-field" sty>
                 <a href="<?php echo $this->config->item('base_url').$paths['list'].'?'.  random_string() ?>" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>

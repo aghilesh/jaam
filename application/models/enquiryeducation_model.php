@@ -4,5 +4,11 @@ class Enquiryeducation_model extends Parent_model {
         parent::__construct();
         $this->table = 'enruiry_education';
     }
+    
+    public function deleteByEnquiryId($enquiryId) {
+        $query = 'DELETE FROM '.table.' WHERE enquiry_id=\''.$enquiryId.'\'';
+        $this->db->query($query);
+    }
+            
 }
 ?>

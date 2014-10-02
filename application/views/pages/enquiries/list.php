@@ -34,7 +34,7 @@
             }
         } else {
             ?>
-            <tr><td colspan="14">No Enquiries found.</td></tr>
+            <tr><td colspan="7">No Enquiries found.</td></tr>
 <?php } ?>
     </tbody>
 </table>

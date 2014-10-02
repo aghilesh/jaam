@@ -1,7 +1,7 @@
 <?php
 $post = $this->input->post();
 ?>
-    <li class="fl form-label"><h2 class="form-sub-head">Personal details</h2></li>
+    <li class="fl form-label"><h2 class="form-sub-head strong">Personal details</h2></li>
     <li class="clear newline"/>
 
     <li class="fl form-label">Enquiry Mode<sup class="mandatory">*</sup></li>

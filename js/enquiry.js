@@ -16,7 +16,7 @@ var Enquiry = function(){
         
         replicateEduRow : function(){
             var dummyRow = $('#dummyRowEducation').clone();
-            dummyRow.attr('id','').removeClass('hidden');
+            dummyRow.attr('id','').removeClass('hidden').removeClass('dummyDataRows');
             dummyRow.appendTo($('#eduRows'));
         },
         
@@ -36,7 +36,7 @@ var Enquiry = function(){
         
         replicateCourseRow : function(){
             var dummyRow = $('#dummyRowCourse').clone();
-            dummyRow.attr('id','').removeClass('hidden');
+            dummyRow.attr('id','').removeClass('hidden').removeClass('dummyDataRows');
             dummyRow.appendTo($('#courseRows'));
         },
         
