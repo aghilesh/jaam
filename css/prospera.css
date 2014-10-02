@@ -74,7 +74,11 @@ h2.common-page-title{
     font-family: Copperplate, "Copperplate Gothic Light", fantasy;
     padding-bottom: 10px;
     color: #FFF;
-    background: #333;
+    /*background: #333;*/
+    background: -webkit-linear-gradient(#D6D6D6, #494949);
+    background: -o-linear-gradient(#D6D6D6, #494949);
+    background: -moz-linear-gradient(#D6D6D6, #494949);
+    background: linear-gradient(#D6D6D6, #494949);
     width: 98%;
     padding: 1%;
 }
@@ -415,3 +419,5 @@ tr td:last-child {
 .tab-item.selected a{color: #FFF;}
 .txt-right{text-align: right !important;}
 .hide{display:none;}
+
+.body.home .common-page-title{display: none;}

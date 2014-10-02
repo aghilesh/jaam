@@ -19,7 +19,7 @@
         endif;
         ?> 
     </head>
-    <body>
+    <body class="body <?php echo $this->uri->uri_string() ?>">
         <header class="fl header full-width" id="header">
             <?php
             $this->load->view($this->config->item('common_page') . 'header', $this->gen_contents);
