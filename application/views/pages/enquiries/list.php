@@ -7,7 +7,7 @@
             <th>Address</th>
             <th>Email</th>
             <th>Phone</th>
-            <th><a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a></th>
+            <th style="width:19.5%"><a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a></th>
         </tr>
     </thead>
     <tbody>
