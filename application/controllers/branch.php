@@ -9,7 +9,7 @@ class Branch extends CI_Controller {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('Branch');
 
         $this->load->library('form_validation');
         $this->load->library('pagination');
@@ -51,6 +51,7 @@ class Branch extends CI_Controller {
      * add a branch
      */
     public function add() {
+        $this->authentication->checkModuleActionPermission('add Branch');
         if ($_POST) {
             $this->form_validation->set_rules('branch_name', 'Branch Name', 'required|trim|xss_clean|max_length[100]');
             $this->form_validation->set_rules('description', 'Description', 'xss_clean|max_length[100]');
@@ -90,6 +91,7 @@ class Branch extends CI_Controller {
      * edit a branch
      */
     public function edit() {
+        $this->authentication->checkModuleActionPermission('edit Branch');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
             $this->form_validation->set_rules('branch_name', 'Branch Name', 'required|trim|xss_clean|max_length[100]');
@@ -133,6 +135,7 @@ class Branch extends CI_Controller {
      * @param type $id
      */
     public function delete($id) {
+        $this->authentication->checkModuleActionPermission('delete Branch');
         $error = false;
         if ($id) {
             if ($this->branch->delete($id)) {

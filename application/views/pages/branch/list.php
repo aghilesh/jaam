@@ -5,7 +5,11 @@
             <th>Branch</th>
             <th>Description</th>
             <th>Country</th>
-            <th><a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a></th>
+            <th>
+                <?php if(getModuleActionPermission('add Branch')){?>
+                <a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a>
+                <?php }?>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -20,8 +24,12 @@
                     <td><?php echo $branch->description; ?></td>
                     <td><?php echo getCountryName($branch->country_id); ?></td>
                     <td align="right">
+                        <?php if(getModuleActionPermission('delete Branch')){?>
                         <a href="javascript:void(0)" class="button remove delete" data-link="<?php echo base_url().$paths['delete'].'/'. $branch->id; ?>">Remove</a>
+                        <?php }?>
+                        <?php if(getModuleActionPermission('edit Branch')){?>
                         <a href="<?php echo base_url().$paths['edit'].'/'. $branch->id; ?>" class="button edit">Edit</a>
+                        <?php }?>
                     </td>
                 </tr>
                 <?php

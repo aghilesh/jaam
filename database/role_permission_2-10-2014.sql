@@ -1,0 +1,1 @@
+ALTER TABLE  `role_permission` CHANGE  `id`  `role_id` INT( 11 ) NOT NULL ;

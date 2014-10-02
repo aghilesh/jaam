@@ -9,7 +9,8 @@ class University_courses extends CI_Controller {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('University courses');
+        
         $this->load->library('form_validation');
         $this->gen_contents['site_name'] = $this->config->item('site_name');
         $this->gen_contents['dynamic_views'] = array();
@@ -47,6 +48,7 @@ class University_courses extends CI_Controller {
     }
 
     public function add() {
+        $this->authentication->checkModuleActionPermission('add University courses');
         if ($_POST) {
             $validationError = array();
             $this->form_validation->set_rules('code', 'Code', 'required|trim|xss_clean|max_length[20]');
@@ -105,6 +107,7 @@ class University_courses extends CI_Controller {
     }
 
     public function edit() {
+        $this->authentication->checkModuleActionPermission('edit University courses');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         $this->gen_contents['university'] = $isExists = $this->courses->get($id);
         if (!$isExists)
@@ -168,6 +171,7 @@ class University_courses extends CI_Controller {
     }
 
     public function delete($id) {
+        $this->authentication->checkModuleActionPermission('delete University courses');
         $error = false;
         if ($id) {
             if ($this->courses->delete($id)) {

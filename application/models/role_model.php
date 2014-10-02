@@ -54,7 +54,7 @@ class Role_model extends CI_Model {
     }
     
     public function savePermission($roleId, $permission, $module){
-        $this->db->insert('role_permission', array('id'=>$roleId, 'permission'=>$permission, 'module'=>$module));
+        $this->db->insert('role_permission', array('role_id'=>  intval($roleId), 'permission'=>  trim($permission), 'module'=>trim($module)));
         return ($this->db->affected_rows() == '1') ? TRUE : FALSE;
     }
     

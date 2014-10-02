@@ -3,17 +3,6 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/**
- * 
- * Project		Omega
- * @package		CodeIgniter
- * @author		Remya Rain
- * @since		Version 1.0
- * @copyright           Rain Concert Technologies Pvt Ltd, Trivandrum, Kerala, India.(http://rainconcert.in)
- * @filesource
- */
-// ------------------------------------------------------------------------
-
 class Authentication {
 
     var $CI = null;
@@ -30,7 +19,6 @@ class Authentication {
         return TRUE;
     }
 
-    
     function login($login = NULL) {
 
         if (!is_array($login) || 0 >= count($login)) {
@@ -40,7 +28,7 @@ class Authentication {
         $username = $login['username'];
         $password = $login['password'];
 
-        $this->CI->db->select('user_name, email_id, id, first_name, last_name, CONCAT_WS(" ", first_name, last_name) AS name', false);
+        $this->CI->db->select('user_name, email_id, id,role_id, first_name, last_name, CONCAT_WS(" ", first_name, last_name) AS name', false);
         $this->CI->db->where('user_name', $username);
         $password = $this->CI->db->escape_like_str($password);
         //$this->CI->db->where("password", get_encr_password($password));
@@ -57,6 +45,7 @@ class Authentication {
                 'FIRST_NAME' => $user_data->first_name,
                 'LAST_NAME' => $user_data->last_name,
                 'FULL_NAME' => $user_data->name,
+                'ROLE_ID' => intval($user_data->role_id),
             );
             $this->CI->session->set_userdata($session_data);
             return TRUE;
@@ -64,7 +53,6 @@ class Authentication {
         return FALSE;
     }
 
-    
     function logout() {
         $session_data = array(
             'USER_ID' => '',
@@ -128,12 +116,48 @@ class Authentication {
         }
         return FALSE;
     }
-    
-    function getUserInfo($param=''){
+
+    function getUserInfo($param = '') {
         $userData = $this->CI->session->userdata;
-        if(!$param) return $userData;
-        $map_arr = array("id"=>"USER_ID","name"=>"FULL_NAME","username"=>"USERNAME");
+        if (!$param)
+            return $userData;
+        $map_arr = array("id" => "USER_ID", "name" => "FULL_NAME", "username" => "USERNAME");
         return $userData[$map_arr[$param]];
+    }
+
+    function checkModulePermission($module = '') {
+        if($this->getModulePermission($module)){
+            return true;
+        }else{
+            redirect('');
+        }   
+    }
+    function checkModuleActionPermission($module = '') {
+        if($this->getModuleActionPermission($module)){
+            return true;
+        }else{
+            redirect('');
+        }   
+    }
+    function getModulePermission($module = '') {
+        $userData = $this->CI->session->userdata;
+        
+        $this->CI->db->where('module', $module);
+        $this->CI->db->where('role_id',  intval($userData['ROLE_ID']));
+        $query = $this->CI->db->get('role_permission');
+        //var_dump($this->CI->db->last_query());exit;
+        return ($query->num_rows()) ? true : false;
+        
+    }
+    function getModuleActionPermission($action = '') {
+        $userData = $this->CI->session->userdata;
+        
+        $this->CI->db->where('permission', $action);
+        $this->CI->db->where('role_id',  intval($userData['ROLE_ID']));
+        $query = $this->CI->db->get('role_permission');
+        //var_dump($this->CI->db->last_query());exit;
+        return ($query->num_rows()) ? true : false;
+        
     }
 
 }

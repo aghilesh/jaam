@@ -7,7 +7,11 @@
             <th>Currency</th>
             <th>Currency Name</th>
             <th>Enabled</th>
-            <th><a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a></th>
+            <th>
+                <?php if(getModuleActionPermission('add Country')){?>
+                <a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a>
+                <?php }?>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -24,8 +28,12 @@
                     <td width="10%"><?php echo $country->currency_name; ?></td>
                     <td width="5%"><?php echo ($country->show_in_list) ? 'YES':''; ?></td>
                     <td width="10%" align="right">
+                        <?php if(getModuleActionPermission('delete Country')){?>
                         <a href="javascript:void(0)" class="button remove delete" data-link="<?php echo base_url().$paths['delete'].'/'.$country->id; ?>">Remove</a>
+                        <?php }?>
+                        <?php if(getModuleActionPermission('edit Country')){?>
                         <a href="<?php echo base_url().$paths['edit'].'/'.$country->id; ?>" class="button edit">Edit</a>
+                        <?php }?>
                     </td>
                 </tr>
                 <?php

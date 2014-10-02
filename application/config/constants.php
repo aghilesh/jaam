@@ -36,6 +36,8 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
-
+define('ADMIN_ROLE_ID',		1);
+define('STAFF_ROLE_ID',		3);
+define('STUDENT_ROLE_ID',		4);
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
