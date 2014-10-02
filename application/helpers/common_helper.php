@@ -54,11 +54,13 @@ function isSelected($uriSegment, $current) {
     return ($uriSegment == $current) ? 'selected' : '';
 }
 
-function prepareOptionList($list,$fields = array()){
+function prepareOptionList($list,$fields = array(),$exclude=''){
     $ret = array();
     if($list && $fields['key'] && $fields['value']){
         foreach($list as $item){
-            $ret[$item->$fields['key']] = $item->$fields['value'];
+            if($item->$fields['key'] != $exclude){
+                $ret[$item->$fields['key']] = $item->$fields['value'];
+            }
         }
     }
     return $ret;
@@ -70,10 +72,16 @@ function getCountryName($id){
     return $ci->country->get($id)->country;
 }
 
+function getUserName($id){
+    $ci = & get_instance();
+    $ci->load->model('user_model', 'user');
+    return $ci->user->get($id)->first_name;
+}
+
 function getBranchName($id){
     $ci = & get_instance();
     $ci->load->model('branch_model', 'branch');
-    return $ci->branch->get($id)->branch_name;
+    return ($ci->branch->get($id)) ? @$ci->branch->get($id)->branch_name : '';
 }
 
 function getDepartmentName($id){
@@ -104,5 +112,21 @@ function getFormattedName($name) {
 
 function getFieldValue($fieldName, $defValue) {
     return $_POST && array_key_exists($fieldName, $_POST) ? $_POST[$fieldName] : $defValue;
+}
+function getTaskStatus($status) {
+    $ci = & get_instance();
+    $ci->load->model('taskstatus_model', 'taskstatus');
+    return $ci->taskstatus->get($status)->status;
+}
+
+function getEnquiryModeName($id) {
+     $ci = & get_instance();
+    $ci->load->model('enquirymode_model', 'enquirymode');
+    return $ci->enquirymode->get($id)->mode_name;
+}
+function getEnquirySourceName($id) {
+     $ci = & get_instance();
+    $ci->load->model('publicitysource_model', 'publicitysource');
+    return $ci->publicitysource->get($id)->source;
 }
 ?>

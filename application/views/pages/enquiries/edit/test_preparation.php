@@ -79,3 +79,4 @@ $enquiryMain = $enquiry_details['enquiryMain'];
     <li class="fl form-label">Work Experience</li>
     <li class="fl form-field"><textarea class="generic-textarea" name="testPrepWorkExperience" id="testPrepWorkExperience"><?php echo getFieldValue('testPrepWorkExperience',$enquiryMain->work_experiance)?></textarea></li>
     <li class="clear newline"/>
+    <input type="hidden" name="testPrepareId" value="<?php echo $enquiryMain->tp_id?>"/>

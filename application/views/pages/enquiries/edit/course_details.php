@@ -11,7 +11,7 @@ $courseInterestDetails = $enquiry_details['courseInterestDetails'];
                 <tr>
                     <th>Course Preferred</th>
                     <th>Preferred Country</th>
-                    <th>Actions</th>
+                    <th>Actions<span class="action-link"><a href="javascript:void(0)" onClick="Enquiry.replicateCourseRow()">ADD</a></span></th>
                 </tr>
             </thead>
             <tbody id="courseRows">
@@ -34,8 +34,8 @@ $courseInterestDetails = $enquiry_details['courseInterestDetails'];
                     for($i = 0; $i < sizeof($courseInterestDetails); $i++) {
                     ?>
                     <tr>
-                        <td><input class="generic-input validate validate-mandatory course-name" type="text" name="course[course_name][<?php echo $i?>]" placeholder="Course" value="<?php echo $courseInterestDetails[$i]->course_interested?>"/></td>
-                        <td><?php echo form_dropdown('course[country_id]['.$i.']', $countries,$courseInterestDetails[$i]->country_id,'class="generic-input"');?></td>
+                        <td><input class="generic-input validate validate-mandatory course-name" type="text" name="course[course_name][<?php echo 'edit-'.$courseInterestDetails[$i]->ec_id?>]" placeholder="Course" value="<?php echo $courseInterestDetails[$i]->course_interested?>"/></td>
+                        <td><?php echo form_dropdown('course[country_id][edit-'.$courseInterestDetails[$i]->ec_id.']', $countries,$courseInterestDetails[$i]->country_id,'class="generic-input"');?></td>
                         <td>
                             <?php 
                             $actions =  array("select"=>"Select","remove"=>"Remove","add"=>"Add");

@@ -108,7 +108,6 @@ class Enquiries extends CI_Controller {
             $arr['country_id'] = $course['country_id'][$i];
             array_push($formData['courses'], $arr);
         }
-        
         $formData['test_prepare'] = array();
         $testPrepare = array();
         $testPrepare['enquiry_id'] = '';
@@ -124,6 +123,7 @@ class Enquiries extends CI_Controller {
         $testPrepare['work_experiance'] = $post['testPrepWorkExperience'];
         array_push($formData['test_prepare'], $testPrepare);
         
+        
         if ($this->enquiry->insert($formData)) {
             $this->session->set_flashdata('message', $this->entity . ' was added successfully.');
             $this->session->set_flashdata('msg_class', 'success_message');
@@ -138,7 +138,7 @@ class Enquiries extends CI_Controller {
     public function edit() {
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
-            
+             $this->__updateEnquiryData($id);
         }
         $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Edit enquiry';
         $this->gen_contents['page_title'] = 'Edit enquiry';
@@ -149,6 +149,103 @@ class Enquiries extends CI_Controller {
         $this->gen_contents['publicity_sources'] = prepareOptionList($this->publicitysource->get(), array('key' => 'id', 'value' => 'source'));
         $this->gen_contents['enquiry_details'] = $this->enquiry->getForEdit($id);
         
+        $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
+    }
+    
+    private function __updateEnquiryData($enquiryId='') {
+        $formData = array();
+        $post = $this->input->post();
+        $formData['enquirymaster'] = array();
+        $formData['enquirymaster']['user_id']   = $this->authentication->getUserInfo("id");
+        $formData['enquirymaster']['date']   = $post['enqDate'];
+        $formData['enquirymaster']['enquiry_mode']   = $post['enquiry_mode'];
+        $formData['enquirymaster']['first_name']   = $post['firstName'];
+        $formData['enquirymaster']['last_name']   = $post['lastName'];
+        $formData['enquirymaster']['address']   = $post['address'];
+        $formData['enquirymaster']['state']   = $post['state'];
+        $formData['enquirymaster']['country_id']   = $post['country_id'];
+        $formData['enquirymaster']['pincode']   = $post['pincode'];
+        $formData['enquirymaster']['email_id']   = $post['email_id'];
+        $formData['enquirymaster']['phone_no']   = $post['phone'];
+        $formData['enquirymaster']['source']   = $post['publicity_source'];
+        $formData['enquirymaster']['source_description']   = $post['source_description'];
+        $formData['enquirymaster']['discription']   = $post['description'];
+        $formData['education'] = array();
+        $education = $post['edu'];
+         foreach($education['qualification'] as $id=>$val) {
+            $arr = array();
+            if(stripos($id, 'edit-') !== false) {
+                $idVar = explode('-',$id);
+                $arr['id'] = $idVar[sizeof($idVar)-1];
+            }
+            $arr['enquiry_id'] = $enquiryId;
+            $arr['country_id'] = $education['country_id'][$id];
+            $arr['qualification'] = $education['qualification'][$id];
+            $arr['board'] = $education['university'][$id];
+            $arr['institution'] = $education['institution'][$id];
+            $arr['passout_year'] = $education['passoutyear'][$id];
+            $arr['percentage'] = $education['percentage'][$id];
+            array_push($formData['education'], $arr);
+        }
+
+        $formData['courses'] = array();
+        $course = $post['course'];
+        foreach($course['course_name'] as $id=>$val) {
+            $arr = array();
+            if(stripos($id, 'edit-') !== false) {
+                $idVar = explode('-',$id);
+                $arr['id'] = $idVar[sizeof($idVar)-1];
+            }
+            $arr['enquiry_id'] = $enquiryId;
+            $arr['course_interested'] = $course['course_name'][$id];
+            $arr['country_id'] = $course['country_id'][$id];
+            array_push($formData['courses'], $arr);
+        }
+        /*$formData['test_prepare'] = array();
+        $testPrepare = array();
+        $formData['testPrepareId'] = $post['testPrepareId'];
+        $testPrepare['enquiry_id'] = $enquiryId;
+        $testPrepare['toffel'] = $post['testPrepTOFFEL'];
+        $testPrepare['ielts'] = $post['testPrepIELTS'];
+        $testPrepare['gmat'] = $post['testPrepGMAT'];
+        $testPrepare['gre'] = $post['testPrepGRE'];
+        $testPrepare['sat'] = $post['testPrepSAT'];
+        $testPrepare['started_coaching'] = $post['testPrepStartCoaching'];
+        $testPrepare['looking_for_coaching'] = $post['testPrepLookForCoaching'];
+        $testPrepare['looking_for_waier'] = $post['testPrepLookForWaier'];
+        $testPrepare['regular_or_fast_track'] = $post['testPrepCourseMode'];
+        $testPrepare['work_experiance'] = $post['testPrepWorkExperience'];
+        array_push($formData['test_prepare'], $testPrepare);*/
+        
+        if($this->enquiry->update($formData, $enquiryId)) {
+            $this->session->set_flashdata('message', $this->entity . ' was updated successfully.');
+            $this->session->set_flashdata('msg_class', 'success_message');
+            redirect($this->gen_contents['paths']['list']);
+        } else {
+            $this->session->set_flashdata('message', 'There was some problem in updating the ' . $this->entity . '.');
+            $this->session->set_flashdata('msg_class', 'error_message');
+            redirect($this->gen_contents['paths']['edit'].'/'.$enquiryId);
+        }
+    }
+    
+    public function delete() {
+        $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
+        $this->enquiry->delete($id);
+        $this->session->set_flashdata('message', $this->entity . ' was deleted successfully.');
+        $this->session->set_flashdata('msg_class', 'success_message');
+        redirect($this->gen_contents['paths']['list']);
+    }
+    
+    public function view() {
+        $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
+        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Edit enquiry';
+        $this->gen_contents['page_title'] = 'Edit enquiry';
+        $this->gen_contents['leftmenu_selected'] = 'enquiries';
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'enquiries/view';
+        $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
+        $this->gen_contents['enquiry_modes'] = prepareOptionList($this->enquirymode->get(), array('key' => 'id', 'value' => 'mode_name'));
+        $this->gen_contents['publicity_sources'] = prepareOptionList($this->publicitysource->get(), array('key' => 'id', 'value' => 'source'));
+        $this->gen_contents['enquiry_details'] = $this->enquiry->getForEdit($id);
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
 

@@ -28,6 +28,18 @@ class Parent_model extends CI_Model {
     public function delete($id) {
         return $this->db->delete($this->table, array('id' => $id));
     }
+    
+    /**
+     * Delete multiple records
+     */
+    public function deleteByIds($idArray, $notInflag=0) {
+        if($notInflag) {
+            $sql = 'DELETE FROM '.$this->table.' WHERE id NOT IN('.implode(',',$idArray).')';
+        } else {
+            $sql = 'DELETE FROM '.$this->table.' WHERE id IN('.implode(',',$idArray).')';
+        }
+        return $this->db->query($sql);
+    }
 
     /**
      * All the records
