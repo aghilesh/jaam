@@ -21,16 +21,17 @@ $enquiryEducation = $enquiry_details['educationDetails'];
             <tbody id="eduRows">
                 <?php
                 if($_POST && array_key_exists('edu', $_POST)) {
+                    $education = $post['edu'];
                     $arr = array();
-                    for($i = 0; $i < sizeof($_POST['edu']['qualification']); $i++ ) {
+                    foreach($education['qualification'] as $id=>$val) {
                         ?>
                        <tr>
-                            <td><input class="generic-input validate validate-mandatory" type="text" name="edu[qualification][<?php echo $i?>]" placeholder="Qualification" value="<?php echo $_POST['edu']['qualification'][$i]?>"/></td>
-                            <td><input class="generic-input validate validate-mandatory" type="text" name="edu[university][<?php echo $i?>]" placeholder="Board/University" value="<?php echo $_POST['edu']['university'][$i]?>"/></td>
-                            <td><input class="generic-input validate validate-mandatory" type="text" name="edu[institution][<?php echo $i?>]" placeholder="Institution" value="<?php echo $_POST['edu']['institution'][$i]?>"/></td>
-                            <td><?php echo form_dropdown('edu[country_id]['.$i.']', $countries,$_POST['edu']['country_id'][$i],'class="generic-input"');?></td>
-                            <td><input class="generic-input validate validate-mandatory" type="text" name="edu[passoutyear][<?php echo $i?>]" placeholder="Passout Year" value="<?php echo $_POST['edu']['passoutyear'][$i]?>"/></td>
-                            <td><input class="generic-input validate validate-mandatory  edu-percentage" type="text" name="edu[percentage][<?php echo $i?>]" placeholder="Percentage" value="<?php echo $_POST['edu']['percentage'][$i]?>"/></td>
+                            <td><input class="generic-input validate validate-mandatory" type="text" name="edu[qualification][<?php echo $id?>]" placeholder="Qualification" value="<?php echo $education['qualification'][$id]?>"/></td>
+                            <td><input class="generic-input validate validate-mandatory" type="text" name="edu[university][<?php echo $id?>]" placeholder="Board/University" value="<?php echo $education['university'][$id]?>"/></td>
+                            <td><input class="generic-input validate validate-mandatory" type="text" name="edu[institution][<?php echo $id?>]" placeholder="Institution" value="<?php echo $education['institution'][$id]?>"/></td>
+                            <td><?php echo form_dropdown('edu[country_id]['.$id.']', $countries,$education['country_id'][$id],'class="generic-input"');?></td>
+                            <td><input class="generic-input validate validate-mandatory" type="text" name="edu[passoutyear][<?php echo $id?>]" placeholder="Passout Year" value="<?php echo $education['passoutyear'][$id]?>"/></td>
+                            <td><input class="generic-input validate validate-mandatory  edu-percentage" type="text" name="edu[percentage][<?php echo $id?>]" placeholder="Percentage" value="<?php echo $education['percentage'][$id]?>"/></td>
                             <td>
                                 <?php 
                                 $actions =  array("select"=>"Select","remove"=>"Remove","add"=>"Add");

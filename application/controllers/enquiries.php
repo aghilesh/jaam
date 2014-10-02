@@ -70,6 +70,17 @@ class Enquiries extends CI_Controller {
     private function __saveEnquiryData() {
         $formData = array();
         $post = $this->input->post();
+        
+        $this->__setFormValidationRules();
+        
+        if ($this->form_validation->run() == FALSE) {
+            $validationError[] = validation_errors();
+        }
+        if($validationError) {
+            $this->gen_contents['message'] = implode('<br/>', $validationError);;
+            $this->gen_contents['msg_class'] = 'error_message';
+            return;
+        }
         $formData['enquirymaster'] = array();
         $formData['enquirymaster']['user_id']   = $this->authentication->getUserInfo("id");
         $formData['enquirymaster']['date']   = $post['enqDate'];
@@ -88,6 +99,7 @@ class Enquiries extends CI_Controller {
         $formData['education'] = array();
         $education = $post['edu'];
         for($i=0; $i<sizeof($education['qualification']); $i++) {
+            if(!trim($education['qualification'][$i])) continue;
             $arr = array();
             $arr['enquiry_id'] = '';
             $arr['country_id'] = $education['country_id'][$i];
@@ -102,13 +114,14 @@ class Enquiries extends CI_Controller {
         $formData['courses'] = array();
         $course = $post['course'];
         for($i=0; $i<sizeof($course['course_name']); $i++) {
+            if(!trim($course['course_name'][$i])) continue;
             $arr = array();
             $arr['enquiry_id'] = '';
             $arr['course_interested'] = $course['course_name'][$i];
             $arr['country_id'] = $course['country_id'][$i];
             array_push($formData['courses'], $arr);
         }
-        $formData['test_prepare'] = array();
+        /*$formData['test_prepare'] = array();
         $testPrepare = array();
         $testPrepare['enquiry_id'] = '';
         $testPrepare['toffel'] = $post['testPrepTOFFEL'];
@@ -121,7 +134,7 @@ class Enquiries extends CI_Controller {
         $testPrepare['looking_for_waier'] = $post['testPrepLookForWaier'];
         $testPrepare['regular_or_fast_track'] = $post['testPrepCourseMode'];
         $testPrepare['work_experiance'] = $post['testPrepWorkExperience'];
-        array_push($formData['test_prepare'], $testPrepare);
+        array_push($formData['test_prepare'], $testPrepare);*/
         
         
         if ($this->enquiry->insert($formData)) {
@@ -153,6 +166,15 @@ class Enquiries extends CI_Controller {
     }
     
     private function __updateEnquiryData($enquiryId='') {
+        $this->__setFormValidationRules();
+        if ($this->form_validation->run() == FALSE) {
+            $validationError[] = validation_errors();
+        }
+        if($validationError) {
+            $this->gen_contents['message'] = implode('<br/>', $validationError);;
+            $this->gen_contents['msg_class'] = 'error_message';
+            return;
+        }
         $formData = array();
         $post = $this->input->post();
         $formData['enquirymaster'] = array();
@@ -173,6 +195,7 @@ class Enquiries extends CI_Controller {
         $formData['education'] = array();
         $education = $post['edu'];
          foreach($education['qualification'] as $id=>$val) {
+            if(!trim($education['qualification'][$id])) continue;
             $arr = array();
             if(stripos($id, 'edit-') !== false) {
                 $idVar = explode('-',$id);
@@ -191,6 +214,7 @@ class Enquiries extends CI_Controller {
         $formData['courses'] = array();
         $course = $post['course'];
         foreach($course['course_name'] as $id=>$val) {
+            if(!trim($course['course_name'][$id])) continue;
             $arr = array();
             if(stripos($id, 'edit-') !== false) {
                 $idVar = explode('-',$id);
@@ -247,6 +271,14 @@ class Enquiries extends CI_Controller {
         $this->gen_contents['publicity_sources'] = prepareOptionList($this->publicitysource->get(), array('key' => 'id', 'value' => 'source'));
         $this->gen_contents['enquiry_details'] = $this->enquiry->getForEdit($id);
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
+    }
+    
+    protected function __setFormValidationRules(){
+        $this->form_validation->set_rules('email_id', 'Email', 'required|trim|xss_clean|valid_email');
+        $this->form_validation->set_rules('firstName', 'First Name', 'required|trim|xss_clean');
+        $this->form_validation->set_rules('lastName', 'Last Name', 'required|trim|xss_clean');
+        $this->form_validation->set_rules('pincode', 'Pin Code', 'required|trim|xss_clean');
+        $this->form_validation->set_rules('phone', 'Phone', 'required|trim|xss_clean');
     }
 
 }

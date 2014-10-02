@@ -1,7 +1,7 @@
 <?php
 $courseInterestDetails = $enquiry_details['courseInterestDetails'];
 ?>
-    <li class="fl form-label"><h2 class="form-sub-head">Course Interested</h2></li>
+    <li class="fl form-label"><h2 class="form-sub-head strong">Course Interested</h2></li>
     <li class="clear newline"/>
 
     <li class="full-width">

@@ -17,11 +17,12 @@ $courseInterestDetails = $enquiry_details['courseInterestDetails'];
             <tbody id="courseRows">
                 <?php
                 if($_POST && array_key_exists('course', $_POST)) {
-                    for($i = 0; $i < sizeof($_POST['course']['course_name']); $i++) {
+                    $course = $post['course'];
+                    foreach($course['course_name'] as $id=>$val) {
                     ?>
-                    <tr>
-                        <td><input class="generic-input validate validate-mandatory course-name" type="text" name="course[course_name][<?php echo $i?>]" placeholder="Course" value="<?php echo $_POST['course']['course_name'][$i]?>"/></td>
-                        <td><?php echo form_dropdown('course[country_id]['.$i.']', $countries,$_POST['course']['country_id'][$i],'class="generic-input"');?></td>
+                     <tr>
+                        <td><input class="generic-input validate validate-mandatory course-name" type="text" name="course[course_name][<?php echo $id?>]" placeholder="Course" value="<?php echo $course['course_name'][$id]?>"/></td>
+                        <td><?php echo form_dropdown('course[country_id]['.$id.']', $countries,$course['country_id'][$id],'class="generic-input"');?></td>
                         <td>
                             <?php 
                             $actions =  array("select"=>"Select","remove"=>"Remove","add"=>"Add");
