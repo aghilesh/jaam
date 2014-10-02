@@ -16,7 +16,7 @@ class Home extends CI_Controller {
         $this->gen_contents['leftmenu_selected'] = 'dashboard';
         
         $this->gen_contents['dynamic_views'] = array();
-        $this->gen_contents['load_css'] = array();
+        $this->gen_contents['load_css'] = array('dashboard.css');
         $this->gen_contents['load_js'] = array();
         $this->load->library('pagination');
     }

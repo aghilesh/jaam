@@ -1,0 +1,26 @@
+.dashboard-table-top td{ 
+    border-right: solid 4px #CCC;
+    border-style: groove;
+}
+.dashboard-table-top td:last-child{
+    border-right: none;
+}
+.dashboard-table-top .value{font-size: 2.2em;}
+.dashboard-table-top .label{
+    font-size: 0.9em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: monospace;
+}
+.new {color: gold;}
+.pending {color: brown;}
+.reopened {color: coral;}
+.enquery{color: turquoise;}
+.registration{color: violet;}
+.right-border{
+    border-right: solid 4px #CCC;
+    border-style: groove;
+}
+.row-bg{
+    background: beige;
+}
