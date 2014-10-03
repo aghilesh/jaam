@@ -329,6 +329,8 @@ a.button.remove{color: #F75656;}
 a.button.view{color: #13BB0C;}
 a.button.save{color: #13BB0C;}
 a.button.cancel{color: #F75656;}
+form.checklist a.button{float:left;margin:10px 0px 0px 0px;}
+form.checklist a.button.cancel{margin-left:10px;}
 .form-inner{
     padding: 1%;
     width: 98%;
@@ -422,3 +424,8 @@ tr td:last-child {
 .hide{display:none;}
 
 .body.home .common-page-title{display: none;}
+ul.form-fields-checklist{width:100%;}
+ul.form-fields-checklist li.form-label{width:20%;}
+ul.form-fields-checklist li.form-field{width:70%;}
+ul.form-fields-checklist li.form-field input.generic-input{width:30%;padding-left:10px;}
+ul.form-fields-checklist li.form-field span.action-links{display:inline-block;padding:5px 0px 0px 10px;}
