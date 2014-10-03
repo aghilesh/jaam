@@ -9,7 +9,8 @@ class University extends CI_Controller {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('University');
+        
         $this->load->library('form_validation');
         $this->load->library('pagination');
 
@@ -51,6 +52,7 @@ class University extends CI_Controller {
      * add a university
      */
     public function add() {
+        $this->authentication->checkModuleActionPermission('add University');
         if ($_POST) {
             $validationError = array();
             $this->form_validation->set_rules('code', 'Code', 'required|trim|xss_clean|max_length[20]');
@@ -138,6 +140,7 @@ class University extends CI_Controller {
      * edit a university
      */
     public function edit() {
+        $this->authentication->checkModuleActionPermission('edit University');
         $validationError = array();
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
@@ -214,6 +217,7 @@ class University extends CI_Controller {
      * @param type $id
      */
     public function delete($id) {
+        $this->authentication->checkModuleActionPermission('delete University');
         $error = false;
         if ($id) {
             if ($this->university->delete($id)) {

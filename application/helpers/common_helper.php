@@ -54,11 +54,11 @@ function isSelected($uriSegment, $current) {
     return ($uriSegment == $current) ? 'selected' : '';
 }
 
-function prepareOptionList($list,$fields = array(),$exclude=''){
+function prepareOptionList($list, $fields = array(), $exclude = '') {
     $ret = array();
-    if($list && $fields['key'] && $fields['value']){
-        foreach($list as $item){
-            if($item->$fields['key'] != $exclude){
+    if ($list && $fields['key'] && $fields['value']) {
+        foreach ($list as $item) {
+            if ($item->$fields['key'] != $exclude) {
                 $ret[$item->$fields['key']] = $item->$fields['value'];
             }
         }
@@ -66,38 +66,39 @@ function prepareOptionList($list,$fields = array(),$exclude=''){
     return $ret;
 }
 
-function getCountryName($id){
+function getCountryName($id) {
     $ci = & get_instance();
     $ci->load->model('country_model', 'country');
     return $ci->country->get($id)->country;
 }
 
-function getUserName($id){
+function getUserName($id) {
     $ci = & get_instance();
     $ci->load->model('user_model', 'user');
     return $ci->user->get($id)->first_name;
 }
 
-function getBranchName($id){
+function getBranchName($id) {
     $ci = & get_instance();
     $ci->load->model('branch_model', 'branch');
     return ($ci->branch->get($id)) ? @$ci->branch->get($id)->branch_name : '';
 }
 
-function getDepartmentName($id){
+function getDepartmentName($id) {
     $ci = & get_instance();
     $ci->load->model('department_model', 'department');
     return $ci->department->get($id)->dept_name;
 }
+
 function get_encr_password($password) {
     $pass = md5($password);
     return substr(md5($pass . 'prospera'), 0, 50);
 }
 
-function isAllowedPermission($role, $permission){
+function isAllowedPermission($role, $permission) {
     $ci = & get_instance();
-    $query = $ci->db->get_where('role_permission', array('id' => $role, 'permission' => $permission));
-    return ($query->num_rows() >= 1)?true:false;
+    $query = $ci->db->get_where('role_permission', array('role_id' => $role, 'permission' => $permission));
+    return ($query->num_rows() >= 1) ? true : false;
 }
 
 function getEnquiryMode($modeId) {
@@ -107,25 +108,37 @@ function getEnquiryMode($modeId) {
 }
 
 function getFormattedName($name) {
-    return implode(' ', array($name['FNAME'],$name['LNAME']));
+    return implode(' ', array($name['FNAME'], $name['LNAME']));
 }
 
 function getFieldValue($fieldName, $defValue) {
     return $_POST && array_key_exists($fieldName, $_POST) ? $_POST[$fieldName] : $defValue;
 }
+
 function getTaskStatus($status) {
     $ci = & get_instance();
     $ci->load->model('taskstatus_model', 'taskstatus');
     return $ci->taskstatus->get($status)->status;
 }
+
 function getEnquiryModeName($id) {
-     $ci = & get_instance();
+    $ci = & get_instance();
     $ci->load->model('enquirymode_model', 'enquirymode');
     return $ci->enquirymode->get($id)->mode_name;
 }
+
 function getEnquirySourceName($id) {
-     $ci = & get_instance();
+    $ci = & get_instance();
     $ci->load->model('publicitysource_model', 'publicitysource');
     return $ci->publicitysource->get($id)->source;
 }
+function getModulePermission($action='') {
+    $ci = & get_instance();
+    return $ci->authentication->getModulePermission($action) ? true : false;
+}
+function getModuleActionPermission($action='') {
+    $ci = & get_instance();
+    return $ci->authentication->getModuleActionPermission($action) ? true : false;
+}
+
 ?>

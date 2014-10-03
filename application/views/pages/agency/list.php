@@ -9,7 +9,11 @@
             <th>Application Fee</th>
             <th>Service Charge</th>
             <th>Country</th>
-            <th><a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a></th>
+            <th>
+                <?php if(getModuleActionPermission('add Associate agency')){?>
+                <a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a>
+                <?php }?>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -28,8 +32,12 @@
                     <td><?php echo $agency->service_charge; ?></td>
                     <td><?php echo getCountryName($agency->country_id); ?></td>
                     <td align="right">
+                        <?php if(getModuleActionPermission('delete Associate agency')){?>
                         <a href="javascript:void(0)" class="button remove delete" data-link="<?php echo base_url().$paths['delete'].'/'. $agency->id; ?>">Remove</a>
+                        <?php }?>
+                        <?php if(getModuleActionPermission('edit Associate agency')){?>
                         <a href="<?php echo base_url().$paths['edit'].'/'. $agency->id; ?>" class="button edit">Edit</a>
+                        <?php }?>
                         <a href="<?php echo base_url().$paths['view'].'/'. $agency->id; ?>" class="button view">View</a>
                     </td>
                 </tr>

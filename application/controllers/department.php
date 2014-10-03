@@ -9,7 +9,8 @@ class Department extends CI_Controller {
         parent::__construct();
         
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('Department');
+        
         $this->load->library('form_validation');
         $this->load->library('pagination');
 
@@ -49,6 +50,7 @@ class Department extends CI_Controller {
      * add a department
      */
     public function add() {
+        $this->authentication->checkModuleActionPermission('add Department');
         if ($_POST) {
             $this->form_validation->set_rules('department_name', 'Department Name', 'required|trim|xss_clean|max_length[50]');
             $this->form_validation->set_rules('description', 'Description', 'xss_clean|max_length[100]');
@@ -85,6 +87,7 @@ class Department extends CI_Controller {
      * edit a department
      */
     public function edit() {
+        $this->authentication->checkModuleActionPermission('edit Department');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
             $this->form_validation->set_rules('department_name', 'Department Name', 'required|trim|xss_clean|max_length[50]');
@@ -126,6 +129,7 @@ class Department extends CI_Controller {
      * @param type $id
      */
     public function delete($id) {
+        $this->authentication->checkModuleActionPermission('delete Department');
         $error = false;
         if ($id) {
             if ($this->department->delete($id)) {

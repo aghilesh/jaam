@@ -9,7 +9,8 @@ class Country extends CI_Controller {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('Country');
+        
         $this->load->library('form_validation');
         $this->load->library('pagination');
 
@@ -49,6 +50,7 @@ class Country extends CI_Controller {
      * add a department
      */
     public function add() {
+        $this->authentication->checkModuleActionPermission('add Country');
         if ($_POST) {
             $this->form_validation->set_rules('country', 'Country Name', 'required|trim|xss_clean|max_length[50]');
             $this->form_validation->set_rules('capital', 'Capital', 'xss_clean|max_length[100]');
@@ -89,6 +91,7 @@ class Country extends CI_Controller {
      * edit a department
      */
     public function edit() {
+        $this->authentication->checkModuleActionPermission('edit Country');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
             $this->form_validation->set_rules('country', 'Country Name', 'required|trim|xss_clean|max_length[50]');
@@ -135,6 +138,7 @@ class Country extends CI_Controller {
      * @param type $id
      */
     public function delete($id) {
+        $this->authentication->checkModuleActionPermission('delete Country');
         $error = false;
         if ($id) {
             if ($this->country->delete($id)) {

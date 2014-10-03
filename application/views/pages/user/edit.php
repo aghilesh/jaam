@@ -23,20 +23,20 @@
             
             <li class="fl form-label">Department</li>
             <li class="fl form-field">
-                <?php echo form_dropdown('dept_id', $departments,'','id="department_id" class="generic-input"');?>
+                <?php echo form_dropdown('dept_id', $departments,@$user->dept_id,'id="department_id" class="generic-input"');?>
             </li>
             <li class="clear newline"/>
             
             <li class="fl form-label">Branch</li>
             <li class="fl form-field">
-                <?php echo form_dropdown('branch_id', $branches,'','id="branch_id" class="generic-input"');?>
+                <?php echo form_dropdown('branch_id', $branches,@$user->branch_id,'id="branch_id" class="generic-input"');?>
             </li>
             <li class="clear newline"/>
         </ul>
         <ul class="fl form-fields-ul-slider">
             <li class="fl form-label">Role</li>
             <li class="fl form-field">
-                <?php echo form_dropdown('role_id', $roles,'','id="role_id" class="generic-input"');?>
+                <?php echo form_dropdown('role_id', $roles,@$user->role_id,'id="role_id" class="generic-input"');?>
             </li>
             <li class="clear newline"/>
 

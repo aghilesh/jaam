@@ -6,7 +6,11 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Branch</th>
-            <th><a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a></th>
+            <th>
+                <?php if(getModuleActionPermission('add User')){?>
+                <a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a>
+                <?php }?>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -22,8 +26,12 @@
                     <td><?php echo $user->phone_no; ?></td>
                     <td><?php echo getBranchName($user->branch_id); ?></td>
                     <td align="right">
+                        <?php if(getModuleActionPermission('delete User')){?>
                         <a href="javascript:void(0)" class="button remove delete" data-link="<?php echo base_url().$paths['delete'].'/'. $user->id; ?>">Remove</a>
+                        <?php }?>
+                        <?php if(getModuleActionPermission('edit User')){?>
                         <a href="<?php echo base_url().$paths['edit'].'/'. $user->id; ?>" class="button edit">Edit</a>
+                        <?php }?>
                     </td>
                 </tr>
                 <?php

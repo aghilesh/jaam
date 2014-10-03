@@ -9,7 +9,8 @@ class Task extends CI_Controller {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('Task');
+        
         $this->load->library('form_validation');
         $this->load->library('pagination');
 
@@ -67,6 +68,7 @@ class Task extends CI_Controller {
      * add a task
      */
     public function add() {
+        $this->authentication->checkModuleActionPermission('add Task');
         if ($_POST) {
             $this->form_validation->set_rules('title', 'Title', 'required|trim|xss_clean|max_length[50]');
             $this->form_validation->set_rules('description', 'Description', 'xss_clean|max_length[500]');
@@ -111,6 +113,7 @@ class Task extends CI_Controller {
      * edit a task
      */
     public function edit() {
+        $this->authentication->checkModuleActionPermission('edit Task');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
             $this->form_validation->set_rules('title', 'Title', 'required|trim|xss_clean|max_length[50]');
@@ -157,6 +160,7 @@ class Task extends CI_Controller {
      * @param type $id
      */
     public function delete($id) {
+        $this->authentication->checkModuleActionPermission('delete Task');
         $error = false;
         if ($id) {
             if ($this->task->delete($id)) {

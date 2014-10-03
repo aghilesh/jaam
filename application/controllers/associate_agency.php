@@ -9,7 +9,8 @@ class Associate_agency extends CI_Controller {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('Associate agency');
+        
         $this->load->library('form_validation');
         $this->load->library('pagination');
 
@@ -47,6 +48,7 @@ class Associate_agency extends CI_Controller {
     }
 
     public function add() {
+        $this->authentication->checkModuleActionPermission('add Associate agency');
         if ($_POST) {
             $validationError = array();
             $this->form_validation->set_rules('code', 'Code', 'required|trim|xss_clean|max_length[20]');
@@ -121,6 +123,7 @@ class Associate_agency extends CI_Controller {
      * edit a university
      */
     public function edit() {
+        $this->authentication->checkModuleActionPermission('edit Associate agency');
         $validationError = array();
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
@@ -197,6 +200,7 @@ class Associate_agency extends CI_Controller {
      * @param type $id
      */
     public function delete($id) {
+        $this->authentication->checkModuleActionPermission('delete Associate agency');
         $error = false;
         if ($id) {
             if ($this->agency->delete($id)) {

@@ -9,7 +9,7 @@ class Roles extends CI_Controller {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('User role');
         $this->load->model('role_model', 'role');
         $this->gen_contents['site_name'] = $this->config->item('site_name');
         $this->gen_contents['dynamic_views'] = array();
@@ -17,6 +17,9 @@ class Roles extends CI_Controller {
     }
 
     public function index() {
+        $this->authentication->checkModuleActionPermission('add User role');
+        $this->authentication->checkModuleActionPermission('edit User role');
+        $this->authentication->checkModuleActionPermission('delete User role');
         if($_POST){
             $permissionPost = $_POST;
             unset($permissionPost['submit']);

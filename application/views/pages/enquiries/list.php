@@ -7,7 +7,11 @@
             <th>Address</th>
             <th>Email</th>
             <th>Phone</th>
-            <th style="width:19.5%"><a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a></th>
+            <th style="width:19.5%">
+                <?php if(getModuleActionPermission('add Enquiries')){?>
+                <a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a>
+                <?php }?>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -24,8 +28,12 @@
                     <td><?php echo $enquiry->email_id?></td>
                     <td><?php echo $enquiry->phone_no?></td>
                     <td align="right">
+                        <?php if(getModuleActionPermission('delete Enquiries')){?>
                         <a href="javascript:void(0)" class="button remove delete" data-link="<?php echo base_url().$paths['delete'].'/'. $enquiry->id; ?>">Remove</a>
+                        <?php }?>
+                        <?php if(getModuleActionPermission('edit Enquiries')){?>
                         <a href="<?php echo base_url().$paths['edit'].'/'. $enquiry->id; ?>" class="button edit">Edit</a>
+                        <?php }?>
                         <a href="<?php echo base_url().$paths['view'].'/'. $enquiry->id; ?>" class="button view">View</a>
                     </td>
                 </tr>

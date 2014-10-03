@@ -9,7 +9,8 @@ class Enquiries extends CI_Controller {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('Enquiries');
+        
         $this->gen_contents['site_name'] = $this->config->item('site_name');
         $this->gen_contents['dynamic_views'] = array();
         $this->load->library('pagination');
@@ -54,6 +55,7 @@ class Enquiries extends CI_Controller {
     }
 
     public function add() {
+        $this->authentication->checkModuleActionPermission('add Enquiries');
         if ($_POST) {
             $this->__saveEnquiryData();
         }
@@ -149,6 +151,7 @@ class Enquiries extends CI_Controller {
     }
     
     public function edit() {
+        $this->authentication->checkModuleActionPermission('edit Enquiries');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
              $this->__updateEnquiryData($id);
@@ -253,6 +256,7 @@ class Enquiries extends CI_Controller {
     }
     
     public function delete() {
+        $this->authentication->checkModuleActionPermission('delete Enquiries');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         $this->enquiry->delete($id);
         $this->session->set_flashdata('message', $this->entity . ' was deleted successfully.');

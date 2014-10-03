@@ -9,7 +9,7 @@ class User extends CI_Controller {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-
+        $this->authentication->checkModulePermission('User');
 
         $this->load->library('form_validation');
         $this->load->library('pagination');
@@ -51,6 +51,7 @@ class User extends CI_Controller {
      * add a user
      */
     public function add() {
+        $this->authentication->checkModuleActionPermission('add User');
         if ($_POST) {
             $this->form_validation->set_rules('role_id', 'Role', 'required');
             $this->form_validation->set_rules('dept_id', 'Department', 'required');
@@ -106,6 +107,7 @@ class User extends CI_Controller {
      * edit a user
      */
     public function edit() {
+        $this->authentication->checkModuleActionPermission('edit User');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
             $this->form_validation->set_rules('role_id', 'Role', 'required');
@@ -129,13 +131,14 @@ class User extends CI_Controller {
                     'branch_id' => set_value('branch_id'),
                     'country_id' => set_value('country_id'),
                     'user_name' => set_value('user_name'),
-                    'password' => set_value('password'),
                     'first_name' => set_value('first_name'),
                     'last_name' => set_value('last_name'),
                     'email_id' => set_value('email'),
                     'phone_no' => set_value('phone')
                 );
-
+                if($_POST['password']){
+                    $formData['password'] = trim($_POST['password']);
+                }
                 if ($this->user->update($formData, $id) == TRUE) {
                     $this->session->set_flashdata('message', $this->entity . ' was updated successfully.');
                     $this->session->set_flashdata('msg_class', 'success_message');
@@ -164,6 +167,7 @@ class User extends CI_Controller {
      * @param type $id
      */
     public function delete($id) {
+        $this->authentication->checkModuleActionPermission('delete User');
         $error = false;
         if ($id) {
             if ($this->user->delete($id)) {

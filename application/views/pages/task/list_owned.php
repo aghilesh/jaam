@@ -21,7 +21,11 @@
             <th>Date Time</th>
             <th>Assigned To</th>
             <th>Status</th>
-            <th><a href="<?php echo base_url() . $paths['add'] ?>" class="fr button common-add-btn-click">ADD</a></th>
+            <th>
+                <?php if(getModuleActionPermission('add Task')){?>
+                    <a href="<?php echo base_url() . $paths['add'] ?>" class="fr button common-add-btn-click">ADD</a>
+                <?php }?>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -37,8 +41,12 @@
                     <td><?php echo @getUserName($list->assigned_to); ?></td>
                     <td><?php echo @getTaskStatus($list->status)?></td>
                     <td>
+                        <?php if(getModuleActionPermission('delete Task')){?>
                         <a href="javascript:void(0)" class="button remove delete" data-link="<?php echo base_url() . $paths['delete'] . '/' . $list->id; ?>">Remove</a>
+                        <?php }?>
+                        <?php if(getModuleActionPermission('edit Task')){?>
                         <a href="<?php echo base_url() . $paths['edit'] . '/' . $list->id; ?>" class="button edit">Edit</a>
+                        <?php }?>
                         <a href="<?php echo base_url() . $paths['view'] . '/' . $list->id; ?>" class="button view">View</a>
                     </td>
                 </tr>

@@ -4,7 +4,11 @@
             <th>Sl.No.</th>
             <th>Course Code</th>
             <th>Course Title</th>
-            <th><a href="<?php echo base_url() . $paths['add'] ?>" class="fr button common-add-btn-click">ADD</a></th>
+            <th>
+                <?php if(getModuleActionPermission('add University courses')){?>
+                <a href="<?php echo base_url() . $paths['add'] ?>" class="fr button common-add-btn-click">ADD</a>
+                <?php }?>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -18,8 +22,12 @@
                     <td><?php echo $list->code; ?></td>
                     <td><?php echo $list->course_title; ?></td>
                     <td>
+                        <?php if(getModuleActionPermission('delete University courses')){?>
                         <a href="javascript:void(0)" class="button remove delete" data-link="<?php echo base_url() . $paths['delete'] . '/' . $list->id; ?>">Remove</a>
+                        <?php }?>
+                        <?php if(getModuleActionPermission('edit University courses')){?>
                         <a href="<?php echo base_url() . $paths['edit'] . '/' . $list->id; ?>" class="button edit">Edit</a>
+                        <?php }?>
                     </td>
                 </tr>
                 <?php
