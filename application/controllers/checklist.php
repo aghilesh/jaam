@@ -66,22 +66,16 @@ class Checklist extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $validationError[] = validation_errors();
         }
-        var_dump($post['checklist']);
-        for($i=0; $i<sizeOf($post['checklist']);$i++) {
-           $this->form_validation->set_rules('checklist', 'Check List', 'required|trim|xss_clean');
-        }
-        
+
         if($validationError) {
             $this->gen_contents['message'] = implode('<br/>', $validationError);
             $this->gen_contents['msg_class'] = 'error_message';
             return;
         }
-        die();
         
         $formData['countryIds'] = $post['country_id'];
         $formData['checkList']  = $post['checklist'];
-        
-        die();
+
         if ($this->checklist->insert($formData)) {
             $this->session->set_flashdata('message', $this->entity . ' was added successfully.');
             $this->session->set_flashdata('msg_class', 'success_message');
@@ -114,7 +108,8 @@ class Checklist extends CI_Controller {
     }
     
     protected function __setFormValidationRules(){
-        $this->form_validation->set_rules('country_id', 'Country', 'required|trim|xss_clean');
+        $this->form_validation->set_rules('country_id[]', 'Country', 'required|trim|xss_clean');
+        $this->form_validation->set_rules('checklist[]', 'Check List', 'required|trim|xss_clean');
     }
 
 }

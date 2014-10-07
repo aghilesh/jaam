@@ -6,12 +6,13 @@ class Checklist_model extends Parent_model {
     }
     
     public function insert($data) {
-        for($i=0; $i<$data['countryIds']; $i++) {
-            for($j=0; $j<$data['checkList']; $j++) {
-                parent::insert(array('country_id'=>$data['countryIds'][$i],'description'=>$data['checkList'][$j]));
+        for($i=0; $i<sizeof($data['countryIds']); $i++) {
+            for($j=0; $j<sizeof($data['checkList']); $j++) {
+                $arr = array('country_id'=>$data['countryIds'][$i],'description'=>$data['checkList'][$j]);
+                parent::insert($arr);
             }
         }
-        return;
+       return 1;
     }
     
     public function update($data, $enquiryId) {
@@ -57,7 +58,7 @@ class Checklist_model extends Parent_model {
     }
     
     public function get($id='') {
-        return $this->enquiryMaster->get($id);
+        return '';
     }
     
     public function getForEdit($id='') {
