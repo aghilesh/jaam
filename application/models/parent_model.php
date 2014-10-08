@@ -53,6 +53,19 @@ class Parent_model extends CI_Model {
         return ($id) ? $query->row() : $query->result();
     }
     
+    /**
+     * getWhere
+     */
+    public function getWhere($where=Array()) {
+        $this->db->select('*');
+        if ($where) {
+            foreach($where as $field=>$value)
+            $this->db->where($field, $value);
+        }
+        $query = $this->db->get($this->table);
+        return $query->result();
+    }
+    
     public function getDuplication($fields=Array(),$id=''){
         $this->db->select('*');
         if($fields)

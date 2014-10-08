@@ -36,4 +36,9 @@ $(document).ready(function(){
         }
         return this;
     });
+    $('body').on("change", "#country_id", function(e) {
+        window.location = $('#list_url').val()+'/'+$(this).val();
+    });
+    
+    
 });

@@ -57,10 +57,6 @@ class Checklist_model extends Parent_model {
         return true;
     }
     
-    public function get($id='') {
-        return '';
-    }
-    
     public function getForEdit($id='') {
         $returnArr = array();
         $enquiryMainDetailsSql = 'SELECT em.*, EM.id AS enquiry_id FROM enquiry_master EM WHERE EM.id=\''.$id.'\'';

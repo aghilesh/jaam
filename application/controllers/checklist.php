@@ -28,7 +28,7 @@ class Checklist extends CI_Controller {
             'add' => 'checklist/add',
             'edit' => 'checklist/edit',
             'delete' => 'checklist/delete',
-            'list' => 'checklist',
+            'list' => $this->config->item('base_url').'checklist/index',
             'view' => 'checklist/view'
         );
         $this->entity = 'Check List';
@@ -40,8 +40,10 @@ class Checklist extends CI_Controller {
         $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Check List';
         $this->gen_contents['page_title'] = 'Check List';
         $this->gen_contents['leftmenu_selected'] = 'checklist';
-        $this->gen_contents['checklist'] = $this->checklist->get();
         $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'checklist/list';
+        $this->gen_contents['selectedCountryId'] = strip_quotes(strip_tags(trim($this->uri->segment(3))));
+        $this->gen_contents['checklist'] = $this->checklist->getWhere(array('country_id'=>$this->gen_contents['selectedCountryId']));
+        $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
 
