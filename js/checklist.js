@@ -26,6 +26,23 @@ var Checklist = function(){
             var txtBoxes = $('#checkListRows').find('.checklist-field');
             var lastElem = txtBoxes[txtBoxes.length-1];
             $(lastElem).focus();
+        },
+        
+        editRow : function(checkListId) {
+            var checkAlreadyEdit = $('#checkListRow-'+checkListId).find('input.checklist-field');
+            $('#save-all-btn').removeClass('hidden');
+            return !checkAlreadyEdit.length ? $('#checkListRow-'+checkListId).html(this.getCheckListEditTemplate(checkListId)) : '';
+        },
+        
+        getCheckListEditTemplate : function(checkListId) {
+            var dummyRow = $('#checkListEditTemplate').html();
+            dummyRow = dummyRow.replace(/{REPL_CHECKLIST_ID}/g, checkListId);
+            dummyRow = dummyRow.replace(/{REPL_CHECKLIST_VALUE}/g, $('#checkListRow-'+checkListId).html());
+            return dummyRow;
+        },
+        
+        submitCheckListSaveAllForm : function() {
+            $('#checkListSaveAllForm').submit();
         }
     }
 }()

@@ -10,14 +10,14 @@ $post = $this->input->post();
 <div class="fl full-width">
     <div class="form-inner">
         <?php
-        $attributes = array('class' => 'checklist', 'id' => 'frmChecklistAdd','name'=>'frmChecklistAdd');
+        $attributes = array('class' => 'checklist', 'id' => 'frmChecklistEdit','name'=>'frmChecklistEdit');
         echo form_open($paths['add'], $attributes);
         ?>
         <ul class="fl form-fields-checklist" id="checkListRows">
             <li class="fl form-label">Country(s)</li>
             <li class="fl form-field">
                 <?php 
-                echo form_dropdown('country_id[]', $countries, getFieldValue('country_id', $selectedCountryId), 'class="generic-" multiple'); ?>
+                echo form_dropdown('country_id[]', $countries, , 'class="generic-" multiple'); ?>
             </li>
             <li class="clear"/>
             <li class="fl form-label">Checklist<sup class="mandatory">*</sup></li>
@@ -50,7 +50,7 @@ $post = $this->input->post();
             <li class="fl form-label">&nbsp;</li>
             <li class="fl form-field">
                 <a href="javascript:void(0)" class="fl button save common-save-btn-click">Save</a>
-                <a href="<?php echo $this->config->item('base_url').$paths['list'].'?'.  random_string() ?>" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>
+                <a href="<?php echo $paths['list'].'?'.  random_string() ?>" class="fl marginleft10 button cancel common-cancel-btn-click">Cancel</a>
             </li>
         </ul>
         <?php
