@@ -274,6 +274,7 @@ a.button.blue{background-color: blue;}
 ul.form-fields-ul-slider{width:50%;}
 ul.form-fields-ul-slider li{list-style: none;}
 ul.form-fields-ul-slider li.form-label{width:30%;line-height: 25px;/*font-family: Copperplate, "Copperplate Gothic Light", fantasy*/}
+ul.form-fields-ul-slider.follow-up li.form-label{width:15%;}
 ul.form-fields-ul-slider li.form-field{width:50%;}
 ul.form-fields-ul-slider li.newline{height:10px;}
 h2.form-sub-head{font-weight: normal;}

@@ -6,6 +6,8 @@ class Enquiry_model extends Parent_model {
         $this->load->model('enquiryeducation_model', 'enquiryEducation');
         $this->load->model('enquirycoursesinterested_model', 'enquiryCoursesInterested');
         $this->load->model('enquirytestprepare_model', 'enquiryTestPrepare');
+        $this->load->model('enquiryfollowup_model', 'followUp');
+        $this->load->model('task_model', 'task');
     }
     
     public function insert($data) {
@@ -23,6 +25,25 @@ class Enquiry_model extends Parent_model {
          $data['test_prepare'][$i]['enquiry_id'] = $enquiryId;
          $this->enquiryTestPrepare->insert($data['test_prepare'][$i]);
         }*/
+        
+        for($i=0;$i<sizeof($data['followUp']); $i++) {
+         $task = array();
+         $task['title'] = $data['followUp'][$i]['title'];
+         $task['description'] = $data['followUp'][$i]['description'];
+         $task['when'] = $data['followUp'][$i]['when'];
+         $task['assigned_by'] = $data['followUp'][$i]['assigned_by'];
+         $task['assigned_to'] = $data['followUp'][$i]['assigned_to'];
+         $task['created_date'] = $data['followUp'][$i]['date'];
+         $task['status'] = 1;
+         $this->task->insert($task);
+         $taskId = $this->db->insert_id();
+         
+         if($taskId) {
+            $data['followUp'][$i]['ref_id'] = $enquiryId;
+            $data['followUp'][$i]['status'] = $taskId;
+            $this->followUp->insert($data['followUp'][$i]);
+         }
+        }
         return 1;
     }
     

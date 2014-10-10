@@ -8,7 +8,7 @@ $post = $this->input->post();
         echo form_open($paths['add'], $attributes);
         ?>
         <ul class="fl form-fields-ul-slider">
-           <li class="fl form-label">Enquiry Moe<sup class="mandatory">*</sup></li>
+           <li class="fl form-label">Enquiry Date<sup class="mandatory">*</sup></li>
            <li class="fl form-field">
                <input type="date" name="enqDate" id="enqDate" value="<?php echo $post && $post['enqDate'] ? $post['enqDate'] : date('Y-m-d'); ?>" >
            </li>
@@ -24,6 +24,9 @@ $post = $this->input->post();
         </ul>
         <ul class="fl form-fields-ul-slider full-width">
             <?php $this->load->view($this->config->item('pages') . 'enquiries/add/course_details', $this->gen_contents);?>
+        </ul>
+        <ul class="fl form-fields-ul-slider follow-up full-width">
+            <?php $this->load->view($this->config->item('pages') . 'enquiries/add/follow_up', $this->gen_contents);?>
         </ul>
         <ul class="fl form-fields-ul-slider">
             <li class="fl form-label">&nbsp;</li>

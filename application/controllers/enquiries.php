@@ -21,7 +21,7 @@ class Enquiries extends CI_Controller {
         $this->load->model('enquirymode_model', 'enquirymode');
         $this->load->model('publicitysource_model', 'publicitysource');
         $this->load->model('enquiry_model', 'enquiry');
-
+        $this->load->model('user_model', 'user');
 
         $this->gen_contents['dynamic_views'] = array();
         $this->gen_contents['load_css'] = array();
@@ -66,6 +66,7 @@ class Enquiries extends CI_Controller {
         $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
         $this->gen_contents['enquiry_modes'] = prepareOptionList($this->enquirymode->get(), array('key' => 'id', 'value' => 'mode_name'));
         $this->gen_contents['publicity_sources'] = prepareOptionList($this->publicitysource->get(), array('key' => 'id', 'value' => 'source'));
+        $this->gen_contents['users'] = prepareOptionList($this->user->get(), array('key' => 'id', 'value' => 'first_name'));
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
     
@@ -73,8 +74,8 @@ class Enquiries extends CI_Controller {
         $formData = array();
         $post = $this->input->post();
         
-        $this->__setFormValidationRules();
-        
+        $this->__setFormValidationRules(1);
+        $validationError = array();
         if ($this->form_validation->run() == FALSE) {
             $validationError[] = validation_errors();
         }
@@ -123,6 +124,20 @@ class Enquiries extends CI_Controller {
             $arr['country_id'] = $course['country_id'][$i];
             array_push($formData['courses'], $arr);
         }
+        
+        $formData['followUp'] = array();
+        $followUp = array();
+        $followUp['ref_id'] = '';
+        $followUp['ref_type'] = 'E';
+        $followUp['date'] = date('Y-m-d H:i:s');
+        $followUp['title'] = $post['followUpTitle'];
+        $followUp['description'] = $post['followUpDescription'];
+        $followUp['assigned_by'] = $this->authentication->getCurrentUserId();
+        $followUp['assigned_to'] = $post['followUpAssignedTo'];
+        $followUp['when'] = $post['followUpWhen'].' 00:00:00';
+        $followUp['comments'] = $post['followUpComments'];
+        array_push($formData['followUp'], $followUp);
+        
         /*$formData['test_prepare'] = array();
         $testPrepare = array();
         $testPrepare['enquiry_id'] = '';
@@ -277,12 +292,16 @@ class Enquiries extends CI_Controller {
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
     
-    protected function __setFormValidationRules(){
+    protected function __setFormValidationRules($newEnquiryFlag=0){
         $this->form_validation->set_rules('email_id', 'Email', 'required|trim|xss_clean|valid_email');
         $this->form_validation->set_rules('firstName', 'First Name', 'required|trim|xss_clean');
         $this->form_validation->set_rules('lastName', 'Last Name', 'required|trim|xss_clean');
         $this->form_validation->set_rules('pincode', 'Pin Code', 'required|trim|xss_clean');
         $this->form_validation->set_rules('phone', 'Phone', 'required|trim|xss_clean');
+        if($newEnquiryFlag) {
+           $this->form_validation->set_rules('followUpTitle', 'Follow Up Title', 'required|trim|xss_clean');
+            $this->form_validation->set_rules('followUpDescription', 'Follow Up Description', 'required|trim|xss_clean');
+        }
     }
 
 }
