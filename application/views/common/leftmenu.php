@@ -47,6 +47,9 @@ $currentMenu = @strtolower($leftmenu_selected);
             <?php if(getModulePermission('Enquiries')){?>
             <li><a class="<?php echo $currentMenu == 'enquiries' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>enquiries">Enquiries</a></li>
             <?php }?>
+            <?php if(getModulePermission('Registration')){?>
+            <li><a class="<?php echo $currentMenu == 'registration' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>registration">Registration</a></li>
+            <?php }?>
             <?php if(getModulePermission('Task')){?>
             <li><a class="<?php echo $currentMenu == 'task' ? 'selected' : '' ?>" href="<?php echo $this->config->item('base_url') ?>task">Task</a></li>
             <?php }?>

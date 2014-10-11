@@ -27,22 +27,8 @@ class Enquiry_model extends Parent_model {
         }*/
         
         for($i=0;$i<sizeof($data['followUp']); $i++) {
-         $task = array();
-         $task['title'] = $data['followUp'][$i]['title'];
-         $task['description'] = $data['followUp'][$i]['description'];
-         $task['when'] = $data['followUp'][$i]['when'];
-         $task['assigned_by'] = $data['followUp'][$i]['assigned_by'];
-         $task['assigned_to'] = $data['followUp'][$i]['assigned_to'];
-         $task['created_date'] = $data['followUp'][$i]['date'];
-         $task['status'] = 1;
-         $this->task->insert($task);
-         $taskId = $this->db->insert_id();
-         
-         if($taskId) {
             $data['followUp'][$i]['ref_id'] = $enquiryId;
-            $data['followUp'][$i]['status'] = $taskId;
-            $this->followUp->insert($data['followUp'][$i]);
-         }
+            $this->task->insert($data['followUp'][$i]);
         }
         return 1;
     }
@@ -111,6 +97,11 @@ class Enquiry_model extends Parent_model {
         $result = $query->result();
         $returnArr['courseInterestDetails'] = $result;
         
+        $followUpSql = 'SELECT T.*, T.id AS task_id FROM task T WHERE T.ref_id=\''.$id.'\' AND T.ref_type=\'E\'';
+        $query = $this->db->query($followUpSql);
+        $result = $query->result();
+        $returnArr['followUp'] = $result ? $result[0] : '';
+        
         return $returnArr;
     }
     
@@ -119,6 +110,8 @@ class Enquiry_model extends Parent_model {
         $this->enquiryEducation->deleteByEnquiryId($enquiryId);
         $this->enquiryCoursesInterested->deleteByEnquiryId($enquiryId);
         //$this->enquiryTestPrepare->deleteByEnquiryId($enquiryId);
+        $deleteTaskSql = 'DELETE FROM task WHERE ref_id=\''.$regId.'\' AND ref_type=\'E\'';
+        $this->db->query($deleteTaskSql);
     }
 }
 ?>
