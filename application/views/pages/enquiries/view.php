@@ -22,6 +22,9 @@ $enquiryMain = $enquiry_details['enquiryMain'];
         <ul class="fl form-fields-ul-slider full-width">
             <?php $this->load->view($this->config->item('pages') . 'enquiries/view/course_details', $this->gen_contents);?>
         </ul>
+        <ul class="fl form-fields-ul-slider full-width">
+            <?php $enquiry_details['followUp'] ? $this->load->view($this->config->item('pages') . 'enquiries/view/follow_up', $this->gen_contents) : '';?>
+        </ul>
         <ul class="fl form-fields-ul-slider">
             <li class="fl form-label">&nbsp;</li>
             <li class="fl form-field" sty>

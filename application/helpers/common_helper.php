@@ -75,7 +75,8 @@ function getCountryName($id) {
 function getUserName($id) {
     $ci = & get_instance();
     $ci->load->model('user_model', 'user');
-    return $ci->user->get($id)->first_name;
+    $user = $ci->user->get($id);
+    return $user->first_name.' '.$user->last_name;
 }
 
 function getBranchName($id) {
@@ -140,5 +141,4 @@ function getModuleActionPermission($action='') {
     $ci = & get_instance();
     return $ci->authentication->getModuleActionPermission($action) ? true : false;
 }
-
 ?>

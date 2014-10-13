@@ -18,6 +18,10 @@ class Authentication {
         }
         return TRUE;
     }
+    
+    function getCurrentUserId(){
+        return $this->CI->session->userdata('USER_ID');
+    }
 
     function login($login = NULL) {
 

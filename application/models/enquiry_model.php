@@ -6,6 +6,8 @@ class Enquiry_model extends Parent_model {
         $this->load->model('enquiryeducation_model', 'enquiryEducation');
         $this->load->model('enquirycoursesinterested_model', 'enquiryCoursesInterested');
         $this->load->model('enquirytestprepare_model', 'enquiryTestPrepare');
+        $this->load->model('enquiryfollowup_model', 'followUp');
+        $this->load->model('task_model', 'task');
     }
     
     public function insert($data) {
@@ -23,6 +25,11 @@ class Enquiry_model extends Parent_model {
          $data['test_prepare'][$i]['enquiry_id'] = $enquiryId;
          $this->enquiryTestPrepare->insert($data['test_prepare'][$i]);
         }*/
+        
+        for($i=0;$i<sizeof($data['followUp']); $i++) {
+            $data['followUp'][$i]['ref_id'] = $enquiryId;
+            $this->task->insert($data['followUp'][$i]);
+        }
         return 1;
     }
     
@@ -90,6 +97,11 @@ class Enquiry_model extends Parent_model {
         $result = $query->result();
         $returnArr['courseInterestDetails'] = $result;
         
+        $followUpSql = 'SELECT T.*, T.id AS task_id FROM task T WHERE T.ref_id=\''.$id.'\' AND T.ref_type=\'E\'';
+        $query = $this->db->query($followUpSql);
+        $result = $query->result();
+        $returnArr['followUp'] = $result ? $result[0] : '';
+        
         return $returnArr;
     }
     
@@ -98,6 +110,8 @@ class Enquiry_model extends Parent_model {
         $this->enquiryEducation->deleteByEnquiryId($enquiryId);
         $this->enquiryCoursesInterested->deleteByEnquiryId($enquiryId);
         //$this->enquiryTestPrepare->deleteByEnquiryId($enquiryId);
+        $deleteTaskSql = 'DELETE FROM task WHERE ref_id=\''.$regId.'\' AND ref_type=\'E\'';
+        $this->db->query($deleteTaskSql);
     }
 }
 ?>

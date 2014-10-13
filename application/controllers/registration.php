@@ -3,13 +3,13 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Enquiries extends CI_Controller {
+class Registration extends CI_Controller {
 
-    public function Enquiries() {
+    public function Registration() {
         parent::__construct();
 
         (!$this->authentication->check_logged_in()) ? redirect('') : '';
-        $this->authentication->checkModulePermission('Enquiries');
+        $this->authentication->checkModulePermission('Registration');
         
         $this->gen_contents['site_name'] = $this->config->item('site_name');
         $this->gen_contents['dynamic_views'] = array();
@@ -20,49 +20,49 @@ class Enquiries extends CI_Controller {
 
         $this->load->model('enquirymode_model', 'enquirymode');
         $this->load->model('publicitysource_model', 'publicitysource');
-        $this->load->model('enquiry_model', 'enquiry');
+        $this->load->model('registration_model', 'registration');
         $this->load->model('user_model', 'user');
 
         $this->gen_contents['dynamic_views'] = array();
         $this->gen_contents['load_css'] = array();
-        $this->gen_contents['load_js'] = array("enquiry.js");
+        $this->gen_contents['load_js'] = array("registration.js");
 
         $this->gen_contents['site_name'] = $this->config->item('site_name');
-        $this->gen_contents['page_title'] = 'Enquiry';
+        $this->gen_contents['page_title'] = 'Registration';
         $this->gen_contents['title'] = $this->gen_contents['site_name'] . ' : ' . $this->gen_contents['page_title'];
-        $this->gen_contents['leftmenu_selected'] = 'enquiries';
+        $this->gen_contents['leftmenu_selected'] = 'registration';
 
         $this->gen_contents['paths'] = array(
-            'add' => 'enquiries/add',
-            'edit' => 'enquiries/edit',
-            'delete' => 'enquiries/delete',
-            'list' => 'enquiries',
-            'view' => 'enquiries/view'
+            'add' => 'registration/add',
+            'edit' => 'registration/edit',
+            'delete' => 'registration/delete',
+            'list' => 'registration',
+            'view' => 'registration/view'
         );
-        $this->entity = 'Enquiry';
+        $this->entity = 'Registration';
         $this->form_validation->set_error_delimiters('<br/>');
 
         $this->load->model('country_model', 'country');
     }
 
     public function index() {
-        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Enquiries';
-        $this->gen_contents['page_title'] = 'Enquiries';
-        $this->gen_contents['leftmenu_selected'] = 'enquiries';
-        $this->gen_contents['enquiries'] = $this->enquiry->get();
-        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'enquiries/list';
+        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Registration';
+        $this->gen_contents['page_title'] = 'Registration';
+        $this->gen_contents['leftmenu_selected'] = 'registration';
+        $this->gen_contents['registrations'] = $this->registration->get();
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'registration/list';
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
 
     public function add() {
-        $this->authentication->checkModuleActionPermission('add Enquiries');
+        $this->authentication->checkModuleActionPermission('add Registration');
         if ($_POST) {
-            $this->__saveEnquiryData();
+            $this->__saveRegistrationData();
         }
-        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Add new enquiry';
-        $this->gen_contents['page_title'] = 'Add new enquiry';
-        $this->gen_contents['leftmenu_selected'] = 'enquiries';
-        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'enquiries/add';
+        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Add new Registration';
+        $this->gen_contents['page_title'] = 'Add new registration';
+        $this->gen_contents['leftmenu_selected'] = 'registration';
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'registration/add';
         $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
         $this->gen_contents['enquiry_modes'] = prepareOptionList($this->enquirymode->get(), array('key' => 'id', 'value' => 'mode_name'));
         $this->gen_contents['publicity_sources'] = prepareOptionList($this->publicitysource->get(), array('key' => 'id', 'value' => 'source'));
@@ -70,7 +70,7 @@ class Enquiries extends CI_Controller {
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
     
-    private function __saveEnquiryData() {
+    private function __saveRegistrationData() {
         $formData = array();
         $post = $this->input->post();
         
@@ -84,27 +84,30 @@ class Enquiries extends CI_Controller {
             $this->gen_contents['msg_class'] = 'error_message';
             return;
         }
-        $formData['enquirymaster'] = array();
-        $formData['enquirymaster']['user_id']   = $this->authentication->getUserInfo("id");
-        $formData['enquirymaster']['date']   = $post['enqDate'];
-        $formData['enquirymaster']['enquiry_mode']   = $post['enquiry_mode'];
-        $formData['enquirymaster']['first_name']   = $post['firstName'];
-        $formData['enquirymaster']['last_name']   = $post['lastName'];
-        $formData['enquirymaster']['address']   = $post['address'];
-        $formData['enquirymaster']['state']   = $post['state'];
-        $formData['enquirymaster']['country_id']   = $post['country_id'];
-        $formData['enquirymaster']['pincode']   = $post['pincode'];
-        $formData['enquirymaster']['email_id']   = $post['email_id'];
-        $formData['enquirymaster']['phone_no']   = $post['phone'];
-        $formData['enquirymaster']['source']   = $post['publicity_source'];
-        $formData['enquirymaster']['source_description']   = $post['source_description'];
-        $formData['enquirymaster']['discription']   = $post['description'];
+        $formData['registrationMaster'] = array();
+        $formData['registrationMaster']['user_id']   = $this->authentication->getUserInfo("id");
+        $formData['registrationMaster']['date']   = $post['regDate'];
+        $formData['registrationMaster']['enquiry_mode']   = $post['registration_mode'];
+        $formData['registrationMaster']['first_name']   = $post['firstName'];
+        $formData['registrationMaster']['last_name']   = $post['lastName'];
+        $formData['registrationMaster']['address']   = $post['address'];
+        $formData['registrationMaster']['state']   = $post['state'];
+        $formData['registrationMaster']['country_id']   = $post['country_id'];
+        //$formData['registrationMaster']['pincode']   = $post['pincode'];
+        $formData['registrationMaster']['email_id']   = $post['email_id'];
+        $formData['registrationMaster']['phone_no']   = $post['phone'];
+        $formData['registrationMaster']['source']   = $post['publicity_source'];
+        $formData['registrationMaster']['source_description']   = $post['source_description'];
+        $formData['registrationMaster']['discription']   = $post['description'];
+        $formData['registrationMaster']['total_fee'] = $post['total_fee'];
+        $formData['registrationMaster']['status'] = 1;
+        $formData['registrationMaster']['comments'] = $post['comments'];
         $formData['education'] = array();
         $education = $post['edu'];
         for($i=0; $i<sizeof($education['qualification']); $i++) {
             if(!trim($education['qualification'][$i])) continue;
             $arr = array();
-            $arr['enquiry_id'] = '';
+            $arr['reg_id'] = '';
             $arr['country_id'] = $education['country_id'][$i];
             $arr['qualification'] = $education['qualification'][$i];
             $arr['board'] = $education['university'][$i];
@@ -119,28 +122,15 @@ class Enquiries extends CI_Controller {
         for($i=0; $i<sizeof($course['course_name']); $i++) {
             if(!trim($course['course_name'][$i])) continue;
             $arr = array();
-            $arr['enquiry_id'] = '';
+            $arr['reg_id'] = '';
             $arr['course_interested'] = $course['course_name'][$i];
             $arr['country_id'] = $course['country_id'][$i];
             array_push($formData['courses'], $arr);
         }
         
-        $formData['followUp'] = array();
-        $followUp = array();
-        $followUp['ref_id'] = '';
-        $followUp['ref_type'] = 'E';
-        $followUp['created_date'] = date('Y-m-d H:i:s');
-        $followUp['title'] = $post['followUpTitle'];
-        $followUp['description'] = $post['followUpDescription'];
-        $followUp['assigned_by'] = $this->authentication->getCurrentUserId();
-        $followUp['assigned_to'] = $post['followUpAssignedTo'];
-        $followUp['when'] = $post['followUpWhen'].' 00:00:00';
-        $followUp['status'] = 1;
-        array_push($formData['followUp'], $followUp);
-        
-        /*$formData['test_prepare'] = array();
+        $formData['test_prepare'] = array();
         $testPrepare = array();
-        $testPrepare['enquiry_id'] = '';
+        $testPrepare['reg_id'] = '';
         $testPrepare['toffel'] = $post['testPrepTOFFEL'];
         $testPrepare['ielts'] = $post['testPrepIELTS'];
         $testPrepare['gmat'] = $post['testPrepGMAT'];
@@ -149,12 +139,25 @@ class Enquiries extends CI_Controller {
         $testPrepare['started_coaching'] = $post['testPrepStartCoaching'];
         $testPrepare['looking_for_coaching'] = $post['testPrepLookForCoaching'];
         $testPrepare['looking_for_waier'] = $post['testPrepLookForWaier'];
-        $testPrepare['regular_or_fast_track'] = $post['testPrepCourseMode'];
+        $testPrepare['regular_or_fasttrack'] = $post['testPrepCourseMode'];
         $testPrepare['work_experiance'] = $post['testPrepWorkExperience'];
-        array_push($formData['test_prepare'], $testPrepare);*/
+        array_push($formData['test_prepare'], $testPrepare);
         
+        $formData['followUp'] = array();
+        $followUp = array();
+        $followUp['ref_id'] = '';
+        $followUp['ref_type'] = 'R';
+        $followUp['created_date'] = date('Y-m-d H:i:s');
+        $followUp['title'] = $post['followUpTitle'];
+        $followUp['description'] = $post['followUpDescription'];
+        $followUp['assigned_by'] = $this->authentication->getCurrentUserId();
+        $followUp['assigned_to'] = $post['followUpAssignedTo'];
+        $followUp['when'] = $post['followUpWhen'].' 00:00:00';
+        $followUp['status'] = 1;
         
-        if ($this->enquiry->insert($formData)) {
+        array_push($formData['followUp'], $followUp);
+ 
+        if ($this->registration->insert($formData)) {
             $this->session->set_flashdata('message', $this->entity . ' was added successfully.');
             $this->session->set_flashdata('msg_class', 'success_message');
             redirect($this->gen_contents['paths']['list']);
@@ -166,25 +169,26 @@ class Enquiries extends CI_Controller {
     }
     
     public function edit() {
-        $this->authentication->checkModuleActionPermission('edit Enquiries');
+        $this->authentication->checkModuleActionPermission('edit Registration');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
         if ($_POST && $id) {
-             $this->__updateEnquiryData($id);
+             $this->__updateRegistrationData($id);
         }
-        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Edit enquiry';
-        $this->gen_contents['page_title'] = 'Edit enquiry';
-        $this->gen_contents['leftmenu_selected'] = 'enquiries';
-        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'enquiries/edit';
+        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Edit registration';
+        $this->gen_contents['page_title'] = 'Edit Registration';
+        $this->gen_contents['leftmenu_selected'] = 'registration';
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'registration/edit';
         $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
         $this->gen_contents['enquiry_modes'] = prepareOptionList($this->enquirymode->get(), array('key' => 'id', 'value' => 'mode_name'));
         $this->gen_contents['publicity_sources'] = prepareOptionList($this->publicitysource->get(), array('key' => 'id', 'value' => 'source'));
-        $this->gen_contents['enquiry_details'] = $this->enquiry->getForEdit($id);
+        $this->gen_contents['registration_details'] = $this->registration->getForEdit($id);
         
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
     
-    private function __updateEnquiryData($enquiryId='') {
+    private function __updateRegistrationData($regId='') {
         $this->__setFormValidationRules();
+        $validationError =  array();
         if ($this->form_validation->run() == FALSE) {
             $validationError[] = validation_errors();
         }
@@ -195,21 +199,24 @@ class Enquiries extends CI_Controller {
         }
         $formData = array();
         $post = $this->input->post();
-        $formData['enquirymaster'] = array();
-        $formData['enquirymaster']['user_id']   = $this->authentication->getUserInfo("id");
-        $formData['enquirymaster']['date']   = $post['enqDate'];
-        $formData['enquirymaster']['enquiry_mode']   = $post['enquiry_mode'];
-        $formData['enquirymaster']['first_name']   = $post['firstName'];
-        $formData['enquirymaster']['last_name']   = $post['lastName'];
-        $formData['enquirymaster']['address']   = $post['address'];
-        $formData['enquirymaster']['state']   = $post['state'];
-        $formData['enquirymaster']['country_id']   = $post['country_id'];
-        $formData['enquirymaster']['pincode']   = $post['pincode'];
-        $formData['enquirymaster']['email_id']   = $post['email_id'];
-        $formData['enquirymaster']['phone_no']   = $post['phone'];
-        $formData['enquirymaster']['source']   = $post['publicity_source'];
-        $formData['enquirymaster']['source_description']   = $post['source_description'];
-        $formData['enquirymaster']['discription']   = $post['description'];
+        $formData['registrationMaster'] = array();
+        $formData['registrationMaster']['user_id']   = $this->authentication->getUserInfo("id");
+        $formData['registrationMaster']['date']   = $post['regDate'];
+        $formData['registrationMaster']['enquiry_mode']   = $post['registration_mode'];
+        $formData['registrationMaster']['first_name']   = $post['firstName'];
+        $formData['registrationMaster']['last_name']   = $post['lastName'];
+        $formData['registrationMaster']['address']   = $post['address'];
+        $formData['registrationMaster']['state']   = $post['state'];
+        $formData['registrationMaster']['country_id']   = $post['country_id'];
+        //$formData['registrationmaster']['pincode']   = $post['pincode'];
+        $formData['registrationMaster']['email_id']   = $post['email_id'];
+        $formData['registrationMaster']['phone_no']   = $post['phone'];
+        $formData['registrationMaster']['source']   = $post['publicity_source'];
+        $formData['registrationMaster']['source_description']   = $post['source_description'];
+        $formData['registrationMaster']['discription']   = $post['description'];
+        $formData['registrationMaster']['total_fee']   = $post['total_fee'];
+        $formData['registrationMaster']['status']   = 1;
+        $formData['registrationMaster']['comments']   = $post['comments'];
         $formData['education'] = array();
         $education = $post['edu'];
          foreach($education['qualification'] as $id=>$val) {
@@ -219,7 +226,7 @@ class Enquiries extends CI_Controller {
                 $idVar = explode('-',$id);
                 $arr['id'] = $idVar[sizeof($idVar)-1];
             }
-            $arr['enquiry_id'] = $enquiryId;
+            $arr['reg_id'] = $regId;
             $arr['country_id'] = $education['country_id'][$id];
             $arr['qualification'] = $education['qualification'][$id];
             $arr['board'] = $education['university'][$id];
@@ -238,15 +245,15 @@ class Enquiries extends CI_Controller {
                 $idVar = explode('-',$id);
                 $arr['id'] = $idVar[sizeof($idVar)-1];
             }
-            $arr['enquiry_id'] = $enquiryId;
+            $arr['reg_id'] = $regId;
             $arr['course_interested'] = $course['course_name'][$id];
             $arr['country_id'] = $course['country_id'][$id];
             array_push($formData['courses'], $arr);
         }
-        /*$formData['test_prepare'] = array();
+        $formData['test_prepare'] = array();
         $testPrepare = array();
         $formData['testPrepareId'] = $post['testPrepareId'];
-        $testPrepare['enquiry_id'] = $enquiryId;
+        $testPrepare['reg_id'] = $regId;
         $testPrepare['toffel'] = $post['testPrepTOFFEL'];
         $testPrepare['ielts'] = $post['testPrepIELTS'];
         $testPrepare['gmat'] = $post['testPrepGMAT'];
@@ -255,25 +262,25 @@ class Enquiries extends CI_Controller {
         $testPrepare['started_coaching'] = $post['testPrepStartCoaching'];
         $testPrepare['looking_for_coaching'] = $post['testPrepLookForCoaching'];
         $testPrepare['looking_for_waier'] = $post['testPrepLookForWaier'];
-        $testPrepare['regular_or_fast_track'] = $post['testPrepCourseMode'];
+        $testPrepare['regular_or_fasttrack'] = $post['testPrepCourseMode'];
         $testPrepare['work_experiance'] = $post['testPrepWorkExperience'];
-        array_push($formData['test_prepare'], $testPrepare);*/
+        array_push($formData['test_prepare'], $testPrepare);
         
-        if($this->enquiry->update($formData, $enquiryId)) {
+        if($this->registration->update($formData, $regId)) {
             $this->session->set_flashdata('message', $this->entity . ' was updated successfully.');
             $this->session->set_flashdata('msg_class', 'success_message');
             redirect($this->gen_contents['paths']['list']);
         } else {
             $this->session->set_flashdata('message', 'There was some problem in updating the ' . $this->entity . '.');
             $this->session->set_flashdata('msg_class', 'error_message');
-            redirect($this->gen_contents['paths']['edit'].'/'.$enquiryId);
+            redirect($this->gen_contents['paths']['edit'].'/'.$regId);
         }
     }
     
     public function delete() {
-        $this->authentication->checkModuleActionPermission('delete Enquiries');
+        $this->authentication->checkModuleActionPermission('delete Registration');
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
-        $this->enquiry->delete($id);
+        $this->registration->delete($id);
         $this->session->set_flashdata('message', $this->entity . ' was deleted successfully.');
         $this->session->set_flashdata('msg_class', 'success_message');
         redirect($this->gen_contents['paths']['list']);
@@ -281,24 +288,24 @@ class Enquiries extends CI_Controller {
     
     public function view() {
         $id = strip_quotes(strip_tags(trim($this->uri->segment(3))));
-        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': Edit enquiry';
-        $this->gen_contents['page_title'] = 'Edit enquiry';
-        $this->gen_contents['leftmenu_selected'] = 'enquiries';
-        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'enquiries/view';
+        $this->gen_contents['title'] = $this->gen_contents['site_name'] . ': View registration';
+        $this->gen_contents['page_title'] = 'View registration';
+        $this->gen_contents['leftmenu_selected'] = 'registration';
+        $this->gen_contents['dynamic_views'][] = $this->config->item('pages') . 'registration/view';
         $this->gen_contents['countries'] = prepareOptionList($this->country->get(), array('key' => 'id', 'value' => 'country'));
         $this->gen_contents['enquiry_modes'] = prepareOptionList($this->enquirymode->get(), array('key' => 'id', 'value' => 'mode_name'));
         $this->gen_contents['publicity_sources'] = prepareOptionList($this->publicitysource->get(), array('key' => 'id', 'value' => 'source'));
-        $this->gen_contents['enquiry_details'] = $this->enquiry->getForEdit($id);
+        $this->gen_contents['registration_details'] = $this->registration->getForEdit($id);
         $this->load->view($this->config->item('common_page') . 'template', $this->gen_contents);
     }
     
-    protected function __setFormValidationRules($newEnquiryFlag=0){
+    protected function __setFormValidationRules($newRegistrationFlag=0){
         $this->form_validation->set_rules('email_id', 'Email', 'required|trim|xss_clean|valid_email');
         $this->form_validation->set_rules('firstName', 'First Name', 'required|trim|xss_clean');
         $this->form_validation->set_rules('lastName', 'Last Name', 'required|trim|xss_clean');
-        $this->form_validation->set_rules('pincode', 'Pin Code', 'required|trim|xss_clean');
+       //$this->form_validation->set_rules('pincode', 'Pin Code', 'required|trim|xss_clean');
         $this->form_validation->set_rules('phone', 'Phone', 'required|trim|xss_clean');
-        if($newEnquiryFlag) {
+        if($newRegistrationFlag) {
            $this->form_validation->set_rules('followUpTitle', 'Follow Up Title', 'required|trim|xss_clean');
             $this->form_validation->set_rules('followUpDescription', 'Follow Up Description', 'required|trim|xss_clean');
         }
