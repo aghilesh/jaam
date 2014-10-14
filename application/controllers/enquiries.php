@@ -184,6 +184,7 @@ class Enquiries extends CI_Controller {
     }
     
     private function __updateEnquiryData($enquiryId='') {
+        $validationError = array();
         $this->__setFormValidationRules();
         if ($this->form_validation->run() == FALSE) {
             $validationError[] = validation_errors();
@@ -230,7 +231,7 @@ class Enquiries extends CI_Controller {
         }
 
         $formData['courses'] = array();
-        $course = $post['course'];
+        $course = ($post['course']) ? $post['course'] : '';
         foreach($course['course_name'] as $id=>$val) {
             if(!trim($course['course_name'][$id])) continue;
             $arr = array();
