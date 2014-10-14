@@ -133,9 +133,9 @@ function getEnquirySourceName($id) {
     $ci->load->model('publicitysource_model', 'publicitysource');
     return $ci->publicitysource->get($id)->source;
 }
-function getModulePermission($action='') {
+function getModulePermission($module='') {
     $ci = & get_instance();
-    return $ci->authentication->getModulePermission($action) ? true : false;
+    return $ci->authentication->getModulePermission($module) ? true : false;
 }
 function getModuleActionPermission($action='') {
     $ci = & get_instance();
