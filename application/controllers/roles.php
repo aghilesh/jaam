@@ -32,7 +32,7 @@ class Roles extends CI_Controller {
                 for($i = 0; $i < count($rolesDefined); $i++){
                     // iterate each permission set of a particular role
                     $permissionSet  = $permissionPost[$rolesDefined[$i]];  //echo '<pre>'; print_r($permissionSet); die;
-                    foreach($permissionSet as $key => $value){ echo $key.'='.$value; echo "<br>";
+                    foreach($permissionSet as $key => $value){ //echo $key.'='.$value; echo "<br>";
                         // save all the set of permissions
                         $saved  = $this->role->savePermission($rolesDefined[$i], $key, str_replace(array('add', 'edit', 'delete'), array('', '', ''), $value));
                     } 
