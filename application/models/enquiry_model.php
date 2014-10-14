@@ -81,7 +81,7 @@ class Enquiry_model extends Parent_model {
     
     public function getForEdit($id='') {
         $returnArr = array();
-        $enquiryMainDetailsSql = 'SELECT em.*, EM.id AS enquiry_id FROM enquiry_master EM WHERE EM.id=\''.$id.'\'';
+        $enquiryMainDetailsSql = 'SELECT EM.*, EM.id AS enquiry_id FROM enquiry_master EM WHERE EM.id=\''.$id.'\'';
         $query = $this->db->query($enquiryMainDetailsSql);
         $result = $query->result();
         $returnArr['enquiryMain'] = $result[0];

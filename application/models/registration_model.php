@@ -82,10 +82,10 @@ class Registration_model extends Parent_model {
     
     public function getForEdit($id='') {
         $returnArr = array();
-        $registrationMainDetailsSql = 'SELECT em.*, EM.id AS reg_id FROM registration_master EM WHERE EM.id=\''.$id.'\'';
+        $registrationMainDetailsSql = 'SELECT EM.*, EM.id AS reg_id FROM registration_master EM WHERE EM.id=\''.$id.'\'';
         $query = $this->db->query($registrationMainDetailsSql);
         $result = $query->result();
-        $returnArr['registrationMain'] = $result[0];
+        $returnArr['registrationMain'] = ($result && $result[0]) ? $result[0] : null;;
         
         
         $registrationEducationDetailsSql = 'SELECT EE.*, EE.id AS ee_id FROM reg_education EE WHERE EE.reg_id=\''.$id.'\'';
@@ -96,7 +96,7 @@ class Registration_model extends Parent_model {
         $registrationTestPrepareDetailsSql = 'SELECT TP.*, TP.id AS tp_id FROM reg_test_preparation TP WHERE TP.reg_id=\''.$id.'\'';
         $query = $this->db->query($registrationTestPrepareDetailsSql);
         $result = $query->result();
-        $returnArr['testPrepareDetails'] = $result[0];
+        $returnArr['testPrepareDetails'] = ($result && $result[0]) ? $result[0] : null;
         
         $enquiryCourseInterestSql = 'SELECT EC.*, EC.id AS ec_id FROM reg_course_interested EC WHERE EC.reg_id=\''.$id.'\'';
         $query = $this->db->query($enquiryCourseInterestSql);
