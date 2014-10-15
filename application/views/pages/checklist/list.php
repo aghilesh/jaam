@@ -4,7 +4,13 @@
         <tr>
             <th style="width:5%">Sl.No.</th>
             <th style="width:40%">Check List</th>
-            <th style="width:55%">Select Country  <?php if(!$selectedCountryId) array_unshift($countries,'Select');echo form_dropdown('country_id', $countries, $selectedCountryId, 'class="generic-" id="country_id"')?>
+            <th style="width:55%">Select Country  <?php
+            $countryArr = array();
+            $countryArr[0] = 'Select';
+            foreach($countries as $key=>$value) {
+                $countryArr[$key] = $value;
+            }
+            echo form_dropdown('country_id', $countryArr, $selectedCountryId, 'class="generic-" id="country_id"')?>
                 <?php if(getModuleActionPermission('add Checklist')){?>
                 <a href="<?php echo base_url().$paths['add']; ?>" class="fr button common-add-btn-click">ADD</a>
                 <a id="save-all-btn" href="javascript:void(0)" onClick="Checklist.submitCheckListSaveAllForm()" class="fr hidden button common-add-btn-click">SAVE ALL</a>
