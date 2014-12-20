@@ -6,7 +6,7 @@ class Enquiryeducation_model extends Parent_model {
     }
     
     public function deleteByEnquiryId($enquiryId) {
-        $query = 'DELETE FROM '.table.' WHERE enquiry_id=\''.$enquiryId.'\'';
+        $query = 'DELETE FROM '.$this->table.' WHERE enquiry_id=\''.$enquiryId.'\'';
         $this->db->query($query);
     }
             
